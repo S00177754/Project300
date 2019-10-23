@@ -16,7 +16,6 @@ public class UnitInfo : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (Input.GetMouseButtonDown(1) && isSelected)

@@ -5,7 +5,7 @@ using UnityEngine;
 public class UnitManager : MonoBehaviour
 {
     RaycastHit hit;
-    //List<MovementController> selectedUnits = new List<MovementController>();
+    
     public GameObject selectedUnit;
     private UnitInfo selectedInfo;
     // Start is called before the first frame update
@@ -14,7 +14,6 @@ public class UnitManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (Input.GetMouseButton(0))
@@ -29,8 +28,6 @@ public class UnitManager : MonoBehaviour
                     selectedInfo = selectedUnit.GetComponent<UnitInfo>();
 
                     selectedInfo.isSelected = true;
-
-                    //SelectUnit(hit.transform.GetComponent<MovementController>());
                 }
                 Debug.Log(hit.transform);
             }
@@ -43,19 +40,4 @@ public class UnitManager : MonoBehaviour
         
     }
 
-  /*  private void SelectUnit(MovementController unit)
-    {
-        //selectedUnits.Clear();
-        selectedUnits.Add(unit);
-        
-        //unit.Find("Highlight").gameObject.SetActive(true);
-    }
-
-    private void DeselectUnits()
-    {
-        for (int i = 0; i < selectedUnits.Count; i++)
-        {
-            //selectedUnits[i].Find("Hignlight").gameObject.SetActive(false);
-        }
-    }*/
 }
