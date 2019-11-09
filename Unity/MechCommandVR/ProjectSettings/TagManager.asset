@@ -8,6 +8,8 @@ TagManager:
   - FxTemporaire
   - PlayerUnit
   - Ground
+  - MapInteractable
+  - Unit
   layers:
   - Default
   - TransparentFX
