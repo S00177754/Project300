@@ -10,6 +10,7 @@ TagManager:
   - Ground
   - MapInteractable
   - Unit
+  - Minimap
   layers:
   - Default
   - TransparentFX

@@ -8,6 +8,7 @@ using Valve.VR;
 public class MinimapController : MonoBehaviour
 {
     public Camera minimapCam;
+    public CommanderController Commander;
 
     void Update()
     {
@@ -16,52 +17,52 @@ public class MinimapController : MonoBehaviour
 
     private void ClickableCam()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)) //Need to change to work with VR controllers, temporary solution for debugging
         {
             RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //Need to change to work with VR controllers, temporary solution for debugging
 
 
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log("Hit Plane:" + hit.collider.gameObject);
+                if(hit.collider.gameObject.tag == "Minimap") 
+                { 
+                    var localPoint = hit.textureCoord;
 
+                    Ray portalRay = minimapCam.ScreenPointToRay(new Vector2(localPoint.x * minimapCam.pixelWidth, localPoint.y * minimapCam.pixelHeight));
+                    RaycastHit portalHit;
 
-                var localPoint = hit.textureCoord;
-
-                Ray portalRay = minimapCam.ScreenPointToRay(new Vector2(localPoint.x * minimapCam.pixelWidth, localPoint.y * minimapCam.pixelHeight));
-                RaycastHit portalHit;
-
-                if (Physics.Raycast(portalRay, out portalHit) && (portalHit.collider.gameObject.tag == "MapInteractable" || portalHit.collider.gameObject.tag == "Ground"))
-                {
-                    if (portalHit.collider.gameObject.tag == "MapInteractable")
+                    if (Physics.Raycast(portalRay, out portalHit) && (portalHit.collider.gameObject.tag == "MapInteractable" || portalHit.collider.gameObject.tag == "Ground"))
                     {
-                        SelectAndMove selector = portalHit.collider.gameObject.GetComponentInParent<SelectAndMove>();
-                        if (selector != null)
+                        if (portalHit.collider.gameObject.tag == "MapInteractable")
                         {
-                            if (selector.isSelected)
+                            UnitDetails unitDetails = portalHit.collider.gameObject.GetComponentInParent<UnitDetails>();
+                            if (unitDetails != null)
                             {
-                                selector.isSelected = false;
-                            }
-                            else if (!selector.isSelected)
-                            {
-                                selector.isSelected = true;
+                                if (unitDetails.IsSelected)
+                                {
+                                unitDetails.IsSelected = false;
+                                }
+                                else if (!unitDetails.IsSelected)
+                                {
+                                unitDetails.IsSelected = true;
+                                }
                             }
                         }
-                    }
-                    else if(portalHit.collider.gameObject.tag == "Ground")
-                    {
-                        List<GameObject> selectedList = GameObject.FindGameObjectsWithTag("MapInteractable").Where(g => g.GetComponent<SelectAndMove>().isSelected).ToList();
-
-                        for (int i = 0; i < selectedList.Count; i++)
+                        else if (portalHit.collider.gameObject.tag == "Ground")
                         {
-                            Debug.Log("Moving");
-                            selectedList[i].GetComponentInParent<PlayerCharacterMover>().MoveTo(portalHit.point);
-                            selectedList[i].GetComponent<SelectAndMove>().isSelected = false;
+                            List<UnitDetails> selectedUnits = Commander.Units.Where(u => u.IsSelected == true).ToList();
+                            
+                            for (int i = 0; i < selectedUnits.Count; i++)
+                            {
+                                Debug.Log("Moving");
+                                selectedUnits[i].GetComponent<PlayerCharacterMover>().MoveTo(portalHit.point);
+                                selectedUnits[i].GetComponent<UnitDetails>().IsSelected = false;
+                            }
                         }
-                    }
 
-                    Debug.Log("Hit Object:" + portalHit.collider.gameObject);
+                        Debug.Log("Hit Object:" + portalHit.collider.gameObject);
+                    }
                 }
             }
         }

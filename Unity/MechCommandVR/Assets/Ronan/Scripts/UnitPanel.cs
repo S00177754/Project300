@@ -1,17 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class UnitPanel : MonoBehaviour
 {
     public RectTransform lstGridUnits;
     public GameObject UnitDetailPrefab;
-    public List<int> unitIdList;
-    public int amount;
+    public CommanderController Commander;
+
+    public int PlayerNumber;
 
     void Start()
     {
-        LoadList();
+        GenerateList();
     }
 
     void Update()
@@ -19,26 +21,19 @@ public class UnitPanel : MonoBehaviour
         
     }
 
-    public void LoadList()
+    private void GenerateList()
     {
-        if(unitIdList != null)
+        if (Commander != null)
         {
-            for (int i = 0; i < amount; i++)
+            for (int i = 0; i < Commander.Units.Count; i++)
             {
                 GameObject button = Instantiate(UnitDetailPrefab, lstGridUnits);
 
                 UnitDetailButton gridButton = button.GetComponent<UnitDetailButton>();
-                gridButton.InitializeUnitButton();
+                gridButton.InitializeUnitButton(Commander.Units[i]);
                 Debug.Log("Button created");
             }
         }
     }
 
-
-
-
-            //gridButton.Selected += GridButton_OnSelected;
-            //gridButton.Clicked += GridButton_OnClicked;
-        
-    
 }

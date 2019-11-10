@@ -4,15 +4,35 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class UnitDetailButton : MonoBehaviour
 {
     public Image imgUnit;
     public Image imgType;
     public TextMeshProUGUI tmpTxtName;
     public TextMeshProUGUI tmpTxtHealth;
+    public RenderTexture renderTexture;
 
-    public void InitializeUnitButton()
+    private UnitDetails details;
+
+    public void InitializeUnitButton(UnitDetails unitDetails)
     {
-
+        details = unitDetails;
     }
+
+    private void Start()
+    {
+        tmpTxtName.text = details.Name;
+    }
+
+    private void Update()
+    {
+        tmpTxtHealth.text = $"{details.Health} /{details.MaxHealth}";
+    }
+
+    public void DebugMe()
+    {
+        Debug.Log("I am an unit detail button and have been clicked!");
+    }
+   
 }
