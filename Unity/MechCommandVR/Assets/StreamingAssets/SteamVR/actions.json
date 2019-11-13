@@ -99,6 +99,10 @@
     {
       "name": "/actions/mixedreality",
       "usage": "single"
+    },
+    {
+      "name": "/actions/Testing",
+      "usage": "single"
     }
   ],
   "default_bindings": [
