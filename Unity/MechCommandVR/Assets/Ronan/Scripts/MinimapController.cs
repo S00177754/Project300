@@ -26,7 +26,8 @@ public class MinimapController : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 if(hit.collider.gameObject.tag == "Minimap") 
-                { 
+                {
+                    Debug.Log("minimap");
                     var localPoint = hit.textureCoord;
 
                     Ray portalRay = minimapCam.ScreenPointToRay(new Vector2(localPoint.x * minimapCam.pixelWidth, localPoint.y * minimapCam.pixelHeight));
@@ -34,6 +35,7 @@ public class MinimapController : MonoBehaviour
 
                     if (Physics.Raycast(portalRay, out portalHit) && (portalHit.collider.gameObject.tag == "MapInteractable" || portalHit.collider.gameObject.tag == "Ground"))
                     {
+                        
                         if (portalHit.collider.gameObject.tag == "MapInteractable")
                         {
                             UnitDetails unitDetails = portalHit.collider.gameObject.GetComponentInParent<UnitDetails>();

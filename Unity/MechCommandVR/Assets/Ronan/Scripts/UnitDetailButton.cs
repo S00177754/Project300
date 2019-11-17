@@ -18,15 +18,13 @@ public class UnitDetailButton : MonoBehaviour
     public void InitializeUnitButton(UnitDetails unitDetails)
     {
         details = unitDetails;
-    }
-
-    private void Start()
-    {
         tmpTxtName.text = details.Name;
     }
 
+
     private void Update()
     {
+        if(details != null)
         tmpTxtHealth.text = $"{details.Health} /{details.MaxHealth}";
     }
 

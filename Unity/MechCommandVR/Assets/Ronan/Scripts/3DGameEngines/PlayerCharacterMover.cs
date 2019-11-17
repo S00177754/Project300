@@ -9,7 +9,7 @@ public class PlayerCharacterMover : NavMeshMover
 
     public override void Start()
     {
-        PlayerController.GetComponent<PlayerMouseInput>().Selected += PlayerCharacterMover_Selected;
+        //PlayerController.GetComponent<PlayerMouseInput>().Selected += PlayerCharacterMover_Selected;
         base.Start();
     }
 

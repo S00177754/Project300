@@ -16,7 +16,7 @@ public class UnitDetails : MonoBehaviour
 
     public GameObject MinimapIcon;
 
-    void Start()
+    void Awake()
     {
         var gameObjectRender = MinimapIcon.GetComponent<Renderer>();
         gameObjectRender.material.SetColor("_Color",Commander.PlayerColor);
@@ -26,6 +26,7 @@ public class UnitDetails : MonoBehaviour
         Health = MaxHealth;
 
         Commander.Units.Add(this);
+        Debug.Log("Unit " + Name + " Added");
     }
 
 }
