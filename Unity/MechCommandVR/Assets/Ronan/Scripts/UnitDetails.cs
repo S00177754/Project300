@@ -9,6 +9,7 @@ public class UnitDetails : MonoBehaviour
     public int MaxHealth;
     public int Health;
     public string Name;
+    public int UnitId;
 
     public bool IsSelected;
     public bool IsControlled;

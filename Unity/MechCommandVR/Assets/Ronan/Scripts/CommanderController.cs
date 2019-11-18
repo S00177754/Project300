@@ -7,6 +7,7 @@ public delegate void UnitsAddedToController();
 public class CommanderController : MonoBehaviour
 {
     public Color PlayerColor;
+    public int ID;
     public List<UnitDetails> Units;
 
     public event UnitsAddedToController UnitsAdded;

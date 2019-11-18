@@ -150,6 +150,7 @@ MonoBehaviour:
   MaxHealth: 100
   Health: 20
   Name: RC-01
+  UnitId: 0
   IsSelected: 0
   IsControlled: 0
   MinimapIcon: {fileID: 7049927724923342731}
@@ -223,8 +224,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7049927724923342731}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.144, z: 0}
-  m_LocalScale: {x: 30.518318, y: 0.19164741, z: 30.518318}
+  m_LocalPosition: {x: 0.0000019073, y: 2.144, z: 0}
+  m_LocalScale: {x: 20.829361, y: 0.13080318, z: 20.829361}
   m_Children: []
   m_Father: {fileID: 6427447484050744557}
   m_RootOrder: 0

@@ -8,6 +8,7 @@ public class UnitPanel : MonoBehaviour
     public RectTransform lstGridUnits;
     public GameObject UnitDetailPrefab;
     public CommanderController Commander;
+    public UnitCameraSwitcher unitCamSwitch;
 
     private void Awake()
     {
@@ -33,7 +34,7 @@ public class UnitPanel : MonoBehaviour
                 GameObject button = Instantiate(UnitDetailPrefab, lstGridUnits);
 
                 UnitDetailButton gridButton = button.GetComponent<UnitDetailButton>();
-                gridButton.InitializeUnitButton(Commander.Units[i]);
+                gridButton.InitializeUnitButton(Commander.Units[i],unitCamSwitch);
                 Debug.Log("Button created");
             }
         }

@@ -126,7 +126,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1300398190353915870}
-        m_MethodName: DebugMe
+        m_MethodName: ActivateCam
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -153,6 +153,7 @@ MonoBehaviour:
   tmpTxtName: {fileID: 6671473259554536730}
   tmpTxtHealth: {fileID: 1209540978766348675}
   renderTexture: {fileID: 8400000, guid: b928aa09b32eb2c4da11ceac910d3a50, type: 2}
+  uiPanel: {fileID: 3136635201913357336}
 --- !u!114 &3750677159147072734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,7 +221,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1300398190353915870}
-        m_MethodName: DebugMe
+        m_MethodName: ActivateCam
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -241,8 +242,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 84.1295, y: 41.174088, z: 1.9533432}
-  m_Center: {x: 0.7984085, y: -0.72472286, z: 0.47667158}
+  m_Size: {x: 84.1295, y: 41.174088, z: 2.7651393}
+  m_Center: {x: 0.7984085, y: -0.7247238, z: 0.3266672}
 --- !u!1 &5244900458791000422
 GameObject:
   m_ObjectHideFlags: 0
