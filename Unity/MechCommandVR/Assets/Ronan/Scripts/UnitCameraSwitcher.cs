@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using TMPro;
 
 public class UnitCameraSwitcher : MonoBehaviour
 {
     public RenderTexture CameraRender;
     public CommanderController Commander;
+    public TextMeshProUGUI TMPtext;
 
     void Awake()
     {
@@ -32,6 +34,8 @@ public class UnitCameraSwitcher : MonoBehaviour
         DisableCameras();
         Camera cam = GameObject.FindGameObjectsWithTag("Unit").Where(ud => ud.GetComponent<UnitDetails>().UnitId == unitDetails.UnitId).Single().GetComponent<Camera>();
         cam.enabled = true;
+
+        TMPtext.text = GameObject.FindGameObjectsWithTag("Unit").Where(ud => ud.GetComponent<UnitDetails>().UnitId == unitDetails.UnitId).Single().GetComponent<UnitDetails>().Name;
 
         CameraRender = new RenderTexture(cam.targetTexture);
         CameraRender.Create();
