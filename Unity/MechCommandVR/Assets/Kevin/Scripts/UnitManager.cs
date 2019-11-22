@@ -8,6 +8,10 @@ public class UnitManager : MonoBehaviour
     
     public GameObject selectedUnit;
     private UnitInfo selectedInfo;
+
+    private Vector2 selectBoxStart;
+    private Vector2 selectBoxEnd;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +40,16 @@ public class UnitManager : MonoBehaviour
             {
                 selectedUnit = null;
             }
+        }
+
+        if (Input.GetMouseButton(0) && selectBoxStart == Vector2.zero)
+        {
+            selectBoxStart = Input.mousePosition;
+        }
+
+        else if (Input.GetMouseButton(0) && selectBoxStart != Vector2.zero)
+        {
+            selectBoxEnd = Input.mousePosition;
         }
         
     }

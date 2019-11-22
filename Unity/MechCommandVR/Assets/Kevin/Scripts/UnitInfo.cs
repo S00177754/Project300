@@ -7,6 +7,14 @@ public class UnitInfo : MonoBehaviour
 
     public bool isSelected { get; set; } = false;
 
+    public bool isEnemy { get; set; }
+
+    public float attackRange { get; set; }
+
+    public float attackSpeed { get; set; }
+
+    public float health { get; set; }
+
     public string objectName;
 
     private NavMeshAgent agent;
@@ -23,6 +31,13 @@ public class UnitInfo : MonoBehaviour
 
             MoveUnit();
         }
+
+       /* if (Vector3.Distance(this, )
+        {
+
+        }*/
+        //Check if there is an enemy in range
+        //if, yes attack
     }
 
     public void MoveUnit()
@@ -37,5 +52,12 @@ public class UnitInfo : MonoBehaviour
                 agent.destination = hit.point;
             }
         }
+    }
+
+    public void attack()
+    {
+        //While in range, reduce tareget's health.
+        //wait for the length of the attack speed.
+        //Check if target is still in range
     }
 }
