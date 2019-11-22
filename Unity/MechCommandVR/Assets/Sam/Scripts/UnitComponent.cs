@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
 public class UnitComponent : MonoBehaviour
 {
     public string Name;
     public UnitType myType;
-    public decimal HealthPoints;
-    public decimal AttackPower;
-    public decimal AttackModifier;
+    
+    public float HealthPoints;
+    public float AttackPower;
+    public float AttackModifier;
     public int Level;
 
     public enum UnitType
@@ -22,7 +22,7 @@ public class UnitComponent : MonoBehaviour
         Spock
     }
 
-    public decimal SignModifier(UnitType enemySign)
+    public float SignModifier(UnitType enemySign)
     {
         switch (myType)
         {
@@ -30,15 +30,15 @@ public class UnitComponent : MonoBehaviour
                 switch (enemySign)
                 {
                     case UnitType.Rock:
-                        return 1.0m; //Draw
+                        return 1.0f; //Draw
                     case UnitType.Paper:
-                        return 0.75m; //Loose
+                        return 0.75f; //Loose
                     case UnitType.Scissor:
-                        return 1.25m; //Win
+                        return 1.25f; //Win
                     case UnitType.Lizard:
-                        return 1.25m; //Win
+                        return 1.25f; //Win
                     case UnitType.Spock:
-                        return 0.75m; //Loose
+                        return 0.75f; //Loose
                     default:
                         return 0;
                 }
@@ -46,15 +46,15 @@ public class UnitComponent : MonoBehaviour
                 switch (enemySign)
                 {
                     case UnitType.Rock:
-                        return 1.25m; //Win
+                        return 1.25f; //Win
                     case UnitType.Paper:
-                        return 1.0m; //Draw
+                        return 1.0f; //Draw
                     case UnitType.Scissor:
-                        return 0.75m; //Loose
+                        return 0.75f; //Loose
                     case UnitType.Lizard:
-                        return 0.75m; //Loose
+                        return 0.75f; //Loose
                     case UnitType.Spock:
-                        return 1.25m; //Draw
+                        return 1.25f; //Draw
                     default:
                         return 0;
                 }
@@ -62,15 +62,15 @@ public class UnitComponent : MonoBehaviour
                 switch (enemySign)
                 {
                     case UnitType.Rock:
-                        return 0.75m; //Loose
+                        return 0.75f; //Loose
                     case UnitType.Paper:
-                        return 1.25m; //Win
+                        return 1.25f; //Win
                     case UnitType.Scissor:
-                        return 1.0m; //Draw
+                        return 1.0f; //Draw
                     case UnitType.Lizard:
-                        return 1.25m; //Win
+                        return 1.25f; //Win
                     case UnitType.Spock:
-                        return 0.75m; //Loose
+                        return 0.75f; //Loose
                     default:
                         return 0;
                 }
@@ -78,15 +78,15 @@ public class UnitComponent : MonoBehaviour
                 switch (enemySign)
                 {
                     case UnitType.Rock:
-                        return 0.75m; //Loose
+                        return 0.75f; //Loose
                     case UnitType.Paper:
-                        return 1.25m; //Win
+                        return 1.25f; //Win
                     case UnitType.Scissor:
-                        return 0.75m; //Loose
+                        return 0.75f; //Loose
                     case UnitType.Lizard:
-                        return 1.0m; //Draw
+                        return 1.0f; //Draw
                     case UnitType.Spock:
-                        return 1.25m; //Win
+                        return 1.25f; //Win
                     default:
                         return 0;
                 }
@@ -94,15 +94,15 @@ public class UnitComponent : MonoBehaviour
                 switch (enemySign)
                 {
                     case UnitType.Rock:
-                        return 1.25m; //Win 
+                        return 1.25f; //Win 
                     case UnitType.Paper:
-                        return 0.75m; //Loose
+                        return 0.75f; //Loose
                     case UnitType.Scissor:
-                        return 1.25m; //Win
+                        return 1.25f; //Win
                     case UnitType.Lizard:
-                        return 0.75m; //Loose
+                        return 0.75f; //Loose
                     case UnitType.Spock:
-                        return 1.0m; //Draw
+                        return 1.0f; //Draw
                     default:
                         return 0;
                 }
@@ -111,7 +111,7 @@ public class UnitComponent : MonoBehaviour
         }
     }
 
-    public decimal LevelModifier(UnitComponent enemy)
+    public float LevelModifier(UnitComponent enemy)
     {
         switch (Level)
         {
@@ -121,69 +121,69 @@ public class UnitComponent : MonoBehaviour
                     case 1:
                         return 1;
                     case 2:
-                        return 0.85m;
+                        return 0.85f;
                     case 3:
-                        return 0.6m;
+                        return 0.6f;
                     case 4:
-                        return 0.5m;
+                        return 0.5f;
                     default:
-                        return 0.3m;
+                        return 0.3f;
                 }
             case 2:
                 switch (enemy.Level)
                 {
                     case 1:
-                        return 1.15m;
+                        return 1.15f;
                     case 2:
-                        return 1m;
+                        return 1f;
                     case 3:
-                        return 0.85m;
+                        return 0.85f;
                     case 4:
-                        return 0.6m;
+                        return 0.6f;
                     default:
-                        return 0.5m;
+                        return 0.5f;
                 }
             case 3:
                 switch (enemy.Level)
                 {
                     case 1:
-                        return 1.3m;
+                        return 1.3f;
                     case 2:
-                        return 1.15m;
+                        return 1.15f;
                     case 3:
-                        return 1m;
+                        return 1f;
                     case 4:
-                        return 0.85m;
+                        return 0.85f;
                     default:
-                        return 0.6m;
+                        return 0.6f;
                 }
             case 4:
                 switch (enemy.Level)
                 {
                     case 1:
-                        return 1.5m;
+                        return 1.5f;
                     case 2:
-                        return 1.3m;
+                        return 1.3f;
                     case 3:
-                        return 1.15m;
+                        return 1.15f;
                     case 4:
-                        return 1m;
+                        return 1f;
                     default:
-                        return 0.85m;
+                        return 0.85f;
                 }
             case 5:
                 switch (enemy.Level)
                 {
                     case 1:
-                        return 1.6m;
+                        return 1.6f;
                     case 2:
-                        return 1.5m;
+                        return 1.5f;
                     case 3:
-                        return 1.3m;
+                        return 1.3f;
                     case 4:
-                        return 1.15m;
+                        return 1.15f;
                     default:
-                        return 1m;
+                        return 1f;
                 }
             default:
                 return 1;
@@ -193,7 +193,9 @@ public class UnitComponent : MonoBehaviour
 
     void Start()
     {
-        
+        //HealthPoints = 1;
+        //AttackPower = 0.1f;
+        //AttackModifier = 1;
     }
 
     void Update()
