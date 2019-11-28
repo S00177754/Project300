@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class AttackComponent : MonoBehaviour
 {
-    UnitComponent Me;
-    UnitComponent AttackThis;
+    public UnitComponent Me;
+    public UnitComponent AttackThis;
     public float AttackDelay;
     float timer = 0f;
     //multiple tagets
-    List<UnitComponent> AttackThese;
+    [HideInInspector]
+    public List<UnitComponent> AttackThese;
     Ray ray;
 
-    bool CanSeeTarget;
+    public bool CanSeeTarget;
 
     void Start()
     {
         Me = gameObject.GetComponent<UnitComponent>();
+        AttackThese = new List<UnitComponent>();
     }
 
     
     void Attack()
     {
-        if(Me != null)
+        AttackThis = AttackThese[0];
+        if(Me != null && AttackThis != null)
         {
             Me.AttackModifier = Me.SignModifier(AttackThis.myType) * Me.LevelModifier(AttackThis);
             if(Time.deltaTime <= AttackDelay)
@@ -30,21 +33,23 @@ public class AttackComponent : MonoBehaviour
                 AttackThis.HealthPoints -= Me.AttackPower * Me.AttackModifier;
                 //Reset timer
                 timer = 0f;
+                Debug.Log(Me.ToString());
+                Debug.Log(AttackThis.ToString());
             }
         }
+        if (AttackThis == null)
+            CanSeeTarget = false;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        AttackThis = collision.gameObject.GetComponent<UnitComponent>();
-        if (AttackThis != null)
+        UnitComponent newUnit = collision.gameObject.GetComponent<UnitComponent>();
+        if (newUnit != null)
         {
             if (collision.gameObject.tag.Equals("Enemy"))
             {
-                //TODO add target lock to avoid switiching targets
-                //raycast will work better for multiple enemies
                 CanSeeTarget = true;
-                Attack();
+                AttackThese.Add(newUnit);
             }
 
         }
@@ -52,32 +57,47 @@ public class AttackComponent : MonoBehaviour
             CanSeeTarget = false;
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider collision)
     {
         //check reverse collision is with unittype
-        AttackThis = collision.gameObject.GetComponent<UnitComponent>();
+        UnitComponent removeUnit = collision.gameObject.GetComponent<UnitComponent>();
         if (AttackThis != null)
         {
             if (collision.gameObject.tag.Equals("Enemy"))
             {
                 CanSeeTarget = false;
+                AttackThese.Remove(removeUnit);
             }
-
         }
+
+
     }
 
     void Update()
     {
-        if (AttackThis == null)
-            return;
+        if (AttackThis == null)//When HP reaches 0, object is destroyed which may leave null
+        {
+            if(AttackThese.Count <= 0)//Check if nuits in range
+            {
+                return;
+            }
+            else //set target to be first element of Enemy list
+            {
+                AttackThis = AttackThese[0];
+            }
+        }
 
-        if (timer <= 0f) 
-            timer = AttackDelay;
+        if(AttackThese.Count > 0)
+        {
+            if (timer <= 0f) 
+                timer = AttackDelay;
 
-        if (timer > 0f)
-            timer -= Time.deltaTime;
+            if (timer > 0f)
+                timer -= Time.deltaTime;
 
-        if (timer <= 0f) 
-           Attack();
+            if (timer <= 0f && CanSeeTarget) 
+               Attack();
+
+        }
     }
 }

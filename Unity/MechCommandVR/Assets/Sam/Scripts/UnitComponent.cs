@@ -200,6 +200,12 @@ public class UnitComponent : MonoBehaviour
 
     void Update()
     {
+        if (HealthPoints <= 0)
+            Destroy(gameObject);
+    }
 
+    public override string ToString()
+    {
+        return String.Format("HP: {0}\nModifier: {1}", HealthPoints, AttackModifier);
     }
 }

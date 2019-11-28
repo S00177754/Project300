@@ -5,23 +5,26 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public float Speed;
+    Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        var rb = GetComponent<Rigidbody>();
         if (Input.GetKey(KeyCode.A))
-            rb.AddForce(Vector3.left);
+        {
+            rb.velocity = -transform.right * Speed;
+        }
         if (Input.GetKey(KeyCode.D))
-            rb.AddForce(Vector3.right);
+            rb.velocity = transform.right * Speed;
         if (Input.GetKey(KeyCode.W))
-            rb.AddForce(Vector3.up);
+            rb.velocity = new Vector3(0, 0, 1) * Speed;
         if (Input.GetKey(KeyCode.S))
-            rb.AddForce(Vector3.down);
+            rb.velocity = new Vector3(0, 0, -1) * Speed;
     }
 }
