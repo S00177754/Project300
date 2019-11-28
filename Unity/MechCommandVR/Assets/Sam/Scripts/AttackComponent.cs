@@ -9,7 +9,7 @@ public class AttackComponent : MonoBehaviour
     public float AttackDelay;
     float timer = 0f;
     //multiple tagets
-    [HideInInspector]
+    //[HideInInspector]
     public List<UnitComponent> AttackThese;
     Ray ray;
 
@@ -33,7 +33,7 @@ public class AttackComponent : MonoBehaviour
                 AttackThis.HealthPoints -= Me.AttackPower * Me.AttackModifier;
                 //Reset timer
                 timer = 0f;
-                Debug.Log(Me.ToString());
+                //Debug.Log(Me.ToString());
                 Debug.Log(AttackThis.ToString());
             }
         }
@@ -61,7 +61,7 @@ public class AttackComponent : MonoBehaviour
     {
         //check reverse collision is with unittype
         UnitComponent removeUnit = collision.gameObject.GetComponent<UnitComponent>();
-        if (AttackThis != null)
+        if (removeUnit != null)
         {
             if (collision.gameObject.tag.Equals("Enemy"))
             {
@@ -75,9 +75,13 @@ public class AttackComponent : MonoBehaviour
 
     void Update()
     {
+        if(AttackThis != null && AttackThis.HealthPoints == 0)
+        {
+            AttackThese.Remove(AttackThese[0]);
+        }
         if (AttackThis == null)//When HP reaches 0, object is destroyed which may leave null
         {
-            if(AttackThese.Count <= 0)//Check if nuits in range
+            if(AttackThese.Count <= 0)//Check if units in range
             {
                 return;
             }
