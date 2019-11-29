@@ -78,6 +78,7 @@ public class AttackComponent : MonoBehaviour
         if(AttackThis != null && AttackThis.HealthPoints == 0)
         {
             AttackThese.Remove(AttackThese[0]);
+            AttackThese.TrimExcess();
         }
         if (AttackThis == null)//When HP reaches 0, object is destroyed which may leave null
         {
