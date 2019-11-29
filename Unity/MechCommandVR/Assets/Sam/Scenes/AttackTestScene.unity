@@ -210,6 +210,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3223396841940592239, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy (2)
+      objectReference: {fileID: 0}
     - target: {fileID: -3189895881007766493, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
       propertyPath: myType
@@ -220,15 +225,10 @@ PrefabInstance:
       propertyPath: Name
       value: Scissor
       objectReference: {fileID: 0}
-    - target: {fileID: 3223396841940592239, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 4150712754930165074, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5259699
+      value: -3.9
       objectReference: {fileID: 0}
     - target: {fileID: 4150712754930165074, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
@@ -238,7 +238,7 @@ PrefabInstance:
     - target: {fileID: 4150712754930165074, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.370405
+      value: 6.8
       objectReference: {fileID: 0}
     - target: {fileID: 4150712754930165074, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
@@ -386,12 +386,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1131402767}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fcd7539652a6974a9056c36f5dd2380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Enemy1
+  Name: Rock
   myType: 0
   HealthPoints: 1
   AttackPower: 0.1
@@ -404,6 +404,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4504056893303879896, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
+        type: 3}
+      propertyPath: AttackDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3223396841940592239, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy (1)
+      objectReference: {fileID: 0}
     - target: {fileID: -3189895881007766493, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
       propertyPath: myType
@@ -413,11 +423,6 @@ PrefabInstance:
         type: 3}
       propertyPath: Name
       value: Paper
-      objectReference: {fileID: 0}
-    - target: {fileID: 3223396841940592239, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4150712754930165074, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
@@ -483,6 +488,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3223396841940592239, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy (3)
+      objectReference: {fileID: 0}
     - target: {fileID: -3189895881007766493, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
       propertyPath: myType
@@ -493,15 +503,10 @@ PrefabInstance:
       propertyPath: Name
       value: Spock
       objectReference: {fileID: 0}
-    - target: {fileID: 3223396841940592239, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 4150712754930165074, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.06757602
+      value: -4.4
       objectReference: {fileID: 0}
     - target: {fileID: 4150712754930165074, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
@@ -511,7 +516,7 @@ PrefabInstance:
     - target: {fileID: 4150712754930165074, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.9171104
+      value: -6.6
       objectReference: {fileID: 0}
     - target: {fileID: 4150712754930165074, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
@@ -715,6 +720,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3223396841940592239, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy (4)
+      objectReference: {fileID: 0}
     - target: {fileID: -3189895881007766493, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
       propertyPath: myType
@@ -724,11 +734,6 @@ PrefabInstance:
         type: 3}
       propertyPath: Name
       value: Lizard
-      objectReference: {fileID: 0}
-    - target: {fileID: 3223396841940592239, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy (4)
       objectReference: {fileID: 0}
     - target: {fileID: 4150712754930165074, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
@@ -794,15 +799,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -3189895881007766493, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
-        type: 3}
-      propertyPath: Name
-      value: Roack
-      objectReference: {fileID: 0}
     - target: {fileID: 3223396841940592239, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: -3189895881007766493, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
+        type: 3}
+      propertyPath: Name
+      value: Rock
+      objectReference: {fileID: 0}
+    - target: {fileID: -3189895881007766493, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4150712754930165074, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
@@ -886,7 +896,7 @@ PrefabInstance:
     - target: {fileID: 8518465278228858715, guid: ddac5cd0667a1db4abe6bf2bf60e3e39,
         type: 3}
       propertyPath: AttackPower
-      value: 0.1
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 8518465278228858715, guid: ddac5cd0667a1db4abe6bf2bf60e3e39,
         type: 3}

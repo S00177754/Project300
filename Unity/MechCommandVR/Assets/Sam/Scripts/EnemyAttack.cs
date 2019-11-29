@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackComponent : MonoBehaviour
+public class EnemyAttack : MonoBehaviour
 {
     public UnitComponent Me;
     public UnitComponent AttackThis;
     public float AttackDelay;
     float timer = 0f;
-    //multiple tagets
-    //[HideInInspector]
+    
     public List<UnitComponent> AttackThese;
-    Ray ray;
 
     public bool CanSeeTarget;
 
@@ -21,14 +19,14 @@ public class AttackComponent : MonoBehaviour
         AttackThese = new List<UnitComponent>();
     }
 
-    
+
     void Attack()
     {
         AttackThis = AttackThese[0];
-        if(Me != null && AttackThis != null)
+        if (Me != null && AttackThis != null)
         {
             Me.AttackModifier = Me.SignModifier(AttackThis.myType) * Me.LevelModifier(AttackThis);
-            if(Time.deltaTime <= AttackDelay)
+            if (Time.deltaTime <= AttackDelay)
             {
                 AttackThis.HealthPoints -= Me.AttackPower * Me.AttackModifier;
                 //Reset timer
@@ -46,7 +44,7 @@ public class AttackComponent : MonoBehaviour
         UnitComponent newUnit = collision.gameObject.GetComponent<UnitComponent>();
         if (newUnit != null)
         {
-            if (collision.gameObject.tag.Equals("Enemy"))
+            if (collision.gameObject.tag.Equals("Player"))
             {
                 CanSeeTarget = true;
                 AttackThese.Add(newUnit);
@@ -60,14 +58,14 @@ public class AttackComponent : MonoBehaviour
     private void OnTriggerExit(Collider collision)
     {
 
-        //check reverse trigger is with unittype
+        //check reverse collision is with unittype
         UnitComponent removeUnit = collision.gameObject.GetComponent<UnitComponent>();
         if (removeUnit != null)
         {
-            if (collision.gameObject.tag.Equals("Enemy"))
+            if (collision.gameObject.tag.Equals("Player"))
             {
                 AttackThese.Remove(removeUnit);
-                if(AttackThese.Count == 0)//Check if enemies still in range
+                if (AttackThese.Count == 0)//Check if enemies still in range
                     CanSeeTarget = false;
             }
         }
@@ -77,7 +75,7 @@ public class AttackComponent : MonoBehaviour
 
     void Update()
     {
-        //
+        //Check if enemy is dead
         if (AttackThis != null && AttackThis.HealthPoints <= 0)
         {
             AttackThese.Remove(AttackThis);
@@ -85,7 +83,7 @@ public class AttackComponent : MonoBehaviour
         }
         if (AttackThis == null)//When HP reaches 0, object is destroyed which may leave null
         {
-            if(AttackThese.Count <= 0)//Check if units in range
+            if (AttackThese.Count <= 0)//Check if units in range
             {
                 return;
             }
@@ -95,16 +93,16 @@ public class AttackComponent : MonoBehaviour
             }
         }
 
-        if(AttackThese.Count > 0)
+        if (AttackThese.Count > 0)
         {
-            if (timer <= 0f) 
+            if (timer <= 0f)
                 timer = AttackDelay;
 
             if (timer > 0f)
                 timer -= Time.deltaTime;
 
-            if (timer <= 0f && CanSeeTarget) 
-               Attack();
+            if (timer <= 0f && CanSeeTarget)
+                Attack();
 
         }
     }

@@ -198,14 +198,9 @@ public class UnitComponent : MonoBehaviour
         //AttackModifier = 1;
     }
 
-    void Update()
-    {
-        if (HealthPoints <= 0)
-            Destroy(gameObject);
-    }
 
     public override string ToString()
     {
-        return String.Format("HP: {0}\nModifier: {1}", HealthPoints, AttackModifier);
+        return String.Format(Name + "\tHP:\t{0}\t\tModifier:\t{1}", HealthPoints, AttackModifier);
     }
 }
