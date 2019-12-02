@@ -13,22 +13,22 @@ public enum UnitType
 
 public class AttackComponent : MonoBehaviour
 {
-    public UnitComponent Me;
-    public UnitComponent AttackThis;
+    public UnitDetails Me;
+    public UnitDetails AttackThis;
     string AttackTag;
     public float AttackDelay;
     float timer = 0f;
     //multiple tagets
     //[HideInInspector]
-    public List<UnitComponent> AttackThese;
+    public List<UnitDetails> AttackThese;
     Ray ray;
 
     public bool CanSeeTarget;
 
     void Start()
     {
-        Me = gameObject.GetComponent<UnitComponent>();
-        AttackThese = new List<UnitComponent>();
+        Me = gameObject.GetComponent<UnitDetails>();
+        AttackThese = new List<UnitDetails>();
         //Using Player1 and Player2 for future implementation of multiplayer
         if (gameObject.tag == "Player1")
             AttackTag = "Player2";
@@ -45,7 +45,7 @@ public class AttackComponent : MonoBehaviour
             Me.AttackModifier = SignModifier(AttackThis.myType) * LevelModifier(AttackThis);
             if(Time.deltaTime <= AttackDelay)
             {
-                AttackThis.HealthPoints -= Me.AttackPower * Me.AttackModifier;
+                AttackThis.Health -= Me.AttackPower * Me.AttackModifier;
                 //Reset timer
                 timer = 0f;
                 Debug.Log(Me.ToString());
@@ -58,7 +58,7 @@ public class AttackComponent : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        UnitComponent newUnit = collision.gameObject.GetComponent<UnitComponent>();
+        UnitDetails newUnit = collision.gameObject.GetComponent<UnitDetails>();
         if (newUnit != null)
         {
             if (collision.gameObject.tag.Equals(AttackTag))
@@ -76,7 +76,7 @@ public class AttackComponent : MonoBehaviour
     {
 
         //check reverse trigger is with unittype
-        UnitComponent removeUnit = collision.gameObject.GetComponent<UnitComponent>();
+        UnitDetails removeUnit = collision.gameObject.GetComponent<UnitDetails>();
         if (removeUnit != null)
         {
             if (collision.gameObject.tag.Equals(AttackTag))
@@ -93,7 +93,7 @@ public class AttackComponent : MonoBehaviour
     void Update()
     {
         //
-        if (AttackThis != null && AttackThis.HealthPoints <= 0)
+        if (AttackThis != null && AttackThis.Health <= 0)
         {
             AttackThese.Remove(AttackThis);
             Destroy(AttackThis.gameObject);
@@ -213,7 +213,7 @@ public class AttackComponent : MonoBehaviour
         }
     }
 
-    public float LevelModifier(UnitComponent enemy)
+    public float LevelModifier(UnitDetails enemy)
     {
         switch (Me.Level)
         {

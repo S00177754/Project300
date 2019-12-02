@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2913935904603891067}
   - component: {fileID: 6305173512720361328}
   - component: {fileID: 8914618628047119449}
-  - component: {fileID: -3189895881007766493}
   - component: {fileID: -4338461359998401799}
+  - component: {fileID: 4597688445133353052}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Player2
@@ -94,24 +94,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-3189895881007766493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3223396841940592239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fcd7539652a6974a9056c36f5dd2380, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: 
-  myType: 0
-  HealthPoints: 1
-  AttackPower: 0.02
-  AttackModifier: 1
-  Level: 1
 --- !u!114 &-4338461359998401799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,3 +111,27 @@ MonoBehaviour:
   AttackDelay: 1
   AttackThese: []
   CanSeeTarget: 0
+--- !u!114 &4597688445133353052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3223396841940592239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3db6a3b450de9dd4ba74f798afbadb39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Commander: {fileID: 0}
+  UnitId: 0
+  Name: 
+  myType: 0
+  Level: 0
+  MaxHealth: 0
+  Health: 0
+  AttackPower: 0
+  AttackModifier: 0
+  IsSelected: 0
+  IsControlled: 0
+  MinimapIcon: {fileID: 0}

@@ -6,10 +6,17 @@ public class UnitDetails : MonoBehaviour
 {
     public CommanderController Commander;
 
-    public int MaxHealth;
-    public int Health;
-    public string Name;
     public int UnitId;
+    public string Name;
+
+    public UnitType myType;
+    public int Level;
+
+    public float MaxHealth;
+    public float Health;
+
+    public float AttackPower;
+    public float AttackModifier;
 
     public bool IsSelected;
     public bool IsControlled;
