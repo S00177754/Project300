@@ -15,15 +15,15 @@ public class PlayerMouseInput : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
-        {
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //if (Input.GetMouseButton(0))
+        //{
+        //    ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hitResult, Mathf.Infinity, LayerMask))
-            {
-                if (Selected != null)
-                    Selected(hitResult);
-            }
-        }
+        //    if (Physics.Raycast(ray, out hitResult, Mathf.Infinity, LayerMask))
+        //    {
+        //        if (Selected != null)
+        //            Selected(hitResult);
+        //    }
+        //}
     }
 }

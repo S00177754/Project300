@@ -9,6 +9,7 @@ public class UnitDetails : MonoBehaviour
     public int MaxHealth;
     public int Health;
     public string Name;
+    public int UnitId;
 
     public bool IsSelected;
     public bool IsControlled;
@@ -16,7 +17,7 @@ public class UnitDetails : MonoBehaviour
 
     public GameObject MinimapIcon;
 
-    void Start()
+    void Awake()
     {
         var gameObjectRender = MinimapIcon.GetComponent<Renderer>();
         gameObjectRender.material.SetColor("_Color",Commander.PlayerColor);
@@ -26,6 +27,7 @@ public class UnitDetails : MonoBehaviour
         Health = MaxHealth;
 
         Commander.Units.Add(this);
+        Debug.Log("Unit " + Name + " Added");
     }
 
 }

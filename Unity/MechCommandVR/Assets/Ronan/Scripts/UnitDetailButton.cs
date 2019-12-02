@@ -12,22 +12,27 @@ public class UnitDetailButton : MonoBehaviour
     public TextMeshProUGUI tmpTxtName;
     public TextMeshProUGUI tmpTxtHealth;
     public RenderTexture renderTexture;
+    private UnitCameraSwitcher unitCamSwitch;
 
     private UnitDetails details;
 
-    public void InitializeUnitButton(UnitDetails unitDetails)
+    public void InitializeUnitButton(UnitDetails unitDetails,UnitCameraSwitcher unitCameraSwitcher)
     {
         details = unitDetails;
+        tmpTxtName.text = details.Name;
+        unitCamSwitch = unitCameraSwitcher;
     }
 
-    private void Start()
-    {
-        tmpTxtName.text = details.Name;
-    }
 
     private void Update()
     {
+        if(details != null)
         tmpTxtHealth.text = $"{details.Health} /{details.MaxHealth}";
+    }
+
+    public void ActivateCam()
+    {
+        unitCamSwitch.SetCameraToUnit(details);
     }
 
     public void DebugMe()

@@ -31,8 +31,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6427447484050744553}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.8, y: 3.5, z: 49.3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 21.8, y: 4.2211, z: 49.3}
+  m_LocalScale: {x: 0.66366, y: 0.66366, z: 0.66366}
   m_Children:
   - {fileID: 2324056995756085204}
   m_Father: {fileID: 0}
@@ -108,7 +108,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 20
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -150,6 +150,7 @@ MonoBehaviour:
   MaxHealth: 100
   Health: 20
   Name: RC-01
+  UnitId: 0
   IsSelected: 0
   IsControlled: 0
   MinimapIcon: {fileID: 7049927724923342731}
@@ -223,8 +224,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7049927724923342731}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.144, z: 0}
-  m_LocalScale: {x: 30.518318, y: 0.19164741, z: 30.518318}
+  m_LocalPosition: {x: -0.000020981, y: 220.8, z: 0}
+  m_LocalScale: {x: 270.2818, y: 1.6973021, z: 270.2818}
   m_Children: []
   m_Father: {fileID: 6427447484050744557}
   m_RootOrder: 0

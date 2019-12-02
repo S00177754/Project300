@@ -8,12 +8,15 @@ public class UnitPanel : MonoBehaviour
     public RectTransform lstGridUnits;
     public GameObject UnitDetailPrefab;
     public CommanderController Commander;
+    public UnitCameraSwitcher unitCamSwitch;
 
-    public int PlayerNumber;
+    private void Awake()
+    {
+        Commander.UnitsAdded += GenerateList;
+    }
 
     void Start()
     {
-        GenerateList();
     }
 
     void Update()
@@ -25,12 +28,13 @@ public class UnitPanel : MonoBehaviour
     {
         if (Commander != null)
         {
+            Debug.Log("GenerateList");
             for (int i = 0; i < Commander.Units.Count; i++)
             {
                 GameObject button = Instantiate(UnitDetailPrefab, lstGridUnits);
 
                 UnitDetailButton gridButton = button.GetComponent<UnitDetailButton>();
-                gridButton.InitializeUnitButton(Commander.Units[i]);
+                gridButton.InitializeUnitButton(Commander.Units[i],unitCamSwitch);
                 Debug.Log("Button created");
             }
         }
