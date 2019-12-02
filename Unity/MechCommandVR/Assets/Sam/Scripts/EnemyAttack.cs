@@ -25,7 +25,7 @@ public class EnemyAttack : MonoBehaviour
         AttackThis = EnemiesToAttack[0];
         if (Me != null && AttackThis != null)
         {
-            Me.AttackModifier = Me.SignModifier(AttackThis.myType) * Me.LevelModifier(AttackThis);
+            //Me.AttackModifier = Me.SignModifier(AttackThis.myType) * Me.LevelModifier(AttackThis);
             if (Time.deltaTime <= AttackDelay)
             {
                 AttackThis.HealthPoints -= Me.AttackPower * Me.AttackModifier;
