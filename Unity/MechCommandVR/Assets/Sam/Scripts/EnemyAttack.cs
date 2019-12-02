@@ -9,20 +9,20 @@ public class EnemyAttack : MonoBehaviour
     public float AttackDelay;
     float timer = 0f;
     
-    public List<UnitComponent> AttackThese;
+    public List<UnitComponent> EnemiesToAttack;
 
     public bool CanSeeTarget;
 
     void Start()
     {
         Me = gameObject.GetComponent<UnitComponent>();
-        AttackThese = new List<UnitComponent>();
+        EnemiesToAttack = new List<UnitComponent>();
     }
 
 
     void Attack()
     {
-        AttackThis = AttackThese[0];
+        AttackThis = EnemiesToAttack[0];
         if (Me != null && AttackThis != null)
         {
             Me.AttackModifier = Me.SignModifier(AttackThis.myType) * Me.LevelModifier(AttackThis);
@@ -47,7 +47,7 @@ public class EnemyAttack : MonoBehaviour
             if (collision.gameObject.tag.Equals("Player"))
             {
                 CanSeeTarget = true;
-                AttackThese.Add(newUnit);
+                EnemiesToAttack.Add(newUnit);
             }
 
         }
@@ -64,9 +64,9 @@ public class EnemyAttack : MonoBehaviour
         {
             if (collision.gameObject.tag.Equals("Player"))
             {
-                AttackThese.Remove(removeUnit);
-                if (AttackThese.Count == 0)//Check if enemies still in range
-                    CanSeeTarget = false;
+                EnemiesToAttack.Remove(removeUnit);
+                //if (AttackThese.Count == 0)//Check if enemies still in range
+                //    CanSeeTarget = false;
             }
         }
 
@@ -78,22 +78,22 @@ public class EnemyAttack : MonoBehaviour
         //Check if enemy is dead
         if (AttackThis != null && AttackThis.HealthPoints <= 0)
         {
-            AttackThese.Remove(AttackThis);
+            EnemiesToAttack.Remove(AttackThis);
             Destroy(AttackThis.gameObject);
         }
         if (AttackThis == null)//When HP reaches 0, object is destroyed which may leave null
         {
-            if (AttackThese.Count <= 0)//Check if units in range
+            if (EnemiesToAttack.Count <= 0)//Check if units in range
             {
                 return;
             }
             else //set target to be first element of Enemy list
             {
-                AttackThis = AttackThese[0];
+                AttackThis = EnemiesToAttack[0];
             }
         }
 
-        if (AttackThese.Count > 0)
+        if (EnemiesToAttack.Count > 0)
         {
             if (timer <= 0f)
                 timer = AttackDelay;
