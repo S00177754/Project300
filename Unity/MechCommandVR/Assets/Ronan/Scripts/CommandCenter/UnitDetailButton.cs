@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class UnitDetailButton : MonoBehaviour
     public Image imgType;
     public TextMeshProUGUI tmpTxtName;
     public TextMeshProUGUI tmpTxtHealth;
+    public TextMeshProUGUI tmpTxtType;
+    public Slider sldrHealth;
     public RenderTexture renderTexture;
     private UnitCameraSwitcher unitCamSwitch;
 
@@ -20,14 +23,18 @@ public class UnitDetailButton : MonoBehaviour
     {
         details = unitDetails;
         tmpTxtName.text = details.Name;
+        tmpTxtType.text = "Type: " + Enum.GetName(typeof(UnitType), details.myType);
         unitCamSwitch = unitCameraSwitcher;
     }
 
 
     private void Update()
     {
-        if(details != null)
-        tmpTxtHealth.text = $"{details.Health * 100} /{details.MaxHealth * 100}";
+        if (details != null)
+        {
+            tmpTxtHealth.text = $"HP: {details.Health * 100} /{details.MaxHealth * 100}";
+            sldrHealth.value = details.Health;
+        }
     }
 
     public void ActivateCam()
