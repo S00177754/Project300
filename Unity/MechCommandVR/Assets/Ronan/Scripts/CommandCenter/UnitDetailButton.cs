@@ -27,7 +27,7 @@ public class UnitDetailButton : MonoBehaviour
     private void Update()
     {
         if(details != null)
-        tmpTxtHealth.text = $"{details.Health} /{details.MaxHealth}";
+        tmpTxtHealth.text = $"{details.Health * 100} /{details.MaxHealth * 100}";
     }
 
     public void ActivateCam()

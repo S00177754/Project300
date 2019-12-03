@@ -53,11 +53,12 @@ public class MinimapController : MonoBehaviour
                         }
                         else if (portalHit.collider.gameObject.tag == "Ground")
                         {
+                            Debug.Log("Ground");
                             List<UnitDetails> selectedUnits = Commander.Units.Where(u => u.IsSelected == true).ToList();
                             
                             for (int i = 0; i < selectedUnits.Count; i++)
                             {
-                                Debug.Log("Moving");
+                                Debug.Log("Moving"); //PlayerCharacterMover and Unit Details
                                 selectedUnits[i].GetComponent<PlayerCharacterMover>().MoveTo(portalHit.point);
                                 selectedUnits[i].GetComponent<UnitDetails>().IsSelected = false;
                             }

@@ -32,10 +32,10 @@ public class UnitCameraSwitcher : MonoBehaviour
     public void SetCameraToUnit(UnitDetails unitDetails)
     {
         DisableCameras();
-        Camera cam = GameObject.FindGameObjectsWithTag("Unit").Where(ud => ud.GetComponent<UnitDetails>().UnitId == unitDetails.UnitId).Single().GetComponent<Camera>();
+        Camera cam = GameObject.FindGameObjectsWithTag("Player1").Where(ud => ud.GetComponent<UnitDetails>().UnitId == unitDetails.UnitId).Single().GetComponent<Camera>();
         cam.enabled = true;
 
-        TMPtext.text = GameObject.FindGameObjectsWithTag("Unit").Where(ud => ud.GetComponent<UnitDetails>().UnitId == unitDetails.UnitId).Single().GetComponent<UnitDetails>().Name;
+        TMPtext.text = GameObject.FindGameObjectsWithTag("Player1").Where(ud => ud.GetComponent<UnitDetails>().UnitId == unitDetails.UnitId).Single().GetComponent<UnitDetails>().Name;
 
         CameraRender = new RenderTexture(cam.targetTexture);
         CameraRender.Create();
@@ -43,7 +43,7 @@ public class UnitCameraSwitcher : MonoBehaviour
 
     private void DisableCameras()
     {
-        List<GameObject> units = GameObject.FindGameObjectsWithTag("Unit").Where(ud => ud.GetComponent<UnitDetails>().Commander.ID == Commander.ID).ToList();
+        List<GameObject> units = GameObject.FindGameObjectsWithTag("Player1").Where(ud => ud.GetComponent<UnitDetails>().Commander.ID == Commander.ID).ToList();
 
         for (int i = 0; i < units.Count; i++)
         {
