@@ -4,11 +4,19 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Valve.VR;
+using Valve.VR.InteractionSystem;
 
 public class MinimapController : MonoBehaviour
 {
     public Camera minimapCam;
     public CommanderController Commander;
+    private Hand leftHand;
+    private Hand rightHand;
+
+    private void Start()
+    {
+        //leftHand = 
+    }
 
     void Update()
     {
@@ -70,6 +78,11 @@ public class MinimapController : MonoBehaviour
             }
         }
     }
+
+    //private bool ControllerClicked()
+    //{
+    //    if(Input.)
+    //}
 }
 
 
