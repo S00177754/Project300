@@ -14,6 +14,7 @@ TagManager:
   - Enemy
   - Player1
   - Player2
+  - VR_Hand
   layers:
   - Default
   - TransparentFX

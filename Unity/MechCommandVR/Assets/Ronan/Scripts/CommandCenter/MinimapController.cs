@@ -10,25 +10,54 @@ public class MinimapController : MonoBehaviour
 {
     public Camera minimapCam;
     public CommanderController Commander;
-    private Hand leftHand;
-    private Hand rightHand;
+
+    private SteamVR_Input_Sources handType; //Reference to hand
+    public SteamVR_Action_Boolean grabAction; //referencer to action
+
+    private bool MinimapTriggered;
+    public GameObject controller;
+
+    Ray ray;
 
     private void Start()
     {
-        //leftHand = 
+        //leftController = GameObject.FindGameObjectsWithTag("VR_Hand").Where(e => e.GetComponent<Hand>().handType == SteamVR_Input_Sources.LeftHand).Single();
+        //rightController = GameObject.FindGameObjectsWithTag("VR_Hand").Where(e => e.GetComponent<Hand>().handType == SteamVR_Input_Sources.RightHand).Single();
+
+        grabAction.AddOnStateUpListener(TriggerUp, handType);
+        handType = SteamVR_Input_Sources.LeftHand;
     }
 
     void Update()
     {
-        ClickableCam();
+        //ClickableCam();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "VR_Hand")
+        {
+            MinimapTriggered = true;
+            handType = other.gameObject.GetComponent<Hand>().handType;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "VR_Hand")
+        {
+            MinimapTriggered = false;
+
+        }
     }
 
     private void ClickableCam()
     {
-        if (Input.GetMouseButtonDown(0)) //Need to change to work with VR controllers, temporary solution for debugging
+        if (MinimapTriggered) //Need to change to work with VR controllers, temporary solution for debugging
         {
             RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //Need to change to work with VR controllers, temporary solution for debugging
+             ray = Camera.main.ScreenPointToRay(controller.transform.position); //Need to change to work with VR controllers, temporary solution for debugging
+            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //Need to change to work with VR controllers, temporary solution for debugging
 
 
             if (Physics.Raycast(ray, out hit))
@@ -79,10 +108,17 @@ public class MinimapController : MonoBehaviour
         }
     }
 
-    //private bool ControllerClicked()
-    //{
-    //    if(Input.)
-    //}
+    public void TriggerUp(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
+    {
+        Debug.Log("Trigger is up.");
+        ClickableCam();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawRay(ray);
+    }
 }
 
 

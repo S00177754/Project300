@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.mechcommandvr.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\Ronan\\Documents\\GitHub\\Project300\\Unity\\MechCommandVR\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "C:\\Users\\ronan\\Documents\\GitHub\\Project300\\Unity\\MechCommandVR\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "MechCommandVR [Testing]"
