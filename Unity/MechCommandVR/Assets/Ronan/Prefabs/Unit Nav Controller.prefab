@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7560400419521524642
 Transform:
   m_ObjectHideFlags: 0
@@ -127,6 +127,7 @@ MonoBehaviour:
   grabAction:
     actionPath: /actions/default/in/GrabPinch
     needsReinit: 0
+  controller: {fileID: 0}
 --- !u!1 &6553980966829674616
 GameObject:
   m_ObjectHideFlags: 0
@@ -1261,7 +1262,7 @@ PrefabInstance:
     - target: {fileID: 3268622817264189536, guid: 96b91479e879fe64c87928451115bb15,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3268622817264189537, guid: 96b91479e879fe64c87928451115bb15,
         type: 3}

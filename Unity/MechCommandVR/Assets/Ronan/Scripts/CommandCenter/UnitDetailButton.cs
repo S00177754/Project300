@@ -32,8 +32,19 @@ public class UnitDetailButton : MonoBehaviour
     {
         if (details != null)
         {
-            tmpTxtHealth.text = $"HP: {details.Health * 100} /{details.MaxHealth * 100}";
+            if (details.Health * 100 > 0)
+            {
+                tmpTxtHealth.text = $"HP: {Mathf.Round(details.Health * 100)} /{details.MaxHealth * 100}";
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
             sldrHealth.value = details.Health;
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
