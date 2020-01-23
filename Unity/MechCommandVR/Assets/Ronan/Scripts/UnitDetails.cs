@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum UnitState
+{
+    SCOUTING,
+    ATTACKING,
+    IDLE
+}
+
 public class UnitDetails : MonoBehaviour
 {
     public CommanderController Commander;
@@ -10,6 +17,7 @@ public class UnitDetails : MonoBehaviour
     public string Name;
 
     public UnitType myType;
+    UnitState unitState;
     public int Level;
 
     public float MaxHealth;
@@ -32,6 +40,7 @@ public class UnitDetails : MonoBehaviour
         IsSelected = false;
         IsControlled = false;
         Health = MaxHealth;
+        unitState = UnitState.IDLE;
 
         Commander.Units.Add(this);
         Debug.Log("Unit " + Name + " Added");
