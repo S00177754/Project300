@@ -14,7 +14,7 @@ namespace Valve.VR
     using UnityEngine;
     
     
-    public class SteamVR_Input_ActionSet_Testing : Valve.VR.SteamVR_ActionSet
+    public class SteamVR_Input_ActionSet_MechPossession : Valve.VR.SteamVR_ActionSet
     {
     }
 }

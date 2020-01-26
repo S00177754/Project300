@@ -50,6 +50,28 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/default/in/Touchpad",
+      "type": "vector2",
+      "requirement": "mandatory"
+    },
+    {
+      "name": "/actions/default/in/Thumbstick",
+      "type": "vector2",
+      "requirement": "mandatory"
+    },
+    {
+      "name": "/actions/default/in/ActivateMenu",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/Select",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/MenuSelectionPosition",
+      "type": "vector2"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
@@ -81,6 +103,50 @@
       "name": "/actions/mixedreality/in/ExternalCamera",
       "type": "pose",
       "requirement": "optional"
+    },
+    {
+      "name": "/actions/CommandCenter/in/ActivateMenu",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/CommandCenter/in/MenuSelectionPosition",
+      "type": "vector2"
+    },
+    {
+      "name": "/actions/CommandCenter/in/Select",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/CommandCenter/in/InteractClick",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/CommandCenter/out/Haptic",
+      "type": "vibration"
+    },
+    {
+      "name": "/actions/MinimapSelector/in/Select",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/MinimapSelector/in/ActivateMenu",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/MinimapSelector/in/MenuSelectionPosition",
+      "type": "vector2"
+    },
+    {
+      "name": "/actions/MinimapSelector/in/InteractClick",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/MinimapSelector/in/ReturnToCommandCenter",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/MinimapSelector/out/Haptic",
+      "type": "vibration"
     }
   ],
   "action_sets": [
@@ -101,7 +167,15 @@
       "usage": "single"
     },
     {
-      "name": "/actions/Testing",
+      "name": "/actions/CommandCenter",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/MinimapSelector",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/MechPossession",
       "usage": "single"
     }
   ],

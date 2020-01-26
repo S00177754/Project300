@@ -8,8 +8,14 @@ public class VRInput : BaseInputModule
 {
     public Camera camera;
     public SteamVR_Input_Sources TargetSource;
+
+    [Header("Actions")]
     public SteamVR_Action_Boolean ClickAction;
 
+    [Header("Controller Systems")]
+    public VRRadialMenu RadialMenu = null;
+
+    //Pointer System
     private GameObject currentObject = null;
     private PointerEventData Data = null;
 
@@ -20,7 +26,7 @@ public class VRInput : BaseInputModule
         Data = new PointerEventData(eventSystem);
     }
 
-    //Get distance
+    #region Pointer Relevant Methods
     public PointerEventData GetData()
     {
         return Data;
@@ -102,4 +108,8 @@ public class VRInput : BaseInputModule
             ProcessRelease(Data);
         }
     }
+
+    #endregion
+
+
 }
