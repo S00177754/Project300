@@ -5,8 +5,8 @@ using Valve.VR;
 
 public class VRRadialInput : MonoBehaviour
 {
-    [Header("Default Action Set")]
-    public SteamVR_ActionSet actionSet = null;
+    [Header("Relevant Action Set")]
+    public SteamVR_ActionSet actionSet;
 
     [Header("SteamVR Actions")]
     public SteamVR_Action_Boolean touch = null;
@@ -16,19 +16,46 @@ public class VRRadialInput : MonoBehaviour
     [Header("Radial Menu")]
     public VRRadialMenu radialMenu = null;
 
-    private void Awake()
+    private bool StateChanged;
+
+    void Awake()
+    {
+        AddEvents();
+    }
+
+    void Start()
+    {
+        
+    }
+
+    private void Update()
+    {
+        if (actionSet.IsActive() && StateChanged)
+        {
+            AddEvents();
+            StateChanged = false;
+        }
+        
+        if(!actionSet.IsActive())
+        {
+            RemoveEvents();
+            StateChanged = true;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        RemoveEvents();
+    }
+
+    private void AddEvents()
     {
         touch.onChange += Touch;
         press.onStateUp += PressRelease;
         touchPosition.onAxis += Position;
     }
 
-    private void Start()
-    {
-        actionSet.Activate();
-    }
-
-    private void OnDestroy()
+    private void RemoveEvents()
     {
         touch.onChange -= Touch;
         press.onStateUp -= PressRelease;
