@@ -8,6 +8,7 @@ public class UnitManager : MonoBehaviour
     
     public GameObject selectedUnit;
     private UnitInfo selectedInfo;
+    public BuildingInfo buildingInfo { get; set; }
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,14 @@ public class UnitManager : MonoBehaviour
 
                     selectedInfo.isSelected = true;
                 }
+                else if (hit.transform.CompareTag("Building"))
+                {
+                    selectedUnit = hit.collider.gameObject;
+                    buildingInfo = selectedUnit.GetComponent<BuildingInfo>();
+
+                    buildingInfo.isSelected = true;
+                }
+
                 Debug.Log(hit.transform);
             }
 
