@@ -8,7 +8,7 @@ public class UnitManager : MonoBehaviour
     
     public GameObject selectedUnit;
     private UnitInfo selectedInfo;
-    public BuildingInfo buildingInfo { get; set; }
+    private BuildingInfo buildingInfo;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +19,12 @@ public class UnitManager : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
+            Debug.Log("Ray being cast");
             var camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(camRay, out hit))
             {
+                Debug.Log("Tags being checked");
                 if (hit.transform.CompareTag("PlayerUnit"))
                 {
                     selectedUnit = hit.collider.gameObject;
@@ -30,11 +32,16 @@ public class UnitManager : MonoBehaviour
 
                     selectedInfo.isSelected = true;
                 }
-                else if (hit.transform.CompareTag("Building"))
+                else if (hit.transform.CompareTag("Barracks"))
                 {
+
+                    Debug.Log("Setting selected unit");
                     selectedUnit = hit.collider.gameObject;
+
+                    Debug.Log("Building info being set");
                     buildingInfo = selectedUnit.GetComponent<BuildingInfo>();
 
+                    Debug.Log("Marking building as selected");
                     buildingInfo.isSelected = true;
                 }
 

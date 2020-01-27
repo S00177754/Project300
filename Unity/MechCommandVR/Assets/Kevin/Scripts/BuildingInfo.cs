@@ -12,9 +12,9 @@ public class BuildingInfo : MonoBehaviour
 
     float trainTime;
 
-    public GameObject unit { get; set; }
+    public GameObject unit;
 
-
+    private bool isTraining = false;
 
     Vector3 spawnLocation;
     // Start is called before the first frame update
@@ -26,32 +26,32 @@ public class BuildingInfo : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        while (isSelected)
+        if (isSelected)
         {
-            Debug.Log("Units good to make");
-            CreateUnits();
+            //CreateUnits();
+            if ((Input.GetKey(KeyCode.U)) && (isTraining == false))
+            {
+                Debug.Log("Unit about to be created");
+                isTraining = true;
+                StartCoroutine(TrainUnit(5));
+
+            }
         }
     }
 
     public void CreateUnits()
     {
-        if (Input.GetKey(KeyCode.U))
-        {
-
-            TrainUnit(5);
-            
-        }
+       
     }
 
     IEnumerator TrainUnit(int seconds)
     {
-        int count = seconds;
-        while (count > 0)
-        {
-            yield return new WaitForSeconds(1);
-            count--;
-        }
+        Debug.Log("Unit being created");
+            yield return new WaitForSeconds(seconds);
+            
+        
         Instantiate(unit, spawnLocation, Quaternion.identity);
+        isTraining = false;
     }
 }
 
