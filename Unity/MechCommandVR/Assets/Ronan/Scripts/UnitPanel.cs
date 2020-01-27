@@ -33,8 +33,8 @@ public class UnitPanel : MonoBehaviour
             {
                 GameObject button = Instantiate(UnitDetailPrefab, lstGridUnits);
 
-                UnitDetailButton gridButton = button.GetComponent<UnitDetailButton>();
-                gridButton.InitializeUnitButton(Commander.Units[i],unitCamSwitch);
+                UnitControlPanel gridButton = button.GetComponent<UnitControlPanel>();
+                gridButton.Initialize(Commander.Units[i],unitCamSwitch);
                 Debug.Log("Button created");
             }
         }
