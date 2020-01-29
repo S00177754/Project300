@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4232620100068357936}
+  - component: {fileID: 581465579409123343}
+  - component: {fileID: 4901848155090927370}
   - component: {fileID: 7535049627710048057}
   - component: {fileID: 1781479991720565645}
   - component: {fileID: 5112250005425355427}
@@ -34,6 +36,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &581465579409123343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547824887944488113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!114 &4901848155090927370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547824887944488113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b877342ad6985e45a22a1ea835a91f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointer: {fileID: 7535049627710048057}
 --- !u!114 &7535049627710048057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,7 +78,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DefaultLength: 5
   PointerEnd: {fileID: 1765411927859004517}
-  VR_Input: {fileID: 0}
 --- !u!20 &1781479991720565645
 Camera:
   m_ObjectHideFlags: 0

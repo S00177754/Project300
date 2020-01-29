@@ -2119,6 +2119,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!21 &1330312311
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1383547791
 GameObject:
   m_ObjectHideFlags: 0
@@ -2565,7 +2599,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1722769182}
   m_CullTransparentMesh: 0
---- !u!43 &1781070199
+--- !u!43 &1787331865
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3504,40 +3538,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960938603}
   m_CullTransparentMesh: 0
---- !u!21 &1988196500
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!20 &1991610546 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 9172382560649354184, guid: 2d60a0e36da06a0439ba03213050d520,
@@ -3740,14 +3740,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1988196500}
+      objectReference: {fileID: 1330312311}
     - target: {fileID: 1138543828966443035, guid: 7c2ff3c7ababc4a4ba79a63f1b358489,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1781070199}
-    m_RemovedComponents: []
+      objectReference: {fileID: 1787331865}
+    m_RemovedComponents:
+    - {fileID: 7432678970728768857, guid: 7c2ff3c7ababc4a4ba79a63f1b358489, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7c2ff3c7ababc4a4ba79a63f1b358489, type: 3}
+--- !u!1 &140793496527471727 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3886070535620869430, guid: 7c2ff3c7ababc4a4ba79a63f1b358489,
+    type: 3}
+  m_PrefabInstance: {fileID: 140793496527471726}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &140793496527471728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140793496527471727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
 --- !u!1001 &310869038316131890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4063,21 +4085,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EventSystem w/VRInput
-      objectReference: {fileID: 0}
-    - target: {fileID: 7940268804228547683, guid: c9ee132698fa34549a7c86ffe8664a4e,
-        type: 3}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7940268804228547683, guid: c9ee132698fa34549a7c86ffe8664a4e,
-        type: 3}
-      propertyPath: TargetSource
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7940268804228547683, guid: c9ee132698fa34549a7c86ffe8664a4e,
-        type: 3}
-      propertyPath: ClickAction.actionPath
-      value: /actions/default/in/Teleport
       objectReference: {fileID: 0}
     - target: {fileID: 3373234003033279106, guid: c9ee132698fa34549a7c86ffe8664a4e,
         type: 3}

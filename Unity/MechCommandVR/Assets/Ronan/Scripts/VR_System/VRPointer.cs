@@ -5,15 +5,25 @@ using UnityEngine.EventSystems;
 
 public class VRPointer : MonoBehaviour
 {
-    public float DefaultLength = 5.0f;
-    public GameObject PointerEnd;
-    public VRInput VR_Input;
+    [SerializeField] private float DefaultLength = 5.0f; //Serialize field forces unity to display field in UI for variable
+
+    [Header("External Refrences")]
+    [SerializeField] private GameObject PointerEnd = null;
+    public Camera Camera { get; private set; } = null;
+    private VRInput VR_Input = null;
 
     private LineRenderer LineRenderer = null;
 
     void Awake()
     {
+        Camera = GetComponent<Camera>();
+        Camera.enabled = false;
         LineRenderer = GetComponent<LineRenderer>();
+    }
+
+    private void Start()
+    {
+        VR_Input = EventSystem.current.gameObject.GetComponent<VRInput>();
     }
 
     void Update()
@@ -24,21 +34,18 @@ public class VRPointer : MonoBehaviour
     private void UpdateLineRenderer()
     {
         //Check for distance from input if none then use default
-        PointerEventData data = VR_Input.GetData();
-        //float targetLength = DefaultLength;
-        float targetLength = data.pointerCurrentRaycast.distance == 0 ? DefaultLength : data.pointerCurrentRaycast.distance;
-
+        PointerEventData data = VR_Input.Data;
         //Raycast
-        RaycastHit hit = CreateRaycast(targetLength);
+        RaycastHit hit = CreateRaycast();
+
+        float CollisionDistance = hit.distance == 0 ? DefaultLength : hit.distance;
+        float CanvasDistance = data.pointerCurrentRaycast.distance == 0 ? DefaultLength : data.pointerCurrentRaycast.distance;
+
+        float targetLength = Mathf.Min(CollisionDistance, CanvasDistance);
 
         //Default
         Vector3 endPosition = transform.position + (transform.forward * targetLength);
 
-        //Or based on hit
-        if(hit.collider != null)
-        {
-            endPosition = hit.point;
-        }
 
         //Set position of pointer end
         PointerEnd.transform.position = endPosition;
@@ -48,7 +55,7 @@ public class VRPointer : MonoBehaviour
         LineRenderer.SetPosition(1, endPosition);
     }
 
-    private RaycastHit CreateRaycast(float length)
+    private RaycastHit CreateRaycast()
     {
         RaycastHit hit;
         Ray ray = new Ray(transform.position, transform.forward);

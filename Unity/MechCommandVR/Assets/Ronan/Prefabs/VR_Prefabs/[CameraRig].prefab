@@ -222,8 +222,6 @@ GameObject:
   - component: {fileID: 1138543828967508383}
   - component: {fileID: 1138543828966443035}
   - component: {fileID: 1138543828959940987}
-  - component: {fileID: 7432678970728768857}
-  - component: {fileID: 5320745876906425865}
   m_Layer: 0
   m_Name: '[CameraRig]'
   m_TagString: Untagged
@@ -245,6 +243,7 @@ Transform:
   - {fileID: 1138543828969889331}
   - {fileID: 1138543828969962223}
   - {fileID: 1135714599812538075}
+  - {fileID: 7893968777599199911}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -321,39 +320,6 @@ MonoBehaviour:
   - {x: -1.65, y: 0.01, z: -1.275}
   - {x: -1.65, y: 0.01, z: 1.275}
   - {x: 1.65, y: 0.01, z: 1.275}
---- !u!114 &7432678970728768857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1138543828969694009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b877342ad6985e45a22a1ea835a91f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 3084206911843713546}
-  TargetSource: 0
-  ClickAction:
-    actionPath: /actions/CommandCenter/in/ActivateMenu
-    needsReinit: 0
-  RadialMenu: {fileID: 1419887440727129748}
---- !u!114 &5320745876906425865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1138543828969694009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
 --- !u!1 &1138543828969713737
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,6 +471,84 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1139241473017047749}
   m_Enabled: 1
+--- !u!1 &1917892614228170573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7893968777599199911}
+  - component: {fileID: 3367270536094490167}
+  - component: {fileID: 5381707846540414072}
+  - component: {fileID: 1819494831478327625}
+  m_Layer: 0
+  m_Name: Input Handler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7893968777599199911
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917892614228170573}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1138543828969976513}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3367270536094490167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917892614228170573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!114 &5381707846540414072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917892614228170573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adf28c6231da93a4c82d8a948fa87dfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointer: {fileID: 6549787414882115262}
+  InputSource: 2
+  ButtonClick:
+    actionPath: /actions/MinimapSelector/in/InteractClick
+    needsReinit: 0
+--- !u!114 &1819494831478327625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917892614228170573}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7e81e8acf6919e438494bd04feac0b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointer: {fileID: 0}
 --- !u!1001 &652770505812048469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -736,18 +780,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 652770507739042873}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1419887440727129748 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1926255636836199085, guid: f2cf49fe0a3677b48a0dc1f29ba14609,
-    type: 3}
-  m_PrefabInstance: {fileID: 652770507739042873}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94a554ed716321a418a0bf87312aeedf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &3635631152494516615
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -819,7 +851,7 @@ PrefabInstance:
         type: 3}
       propertyPath: VR_Input
       value: 
-      objectReference: {fileID: 7432678970728768857}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 626d9e867753d8749a9f6659371864b5, type: 3}
 --- !u!4 &633057887572668087 stripped
@@ -828,9 +860,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3635631152494516615}
   m_PrefabAsset: {fileID: 0}
---- !u!20 &3084206911843713546 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 1781479991720565645, guid: 626d9e867753d8749a9f6659371864b5,
+--- !u!114 &6549787414882115262 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7535049627710048057, guid: 626d9e867753d8749a9f6659371864b5,
     type: 3}
   m_PrefabInstance: {fileID: 3635631152494516615}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 814433d7e1c3c9f4b832b736fc7ccb6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
