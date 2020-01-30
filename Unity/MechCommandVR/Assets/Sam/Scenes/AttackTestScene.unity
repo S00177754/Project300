@@ -203,6 +203,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+--- !u!1 &680734306 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3223396841940592239, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1283966636}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &680734307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680734306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 827ccb63d981eae4bbd721315e4a0ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebugColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!195 &680734308
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680734306}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &956114740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -210,6 +251,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3223396841940592239, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy (2)
+      objectReference: {fileID: 0}
     - target: {fileID: -3189895881007766493, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
       propertyPath: myType
@@ -224,11 +270,6 @@ PrefabInstance:
         type: 3}
       propertyPath: AttackPower
       value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 3223396841940592239, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy (2)
       objectReference: {fileID: 0}
     - target: {fileID: 4150712754930165074, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
@@ -413,6 +454,11 @@ PrefabInstance:
       propertyPath: AttackDelay
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3223396841940592239, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy (1)
+      objectReference: {fileID: 0}
     - target: {fileID: -3189895881007766493, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
       propertyPath: myType
@@ -427,11 +473,6 @@ PrefabInstance:
         type: 3}
       propertyPath: AttackPower
       value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 3223396841940592239, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4150712754930165074, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
@@ -497,6 +538,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3223396841940592239, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy (3)
+      objectReference: {fileID: 0}
     - target: {fileID: -3189895881007766493, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
       propertyPath: myType
@@ -511,11 +557,6 @@ PrefabInstance:
         type: 3}
       propertyPath: AttackPower
       value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 3223396841940592239, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy (3)
       objectReference: {fileID: 0}
     - target: {fileID: 4150712754930165074, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
@@ -580,18 +621,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8518465279583721878}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1363320525 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8518465278228858715, guid: ddac5cd0667a1db4abe6bf2bf60e3e39,
-    type: 3}
-  m_PrefabInstance: {fileID: 8518465279583721878}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1363320524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fcd7539652a6974a9056c36f5dd2380, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1363320527
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -659,6 +688,7 @@ GameObject:
   - component: {fileID: 1446503525}
   - component: {fileID: 1446503524}
   - component: {fileID: 1446503523}
+  - component: {fileID: 1446503527}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -740,6 +770,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!195 &1446503527
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446503522}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 4.9999995
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.00001
+  m_BaseOffset: 1.110223e-16
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &1838534476
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -747,6 +799,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3223396841940592239, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy (4)
+      objectReference: {fileID: 0}
     - target: {fileID: -3189895881007766493, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
       propertyPath: myType
@@ -761,11 +818,6 @@ PrefabInstance:
         type: 3}
       propertyPath: AttackPower
       value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 3223396841940592239, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy (4)
       objectReference: {fileID: 0}
     - target: {fileID: 4150712754930165074, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
@@ -831,6 +883,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3223396841940592239, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: -3189895881007766493, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
       propertyPath: Name
@@ -840,11 +897,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3223396841940592239, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4150712754930165074, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
         type: 3}
@@ -906,6 +958,16 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -4338461359998401799, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
+        type: 3}
+      propertyPath: SightDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4338461359998401799, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
+        type: 3}
+      propertyPath: CanAttackTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -3189895881007766493, guid: f3cbcba951ef41f4fa557b2965ab2ba2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f3cbcba951ef41f4fa557b2965ab2ba2, type: 3}
@@ -916,6 +978,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8518465278228858714, guid: ddac5cd0667a1db4abe6bf2bf60e3e39,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518465278228858715, guid: ddac5cd0667a1db4abe6bf2bf60e3e39,
+        type: 3}
+      propertyPath: HealthPoints
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518465278228858715, guid: ddac5cd0667a1db4abe6bf2bf60e3e39,
+        type: 3}
+      propertyPath: AttackPower
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518465278228858715, guid: ddac5cd0667a1db4abe6bf2bf60e3e39,
+        type: 3}
+      propertyPath: AttackModifier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518465278228858715, guid: ddac5cd0667a1db4abe6bf2bf60e3e39,
+        type: 3}
+      propertyPath: Name
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 8518465278228858692, guid: ddac5cd0667a1db4abe6bf2bf60e3e39,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -975,7 +1062,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Me
       value: 
-      objectReference: {fileID: 1363320525}
+      objectReference: {fileID: 0}
     - target: {fileID: 8518465278228858712, guid: ddac5cd0667a1db4abe6bf2bf60e3e39,
         type: 3}
       propertyPath: AttackDelay
@@ -985,31 +1072,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8518465278228858714, guid: ddac5cd0667a1db4abe6bf2bf60e3e39,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8518465278228858715, guid: ddac5cd0667a1db4abe6bf2bf60e3e39,
-        type: 3}
-      propertyPath: HealthPoints
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8518465278228858715, guid: ddac5cd0667a1db4abe6bf2bf60e3e39,
-        type: 3}
-      propertyPath: AttackPower
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8518465278228858715, guid: ddac5cd0667a1db4abe6bf2bf60e3e39,
-        type: 3}
-      propertyPath: AttackModifier
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8518465278228858715, guid: ddac5cd0667a1db4abe6bf2bf60e3e39,
-        type: 3}
-      propertyPath: Name
-      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 9101899278268040167, guid: ddac5cd0667a1db4abe6bf2bf60e3e39,
         type: 3}

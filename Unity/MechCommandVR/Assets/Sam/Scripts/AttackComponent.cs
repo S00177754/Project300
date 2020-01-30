@@ -13,6 +13,7 @@ public enum UnitType
 
 public class AttackComponent : MonoBehaviour
 {
+    NavMeshMover meshMover;
     public UnitDetails Me;
     public UnitDetails AttackThis;
     string AttackTag;
@@ -24,6 +25,8 @@ public class AttackComponent : MonoBehaviour
     Ray ray;
 
     public bool CanSeeTarget;
+    public bool CanAttackTarget;
+    public float SightDistance;
 
     void Start()
     {
@@ -34,9 +37,16 @@ public class AttackComponent : MonoBehaviour
             AttackTag = "Player2";
         if (gameObject.tag == "Player2")
             AttackTag = "Player1";
+
+        meshMover = gameObject.GetComponent<NavMeshMover>();
     }
 
-    
+    public void Move()
+    {
+        if (meshMover != null && Vector3.Distance(transform.position, AttackThis.transform.position) <= SightDistance)
+            meshMover.MoveTo(AttackThis.transform.position);
+    }
+
     void Attack()
     {
         AttackThis = AttackThese[0];
@@ -92,7 +102,12 @@ public class AttackComponent : MonoBehaviour
 
     void Update()
     {
-        //
+        //Check if in range of attack
+        if (AttackThis != null && Vector3.Distance(transform.position, AttackThis.transform.position) <= SightDistance)
+            CanAttackTarget = true;
+        else
+            CanAttackTarget = false;
+  
         if (AttackThis != null && AttackThis.Health <= 0)
         {
             AttackThese.Remove(AttackThis);
@@ -291,5 +306,7 @@ public class AttackComponent : MonoBehaviour
                 return 1;
         }
     }
+
+
 
 }
