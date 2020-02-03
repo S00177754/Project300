@@ -44,7 +44,7 @@ public class BuildingInfo : MonoBehaviour
        
     }
 
-    IEnumerator TrainUnit(int seconds)
+    IEnumerator TrainUnit(float seconds)
     {
         Debug.Log("Unit being created");
             yield return new WaitForSeconds(seconds);
