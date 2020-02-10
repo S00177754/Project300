@@ -9,6 +9,7 @@ public class CommanderController : MonoBehaviour
     public Color PlayerColor;
     public int ID;
     public List<UnitDetails> Units;
+    public int Resources;
 
     public event UnitsAddedToController UnitsAdded;
 
@@ -26,5 +27,12 @@ public class CommanderController : MonoBehaviour
     private void Update()
     {
         
+    }
+
+    public void increaseFunds()
+    {
+        Resources += 1;
+
+        Debug.Log("Resources increased");
     }
 }
