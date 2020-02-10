@@ -8,6 +8,9 @@ public class BuildingBuilding : MonoBehaviour
 
     public string BuildingName { get; set; }
 
+    private GameObject player;
+    public CommanderController commanderController;
+
     float buildTime;
 
     public GameObject commandCenter;
@@ -22,7 +25,8 @@ public class BuildingBuilding : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.Find("PlayerController");
+        commanderController = player.GetComponent<CommanderController>();
     }
 
     // Update is called once per frame
@@ -37,6 +41,7 @@ public class BuildingBuilding : MonoBehaviour
                     buildTime = 10f;
                     WaitForSpawnPoint();
                     Debug.Log("Command Center being built");
+                    commanderController.decreaseFunds(500);
                     BuildBuilding(buildTime, commandCenter);
                 }
 
@@ -45,6 +50,7 @@ public class BuildingBuilding : MonoBehaviour
                     buildTime = 5f;
                     WaitForSpawnPoint();
                     Debug.Log("Barracks being built");
+                    commanderController.decreaseFunds(300);
                     BuildBuilding(buildTime, barracks);
                 }
                 if (Input.GetKey(KeyCode.R))
@@ -52,6 +58,7 @@ public class BuildingBuilding : MonoBehaviour
                     buildTime = 3f;
                     WaitForSpawnPoint();
                     Debug.Log("Collector being built");
+                    commanderController.decreaseFunds(150);
                     BuildBuilding(buildTime, collector);
                 }
             }

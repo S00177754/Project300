@@ -35,4 +35,9 @@ public class CommanderController : MonoBehaviour
 
         Debug.Log("Resources increased");
     }
+
+    public void decreaseFunds(int amount)
+    {
+        Resources -= amount;
+    }
 }
