@@ -6,18 +6,21 @@ public class UnitDetails : MonoBehaviour
 {
     public CommanderController Commander;
 
+    [Header("Unit Info")]
     public int UnitId;
     public string Name;
 
     public UnitType myType;
     public int Level;
 
+    [Header("Unit Stats")]
     public float MaxHealth;
     public float Health;
 
     public float AttackPower;
     public float AttackModifier;
 
+    [Header("Unit States")]
     public bool IsSelected;
     public bool IsControlled;
 

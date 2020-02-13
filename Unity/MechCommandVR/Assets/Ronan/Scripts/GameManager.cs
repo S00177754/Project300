@@ -4,15 +4,53 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("Commanders")]
+    public CommanderController Player;
+    public CommanderController AI;
+
+    private GameState gameState;
+
+    private void Start()
     {
-        
+        //Player.
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        CheckForGameEnd();
     }
+
+    public void CheckForGameEnd()
+    {
+        if(Player.Base.PowerBuilding.Power <= 0)
+        {
+            gameState = GameState.GameOver;
+        }
+        else if(AI.Base.PowerBuilding.Power <= 0)
+        {
+            gameState = GameState.GameOver;
+        }
+    }
+
+    public void StartBattle()
+    {
+        Time.timeScale = 1;
+        gameState = GameState.Battling;
+
+        Player.Base.PowerBuilding.FullPower();
+        AI.Base.PowerBuilding.FullPower();
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        gameState = GameState.Paused;
+    }
+}
+
+public enum GameState
+{
+    Battling,
+    Paused,
+    GameOver
 }
