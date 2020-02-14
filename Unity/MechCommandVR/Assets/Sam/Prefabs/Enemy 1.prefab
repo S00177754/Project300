@@ -17,8 +17,10 @@ GameObject:
   - component: {fileID: 4086335714993835968}
   - component: {fileID: 3726238822283979595}
   - component: {fileID: 4400712866890517040}
+  - component: {fileID: 5700455113354981757}
+  - component: {fileID: 5852442876623277498}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy 1
   m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58721fdf117b3034a8b13b8d9d06daf3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -182,3 +184,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!54 &5700455113354981757
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3223396841940592239}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 5
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &5852442876623277498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3223396841940592239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e5a1e0d62811b4bb91cb4f981d9955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentNode: {fileID: 0}

@@ -13,8 +13,6 @@ public class UnitComponent : MonoBehaviour
     public float AttackModifier;
     public int Level;
 
-
-
     public float SignModifier(UnitType enemySign)
     {
         switch (myType)

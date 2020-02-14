@@ -12,6 +12,7 @@ public enum UnitState
 }
 public class Behaviour : MonoBehaviour
 {
+    [SerializeField]
     UnitState unitState;
     AttackComponent attackComponent;
 
@@ -19,7 +20,6 @@ public class Behaviour : MonoBehaviour
     {
         unitState = UnitState.IDLE;
         attackComponent = gameObject.GetComponent<AttackComponent>();
-
     }
 
     //Simple methods that can be assigned to buttons to manually change unitState
