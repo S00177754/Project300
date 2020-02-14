@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 8518465278228858695}
   - component: {fileID: 8518465278228858694}
   - component: {fileID: 8518465278228858713}
-  - component: {fileID: 8518465278228858712}
-  - component: {fileID: 8518465278228858715}
+  - component: {fileID: 6548083942153471350}
+  - component: {fileID: 6198067467391461059}
+  - component: {fileID: 346765528267353210}
   - component: {fileID: 9101899278268040167}
   m_Layer: 0
   m_Name: Player
@@ -96,7 +97,38 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8518465278228858712
+--- !u!114 &6548083942153471350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8518465278228858714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fcd7539652a6974a9056c36f5dd2380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  myType: 0
+  HealthPoints: 0
+  AttackPower: 0
+  AttackModifier: 0
+  Level: 0
+--- !u!114 &6198067467391461059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8518465278228858714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f5df5da19b3726488beb6fa0d951e86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitState: 0
+--- !u!114 &346765528267353210
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,24 +145,8 @@ MonoBehaviour:
   AttackDelay: 0
   AttackThese: []
   CanSeeTarget: 0
---- !u!114 &8518465278228858715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8518465278228858714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fcd7539652a6974a9056c36f5dd2380, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Unit1
-  myType: 0
-  HealthPoints: 0
-  AttackPower: 0
-  AttackModifier: 0
-  Level: 1
+  CanAttackTarget: 0
+  AttackDistance: 0
 --- !u!135 &9101899278268040167
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -142,5 +158,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}

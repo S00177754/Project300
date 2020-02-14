@@ -13,55 +13,138 @@ public enum UnitType
 
 public class AttackComponent : MonoBehaviour
 {
-    public UnitDetails Me;
-    public UnitDetails AttackThis;
+    NavMeshMover meshMover;
+    public UnitComponent Me;
+    public UnitComponent AttackThis;
     string AttackTag;
-    public float AttackDelay;
-    float timer = 0f;
-    //multiple tagets
-    //[HideInInspector]
-    public List<UnitDetails> AttackThese;
-    Ray ray;
-
+    [SerializeField]
+    float AttackDelay;
+    float timer;
+    //multiple targets
+    public List<UnitComponent> AttackThese;
+    
     public bool CanSeeTarget;
+    public bool CanAttackTarget;
+    [SerializeField]
+    float AttackDistance;
 
     void Start()
     {
-        Me = gameObject.GetComponent<UnitDetails>();
-        AttackThese = new List<UnitDetails>();
+        Me = gameObject.GetComponent<UnitComponent>();
+        AttackThese = new List<UnitComponent>();
+        AttackDistance = 2f;
         //Using Player1 and Player2 for future implementation of multiplayer
-        if (gameObject.tag == "Player1")
+        if (gameObject.CompareTag("Player1"))
             AttackTag = "Player2";
-        if (gameObject.tag == "Player2")
+        if (gameObject.CompareTag("Player2"))
             AttackTag = "Player1";
+
+        meshMover = gameObject.GetComponent<NavMeshMover>();
     }
 
-    
+    public void Move()
+    {
+        if(AttackThis != null)
+        {
+            if (meshMover != null && Vector3.Distance(transform.position, AttackThis.transform.position) <= AttackDistance)
+                meshMover.MoveTo(AttackThis.transform.position);
+        }
+    }
+
+    #region Attack
     void Attack()
     {
         AttackThis = AttackThese[0];
-        if(Me != null && AttackThis != null)
+        if (Me != null && AttackThis != null)
         {
             Me.AttackModifier = SignModifier(AttackThis.myType) * LevelModifier(AttackThis);
-            if(Time.deltaTime <= AttackDelay)
-            {
-                AttackThis.Health -= Me.AttackPower * Me.AttackModifier;
+            //if (timer <= AttackDelay)
+            //{
+                AttackThis.HealthPoints -= Me.AttackPower * Me.AttackModifier;
                 //Reset timer
                 timer = 0f;
                 Debug.Log(Me.ToString());
-                //Debug.Log(AttackThis.ToString());
-            }
+                Debug.Log(AttackThis.ToString());
+            //}
         }
         if (AttackThis == null)
             CanSeeTarget = false;
     }
+    #endregion
 
+    IEnumerator AttackCoR()
+    {
+        yield return new WaitForSeconds(AttackDelay); 
+
+        AttackThis = AttackThese[0];
+        if (Me != null && AttackThis != null)
+        {
+            Me.AttackModifier = SignModifier(AttackThis.myType) * LevelModifier(AttackThis);
+            AttackThis.HealthPoints -= Me.AttackPower * Me.AttackModifier;
+        }
+        if (AttackThis == null)
+            CanSeeTarget = false;
+
+    }
+
+    void Update()
+    {
+        //Check if in range of attack
+        if (AttackThis != null && Vector3.Distance(transform.position, AttackThis.transform.position) <= AttackDistance)
+            CanAttackTarget = true;
+        else
+            CanAttackTarget = false;
+  
+        //Removes enemy from list if enemy 'dies'
+        if (AttackThis != null && AttackThis.HealthPoints <= 0)
+        {
+            AttackThese.Remove(AttackThis);
+            Destroy(AttackThis.gameObject);
+            if (AttackThese.Count <= 0)
+                CanSeeTarget = false;
+        }
+        if (AttackThis == null)//When HP reaches 0, object is destroyed which will leave null
+        {
+            if(AttackThese.Count <= 0)//Check if units in range
+                return;
+            else //set target to be first element of Enemy list
+                AttackThis = AttackThese[0];
+        }
+
+        if(AttackThese.Count > 0)
+        {
+            //timer += Time.deltaTime;
+            //if (timer >= AttackDelay)
+            //{
+            //    Attack();
+            //    timer = 0;
+            //}
+            //StartCoroutine("AttackCoR");
+            //if (timer <= 0f)
+                
+
+            if (timer > 0f)
+                timer -= Time.deltaTime;
+
+            if (timer <= 0f) //&& CanAttackTarget)
+            {
+                Attack();
+                timer = AttackDelay;
+
+            }
+        }
+    }
+
+    #region Trigger Moethods: Enter and Exit
+    //Trigger Methods
     private void OnTriggerEnter(Collider collision)
     {
-        UnitDetails newUnit = collision.gameObject.GetComponent<UnitDetails>();
+        //Debug.Log("OnTriggerEnter");
+        UnitComponent newUnit = collision.gameObject.GetComponent<UnitComponent>();
         if (newUnit != null)
         {
-            if (collision.gameObject.tag.Equals(AttackTag))
+            //Debug.Log("newUnit not null");
+            if (collision.gameObject.CompareTag(AttackTag))
             {
                 CanSeeTarget = true;
                 AttackThese.Add(newUnit);
@@ -72,58 +155,22 @@ public class AttackComponent : MonoBehaviour
             CanSeeTarget = false;
     }
 
+    //This method removes a 'still alive' enemy when it is out of sight range
     private void OnTriggerExit(Collider collision)
     {
-
+        UnitComponent removeUnit = collision.gameObject.GetComponent<UnitComponent>();
+        //Check if player or enemy
+        if(collision.gameObject.CompareTag(AttackTag))
+        {   //Comparing AttackTag ensures unit details are correct since Srat() will determine which tag to attack
+            AttackThese.Remove(removeUnit);
+            if (AttackThese.Count == 0)//Check if enemies still in range
+                CanSeeTarget = false;
+        }
         //check reverse trigger is with unittype
-        UnitDetails removeUnit = collision.gameObject.GetComponent<UnitDetails>();
-        if (removeUnit != null)
-        {
-            if (collision.gameObject.tag.Equals(AttackTag))
-            {
-                AttackThese.Remove(removeUnit);
-                if(AttackThese.Count == 0)//Check if enemies still in range
-                    CanSeeTarget = false;
-            }
-        }
-
-
     }
+#endregion
 
-    void Update()
-    {
-        //
-        if (AttackThis != null && AttackThis.Health <= 0)
-        {
-            AttackThese.Remove(AttackThis);
-            Destroy(AttackThis.gameObject);
-        }
-        if (AttackThis == null)//When HP reaches 0, object is destroyed which may leave null
-        {
-            if(AttackThese.Count <= 0)//Check if units in range
-            {
-                return;
-            }
-            else //set target to be first element of Enemy list
-            {
-                AttackThis = AttackThese[0];
-            }
-        }
-
-        if(AttackThese.Count > 0)
-        {
-            if (timer <= 0f) 
-                timer = AttackDelay;
-
-            if (timer > 0f)
-                timer -= Time.deltaTime;
-
-            if (timer <= 0f && CanSeeTarget) 
-               Attack();
-
-        }
-    }
-
+    #region Modifier Methods
     public float SignModifier(UnitType enemySign)
     {
         switch (Me.myType)
@@ -213,7 +260,7 @@ public class AttackComponent : MonoBehaviour
         }
     }
 
-    public float LevelModifier(UnitDetails enemy)
+    public float LevelModifier(UnitComponent enemy)
     {
         switch (Me.Level)
         {
@@ -290,6 +337,13 @@ public class AttackComponent : MonoBehaviour
             default:
                 return 1;
         }
+
     }
+#endregion
 
 }
+
+
+
+
+
