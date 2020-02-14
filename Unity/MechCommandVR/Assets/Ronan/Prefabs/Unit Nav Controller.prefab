@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: 6553980967325022696}
   - component: {fileID: 6553980967325022697}
   - component: {fileID: 6553980967325022694}
+  - component: {fileID: 4054264455381893092}
   m_Layer: 0
   m_Name: MoveButton (1)
   m_TagString: Untagged
@@ -296,12 +297,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -326,6 +327,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4054264455381893092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6553980967325022692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a76d0840f64338d46822798289e18823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NormalColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  HoverColor:
+    serializedVersion: 2
+    rgba: 4286545791
+  DownColor:
+    serializedVersion: 2
+    rgba: 4285464773
 --- !u!1 &6553980967453908422
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,6 +687,8 @@ GameObject:
   - component: {fileID: 6553980968321954064}
   - component: {fileID: 6553980968321954065}
   - component: {fileID: 6553980968321954062}
+  - component: {fileID: 4090137436476651088}
+  - component: {fileID: 5422173094866120545}
   m_Layer: 0
   m_Name: AttackButton
   m_TagString: Untagged
@@ -741,12 +765,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -770,7 +794,51 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6553980968321954065}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5422173094866120545}
+        m_MethodName: TestClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4090137436476651088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6553980968321954060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a76d0840f64338d46822798289e18823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NormalColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  HoverColor:
+    serializedVersion: 2
+    rgba: 4286545791
+  DownColor:
+    serializedVersion: 2
+    rgba: 4285464773
+--- !u!114 &5422173094866120545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6553980968321954060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d64f53dbf061c1c4aa710eb398090dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6553980968585249483
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,6 +851,7 @@ GameObject:
   - component: {fileID: 6553980968585249487}
   - component: {fileID: 6553980968585249484}
   - component: {fileID: 6553980968585249485}
+  - component: {fileID: 4078293538006231705}
   m_Layer: 0
   m_Name: MoveButton
   m_TagString: Untagged
@@ -859,12 +928,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -889,6 +958,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4078293538006231705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6553980968585249483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a76d0840f64338d46822798289e18823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NormalColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  HoverColor:
+    serializedVersion: 2
+    rgba: 4286545791
+  DownColor:
+    serializedVersion: 2
+    rgba: 4285464773
 --- !u!1 &6553980968696390412
 GameObject:
   m_ObjectHideFlags: 0
@@ -1185,16 +1275,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 3.6540003
       objectReference: {fileID: 0}
-    - target: {fileID: 3268622815985094501, guid: 96b91479e879fe64c87928451115bb15,
-        type: 3}
-      propertyPath: minimapCam
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3268622815985094501, guid: 96b91479e879fe64c87928451115bb15,
-        type: 3}
-      propertyPath: Commander
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3268622816914408935, guid: 96b91479e879fe64c87928451115bb15,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -1214,6 +1294,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.1457596
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268622815985094501, guid: 96b91479e879fe64c87928451115bb15,
+        type: 3}
+      propertyPath: minimapCam
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268622815985094501, guid: 96b91479e879fe64c87928451115bb15,
+        type: 3}
+      propertyPath: Commander
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96b91479e879fe64c87928451115bb15, type: 3}

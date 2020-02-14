@@ -25,7 +25,11 @@ namespace Valve.VR
         
         private static SteamVR_Input_ActionSet_mixedreality p_mixedreality;
         
-        private static SteamVR_Input_ActionSet_Testing p_Testing;
+        private static SteamVR_Input_ActionSet_CommandCenter p_CommandCenter;
+        
+        private static SteamVR_Input_ActionSet_MinimapSelector p_MinimapSelector;
+        
+        private static SteamVR_Input_ActionSet_MechPossession p_MechPossession;
         
         public static SteamVR_Input_ActionSet_default _default
         {
@@ -59,11 +63,27 @@ namespace Valve.VR
             }
         }
         
-        public static SteamVR_Input_ActionSet_Testing Testing
+        public static SteamVR_Input_ActionSet_CommandCenter CommandCenter
         {
             get
             {
-                return SteamVR_Actions.p_Testing.GetCopy<SteamVR_Input_ActionSet_Testing>();
+                return SteamVR_Actions.p_CommandCenter.GetCopy<SteamVR_Input_ActionSet_CommandCenter>();
+            }
+        }
+        
+        public static SteamVR_Input_ActionSet_MinimapSelector MinimapSelector
+        {
+            get
+            {
+                return SteamVR_Actions.p_MinimapSelector.GetCopy<SteamVR_Input_ActionSet_MinimapSelector>();
+            }
+        }
+        
+        public static SteamVR_Input_ActionSet_MechPossession MechPossession
+        {
+            get
+            {
+                return SteamVR_Actions.p_MechPossession.GetCopy<SteamVR_Input_ActionSet_MechPossession>();
             }
         }
         
@@ -73,13 +93,17 @@ namespace Valve.VR
             SteamVR_Actions.p_platformer = ((SteamVR_Input_ActionSet_platformer)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_platformer>("/actions/platformer")));
             SteamVR_Actions.p_buggy = ((SteamVR_Input_ActionSet_buggy)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_buggy>("/actions/buggy")));
             SteamVR_Actions.p_mixedreality = ((SteamVR_Input_ActionSet_mixedreality)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_mixedreality>("/actions/mixedreality")));
-            SteamVR_Actions.p_Testing = ((SteamVR_Input_ActionSet_Testing)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_Testing>("/actions/Testing")));
+            SteamVR_Actions.p_CommandCenter = ((SteamVR_Input_ActionSet_CommandCenter)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_CommandCenter>("/actions/CommandCenter")));
+            SteamVR_Actions.p_MinimapSelector = ((SteamVR_Input_ActionSet_MinimapSelector)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_MinimapSelector>("/actions/MinimapSelector")));
+            SteamVR_Actions.p_MechPossession = ((SteamVR_Input_ActionSet_MechPossession)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_MechPossession>("/actions/MechPossession")));
             Valve.VR.SteamVR_Input.actionSets = new Valve.VR.SteamVR_ActionSet[] {
                     SteamVR_Actions._default,
                     SteamVR_Actions.platformer,
                     SteamVR_Actions.buggy,
                     SteamVR_Actions.mixedreality,
-                    SteamVR_Actions.Testing};
+                    SteamVR_Actions.CommandCenter,
+                    SteamVR_Actions.MinimapSelector,
+                    SteamVR_Actions.MechPossession};
         }
     }
 }
