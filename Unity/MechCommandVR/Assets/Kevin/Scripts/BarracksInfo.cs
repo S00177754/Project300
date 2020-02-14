@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class BarracksInfo : MonoBehaviour
 {
-    public bool isSelected { get; set; } = false;
+    private BuildingInfo info;
 
-    public string BuildingName { get; set; }
-
-    private GameObject player;
-    public CommanderController commanderController;
     // Start is called before the first frame update
 
     float trainTime;
@@ -22,24 +18,30 @@ public class BarracksInfo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("PlayerController");
-        commanderController = player.GetComponent<CommanderController>();
+        info = GetComponent<BuildingInfo>();
         spawnLocation = GameObject.Find("Barracks").transform.position - new Vector3(0, 0, 10);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (isSelected)
+        if (info.isSelected)
         {
-            //CreateUnits();
-            if ((Input.GetKey(KeyCode.U)) && (isTraining == false) && (commanderController.Resources >= 50))
-            {
-                Debug.Log("Unit about to be created");
-                isTraining = true;
-                commanderController.decreaseFunds(50);
-                StartCoroutine(TrainUnit(5));
 
+            //CreateUnits();
+            if ((Input.GetKey(KeyCode.U)) && (isTraining == false))
+            {
+                if (info.commanderController.Resources >= 50)
+                { 
+                    Debug.Log("Unit about to be created");
+                    isTraining = true;
+                    info.commanderController.decreaseFunds(50);
+                    StartCoroutine(TrainUnit(5));
+                }
+                else
+                {
+                    Debug.Log("Not enough resources");
+                }
             }
         }
     }

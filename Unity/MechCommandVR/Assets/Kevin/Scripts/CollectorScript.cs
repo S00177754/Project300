@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CollectorScript : MonoBehaviour
 {
+    private BuildingInfo info;
     public bool isSelected { get; set; } = false;
 
-    private GameObject player;
-    public CommanderController commanderController;
+
 
  
 
@@ -17,8 +17,7 @@ public class CollectorScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("PlayerController");
-        commanderController = player.GetComponent<CommanderController>();
+        info = GetComponent<BuildingInfo>();
         Debug.Log("Script found");
     }
 
@@ -30,8 +29,8 @@ public class CollectorScript : MonoBehaviour
 
         if (TimeDelay > 1)
         {
-            Debug.Log("Timer hit");
-            commanderController.increaseFunds();
+           // Debug.Log("Timer hit");
+            info.commanderController.increaseFunds();
             TimeDelay = 0f;
         }
     }

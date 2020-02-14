@@ -1,15 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BuildingBuilding : MonoBehaviour
 {
-    public bool isSelected { get; set; } = false;
-
-    public string BuildingName { get; set; }
-
-    private GameObject player;
-    public CommanderController commanderController;
+    private BuildingInfo info;
 
     float buildTime;
 
@@ -21,48 +17,102 @@ public class BuildingBuilding : MonoBehaviour
 
     Vector3 spawnLocation;
 
-    private bool isBuilding;
+    private bool isBuilding = false;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("PlayerController");
-        commanderController = player.GetComponent<CommanderController>();
+        info = GetComponent<BuildingInfo>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (isSelected)
+        if (info.isSelected)
         {
+            
             if (isBuilding == false)
             {
-                if (Input.GetKey(KeyCode.C))
+              /*  if (Input.GetKey(KeyCode.C))
                 {
+
                     buildTime = 10f;
                     WaitForSpawnPoint();
-                    Debug.Log("Command Center being built");
-                    commanderController.decreaseFunds(500);
-                    BuildBuilding(buildTime, commandCenter);
-                }
+                    if (IsEnoughResources(500, info.commanderController.Resources))
+                    {
+
+
+                        Debug.Log("Command Center being built");
+
+                        info.commanderController.decreaseFunds(500);
+                        BuildBuilding(buildTime, commandCenter);
+                 
+
+    */
 
                 if (Input.GetKey(KeyCode.B))
                 {
+                    Debug.Log("Barracks selected");
                     buildTime = 5f;
                     WaitForSpawnPoint();
-                    Debug.Log("Barracks being built");
-                    commanderController.decreaseFunds(300);
-                    BuildBuilding(buildTime, barracks);
+                    //Extract logic for map selection
+                    if (IsEnoughResources(300, info.commanderController.Resources))
+                    {
+                        if (!IsBlocked())
+                        {
+
+
+                            Debug.Log("Barracks being built");
+                            info.commanderController.decreaseFunds(300);
+                            BuildBuilding(buildTime, barracks);
+                        }
+                    }
                 }
+
                 if (Input.GetKey(KeyCode.R))
                 {
+                    Debug.Log("Collector selected");
                     buildTime = 3f;
                     WaitForSpawnPoint();
-                    Debug.Log("Collector being built");
-                    commanderController.decreaseFunds(150);
-                    BuildBuilding(buildTime, collector);
+                    if (IsEnoughResources(150, info.commanderController.Resources))
+                    {
+                        Debug.Log("Collector being built");
+                        info.commanderController.decreaseFunds(150);
+                        BuildBuilding(buildTime, collector);
+                    }
                 }
             }
                 
+        }
+    }
+
+    static bool IsEnoughResources(int RequiredRescources, int currentResources)
+    {
+        if (RequiredRescources <= currentResources)
+        {
+            return true;
+        }
+        else
+        {
+            Debug.Log("Not enough resources");
+            return false;
+        }
+    }
+
+    static bool IsBlocked()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+
+        if (Physics.SphereCast(ray, 10, out hit))
+        {
+            return false;
+        }
+        else
+        {
+            Debug.Log("Building in the way");
+            return true;
+
         }
     }
 
@@ -79,23 +129,23 @@ public class BuildingBuilding : MonoBehaviour
     {
         bool spawnset = false;
 
-        while (!spawnset)
-        {
-            if (Input.GetMouseButton(0))
+        //Vive rework
+            if (!Input.GetMouseButton(1))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
+                RaycastHit hit; 
 
                 if (Physics.Raycast(ray, out hit, 100))
                 {
                     if (hit.collider.tag == "Ground")
                     {
                         spawnLocation = hit.point;
+                        Debug.Log("Spawn Point hit");
                     }
+                    spawnset = true;
                 }
 
             }
-        }
         yield return null;
     }
 }

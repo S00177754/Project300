@@ -10,6 +10,7 @@ public class CommanderController : MonoBehaviour
     public int ID;
     public List<UnitDetails> Units;
     public int Resources;
+    public List<BuildingInfo> buildings;
 
     public event UnitsAddedToController UnitsAdded;
 
@@ -33,7 +34,7 @@ public class CommanderController : MonoBehaviour
     {
         Resources += 1;
 
-        Debug.Log("Resources increased");
+       // Debug.Log("Resources increased");
     }
 
     public void decreaseFunds(int amount)
