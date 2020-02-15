@@ -10,8 +10,9 @@ public class CommanderController : MonoBehaviour
     public Color PlayerColor;
     public List<UnitDetails> Units;
     public BaseController Base;
+    
     public int Resources;
-    public List<BuildingInfo> buildings;
+    //public List<BuildingInfo> buildings;
 
     public event UnitsAddedToController UnitsAdded;
 
@@ -31,15 +32,10 @@ public class CommanderController : MonoBehaviour
         
     }
 
-    public void increaseFunds()
-    {
-        Resources += 1;
-
-       // Debug.Log("Resources increased");
-    }
-
-    public void decreaseFunds(int amount)
+    public void DecreaseFunds(int amount)
     {
         Resources -= amount;
     }
+
+
 }

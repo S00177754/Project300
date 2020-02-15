@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public Camera MiniMapCam;
+
     [Header("Commanders")]
     public CommanderController Player;
     public CommanderController AI;

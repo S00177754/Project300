@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 
-public class BuildingInfo : MonoBehaviour
+public class BuildingInfo : MonoBehaviour //ISelectableMinimap interface and BaseController replace this for efficiency
 {
     private GameObject player;
     public CommanderController commanderController;

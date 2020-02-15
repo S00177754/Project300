@@ -9,6 +9,11 @@ public class BaseController : MonoBehaviour
 
     [Header("Base Buildings")]
     public BasePowerController PowerBuilding;
+    public List<CollectorScript> ResourceCollectors;
+    public List<BarracksScript> UnitBarracks;
+
+    public List<BuildingInfo> buildings;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -20,5 +25,17 @@ public class BaseController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void AddResourceCollector(CollectorScript collector)
+    {
+        collector.AddBaseReference(this);
+        ResourceCollectors.Add(collector);
+    }
+
+    public void AddUnitBarracks(BarracksScript barracks)
+    {
+        barracks.AddBaseReference(this);
+        UnitBarracks.Add(barracks);
     }
 }

@@ -9,7 +9,7 @@ public class UnitManager : MonoBehaviour
     public GameObject selectedUnit;
     private UnitInfo selectedInfo;
     private BuildingInfo buildingInfo;
-    private BuildingBuilding buildingConstruction;
+    //private BuildingBuilding buildingConstruction;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,7 +52,7 @@ public class UnitManager : MonoBehaviour
                     selectedUnit = hit.collider.gameObject;
 
                     Debug.Log("Building info being set");
-                    buildingConstruction = selectedUnit.GetComponent<BuildingBuilding>();
+                    //buildingConstruction = selectedUnit.GetComponent<BuildingBuilding>();
 
                     buildingInfo = selectedUnit.GetComponent<BuildingInfo>();
 

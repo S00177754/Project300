@@ -2,36 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectorScript : MonoBehaviour
+public class CollectorScript : MonoBehaviour, ISelectableMinimap
 {
-    private BuildingInfo info;
-    public bool isSelected { get; set; } = false;
+    [Header("Base")]
+    public BaseController BaseController;
 
 
+    [Header("Collector Stats")]
+    public int ProductionAmount = 1;
+    public float CooldownTime = 0f; //Changed to Cooldown Timer since it gives universal meaning
+    private float Timer = 0f;
+    public bool IsSelected { get; set; } = false;
 
- 
-
-    public string BuildingName { get; set; }
-
-    private float TimeDelay = 0f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        info = GetComponent<BuildingInfo>();
-        Debug.Log("Script found");
-    }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        TimeDelay = TimeDelay + Time.fixedDeltaTime;
+        Timer += Time.deltaTime;
 
-
-        if (TimeDelay > 1)
+        if (Timer >= CooldownTime)
         {
-           // Debug.Log("Timer hit");
-            info.commanderController.increaseFunds();
-            TimeDelay = 0f;
+            IncreaseFunds();
+            Timer = 0f;
         }
+    }
+
+    public void IncreaseFunds() //Increase funds should be called in update of the object
+    {
+        BaseController.Owner.Resources += ProductionAmount;
+    }
+
+
+    public void AddBaseReference(BaseController baseController)
+    {
+        BaseController = baseController;
     }
 }
