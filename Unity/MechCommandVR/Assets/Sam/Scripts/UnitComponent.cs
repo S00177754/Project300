@@ -5,17 +5,11 @@ using UnityEngine;
 
 public class UnitComponent : MonoBehaviour
 {
-    public string Name;
-    public UnitType myType;
-
-    public float HealthPoints;
-    public float AttackPower;
-    public float AttackModifier;
-    public int Level;
+    public UnitDetails details;
 
     public float SignModifier(UnitType enemySign)
     {
-        switch (myType)
+        switch (details.myType)
         {
             case UnitType.Rock:
                 switch (enemySign)
@@ -104,10 +98,10 @@ public class UnitComponent : MonoBehaviour
 
     public float LevelModifier(UnitComponent enemy)
     {
-        switch (Level)
+        switch (details.Level)
         {
             case 1:
-                switch (enemy.Level)
+                switch (enemy.details.Level)
                 {
                     case 1:
                         return 1;
@@ -121,7 +115,7 @@ public class UnitComponent : MonoBehaviour
                         return 0.3f;
                 }
             case 2:
-                switch (enemy.Level)
+                switch (enemy.details.Level)
                 {
                     case 1:
                         return 1.15f;
@@ -135,7 +129,7 @@ public class UnitComponent : MonoBehaviour
                         return 0.5f;
                 }
             case 3:
-                switch (enemy.Level)
+                switch (enemy.details.Level)
                 {
                     case 1:
                         return 1.3f;
@@ -149,7 +143,7 @@ public class UnitComponent : MonoBehaviour
                         return 0.6f;
                 }
             case 4:
-                switch (enemy.Level)
+                switch (enemy.details.Level)
                 {
                     case 1:
                         return 1.5f;
@@ -163,7 +157,7 @@ public class UnitComponent : MonoBehaviour
                         return 0.85f;
                 }
             case 5:
-                switch (enemy.Level)
+                switch (enemy.details.Level)
                 {
                     case 1:
                         return 1.6f;
@@ -184,14 +178,12 @@ public class UnitComponent : MonoBehaviour
 
     void Start()
     {
-        HealthPoints = 1;
-        AttackPower = 0.1f;
-        AttackModifier = 1;
+        details = gameObject.GetComponent<UnitDetails>();
     }
 
 
     public override string ToString()
     {
-        return String.Format(Name + "\tHP:\t{0}\t\tModifier:\t{1}", HealthPoints, AttackModifier);
+        return String.Format(details.Name + "\tHP:\t{0}\t\tModifier:\t{1}", details.Health, details.AttackModifier);
     }
 }

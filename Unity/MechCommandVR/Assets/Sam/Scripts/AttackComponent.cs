@@ -57,10 +57,10 @@ public class AttackComponent : MonoBehaviour
         AttackThis = AttackThese[0];
         if (Me != null && AttackThis != null)
         {
-            Me.AttackModifier = SignModifier(AttackThis.myType) * LevelModifier(AttackThis);
+            Me.details.AttackModifier = SignModifier(AttackThis.details.myType) * LevelModifier(AttackThis);
             //if (timer <= AttackDelay)
             //{
-                AttackThis.HealthPoints -= Me.AttackPower * Me.AttackModifier;
+                AttackThis.details.Health -= Me.details.AttackPower * Me.details.AttackModifier;
                 //Reset timer
                 timer = 0f;
                 Debug.Log(Me.ToString());
@@ -79,8 +79,8 @@ public class AttackComponent : MonoBehaviour
         AttackThis = AttackThese[0];
         if (Me != null && AttackThis != null)
         {
-            Me.AttackModifier = SignModifier(AttackThis.myType) * LevelModifier(AttackThis);
-            AttackThis.HealthPoints -= Me.AttackPower * Me.AttackModifier;
+            Me.details.AttackModifier = SignModifier(AttackThis.details.myType) * LevelModifier(AttackThis);
+            AttackThis.details.Health -= Me.details.AttackPower * Me.details.AttackModifier;
         }
         if (AttackThis == null)
             CanSeeTarget = false;
@@ -96,7 +96,7 @@ public class AttackComponent : MonoBehaviour
             CanAttackTarget = false;
   
         //Removes enemy from list if enemy 'dies'
-        if (AttackThis != null && AttackThis.HealthPoints <= 0)
+        if (AttackThis != null && AttackThis.details.Health <= 0)
         {
             AttackThese.Remove(AttackThis);
             Destroy(AttackThis.gameObject);
@@ -173,7 +173,7 @@ public class AttackComponent : MonoBehaviour
     #region Modifier Methods
     public float SignModifier(UnitType enemySign)
     {
-        switch (Me.myType)
+        switch (Me.details.myType)
         {
             case UnitType.Rock:
                 switch (enemySign)
@@ -262,10 +262,10 @@ public class AttackComponent : MonoBehaviour
 
     public float LevelModifier(UnitComponent enemy)
     {
-        switch (Me.Level)
+        switch (Me.details.Level)
         {
             case 1:
-                switch (enemy.Level)
+                switch (enemy.details.Level)
                 {
                     case 1:
                         return 1;
@@ -279,7 +279,7 @@ public class AttackComponent : MonoBehaviour
                         return 0.3f;
                 }
             case 2:
-                switch (enemy.Level)
+                switch (enemy.details.Level)
                 {
                     case 1:
                         return 1.15f;
@@ -293,7 +293,7 @@ public class AttackComponent : MonoBehaviour
                         return 0.5f;
                 }
             case 3:
-                switch (enemy.Level)
+                switch (enemy.details.Level)
                 {
                     case 1:
                         return 1.3f;
@@ -307,7 +307,7 @@ public class AttackComponent : MonoBehaviour
                         return 0.6f;
                 }
             case 4:
-                switch (enemy.Level)
+                switch (enemy.details.Level)
                 {
                     case 1:
                         return 1.5f;
@@ -321,7 +321,7 @@ public class AttackComponent : MonoBehaviour
                         return 0.85f;
                 }
             case 5:
-                switch (enemy.Level)
+                switch (enemy.details.Level)
                 {
                     case 1:
                         return 1.6f;

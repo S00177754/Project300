@@ -20,13 +20,13 @@ public class UnitControlPanel : MonoBehaviour
 
     private void Update()
     {
-        if(unitDetails != null)
-        UpdateHealth(unitDetails.Health, unitDetails.MaxHealth);
+        //if(unitDetails != null)
+        //UpdateHealth(unitDetails.Health, unitDetails.MaxHealth);
     }
 
     public void Initialize(UnitDetails details, UnitCameraSwitcher switcher)
     {
-        Name.text = details.Name;
+        //Name.text = details.Name;
         unitDetails = details;
         camSwitcher = switcher;
     }

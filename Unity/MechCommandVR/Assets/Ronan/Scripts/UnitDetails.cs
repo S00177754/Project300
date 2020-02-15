@@ -17,11 +17,11 @@ public class UnitDetails : MonoBehaviour
     public int Level;
 
     [Header("Unit Stats")]
-    public float MaxHealth;
-    public float Health;
+    public float MaxHealth = 1;
+    public float Health = 1;
 
-    public float AttackPower;
-    public float AttackModifier;
+    public float AttackPower = 0.1f;
+    public float AttackModifier = 1;
 
     [Header("Unit States")]
     public bool IsSelected;
