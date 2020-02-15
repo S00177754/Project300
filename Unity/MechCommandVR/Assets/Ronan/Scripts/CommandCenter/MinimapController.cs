@@ -9,7 +9,6 @@ public class MinimapController : MonoBehaviour
 {
     public Camera minimapCam;
     public CommanderController Commander;
-    public Camera EventCamera;
 
     void Update()
     {
@@ -70,94 +69,6 @@ public class MinimapController : MonoBehaviour
             }
         }
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("VRInput"))
-        {
-
-            RaycastHit hit;
-            Ray ray = EventCamera.ScreenPointToRay(collision.gameObject.transform.position);
-
-            if(Physics.Raycast(ray, out hit))
-            {
-                switch (hit.collider.gameObject.tag)
-                {
-                    case "Minimap":
-                        break;
-
-                    default:
-                        break;
-                }
-
-            }
-
-        }
-    }
-
-    public void MinimapCheck(RaycastHit hit)
-    {
-        Debug.Log("Minimap Collision");
-
-        var localPoint = hit.textureCoord;
-
-        Ray portalRay = minimapCam.ScreenPointToRay(new Vector2(localPoint.x * minimapCam.pixelWidth, localPoint.y * minimapCam.pixelHeight));
-        RaycastHit portalHit;
-
-        if(Physics.Raycast(portalRay, out portalHit) &&
-           (portalHit.collider.gameObject.CompareTag("MapInteractable") 
-           || portalHit.collider.gameObject.CompareTag("Ground")) )
-        {
-            //Need to change it up so it accounts for buildings as well
-            if (portalHit.collider.CompareTag("MapInteractable"))
-            {
-                UnitDetails unitDetails;
-                CollectorScript collectorScript;
-                BarracksScript barracksScript;
-
-                if (portalHit.collider.TryGetComponent<UnitDetails>(out unitDetails))
-                {
-
-                }
-                else if (portalHit.collider.TryGetComponent<CollectorScript>(out collectorScript))
-                {
-
-                }
-                else if (portalHit.collider.TryGetComponent<BarracksScript>(out barracksScript))
-                {
-
-                }
-
-                //UnitDetails unitDetails = portalHit.collider.gameObject.GetComponentInParent<UnitDetails>();
-                //if (unitDetails != null)
-                //{
-                //    if (unitDetails.IsSelected)
-                //    {
-                //        unitDetails.IsSelected = false;
-                //    }
-                //    else if (!unitDetails.IsSelected)
-                //    {
-                //        unitDetails.IsSelected = true;
-                //    }
-                //}
-            }
-            else if (portalHit.collider.gameObject.tag == "Ground")
-            {
-                List<UnitDetails> selectedUnits = Commander.Units.Where(u => u.IsSelected == true).ToList();
-
-                for (int i = 0; i < selectedUnits.Count; i++)
-                {
-                    Debug.Log("Moving");
-                    selectedUnits[i].GetComponent<PlayerCharacterMover>().MoveTo(portalHit.point);
-                    selectedUnits[i].GetComponent<UnitDetails>().IsSelected = false;
-                }
-            }
-
-            Debug.Log("Hit Object:" + portalHit.collider.gameObject);
-
-        }
-    }
-
 }
 
 
