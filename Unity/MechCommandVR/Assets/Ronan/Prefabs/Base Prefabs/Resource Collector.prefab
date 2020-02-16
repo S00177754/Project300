@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 7521178415419120588}
   - component: {fileID: 892938684332359187}
   - component: {fileID: 4229809401542805038}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,6 +281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BaseController: {fileID: 0}
+  MinimapIcon: {fileID: 5833178911562762951}
   ProductionAmount: 1
   CooldownTime: 1
 --- !u!1001 &5811623560259708393

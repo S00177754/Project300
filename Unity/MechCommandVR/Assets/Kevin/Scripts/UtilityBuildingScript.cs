@@ -27,6 +27,11 @@ public class UtilityBuildingScript : MonoBehaviour
     
     Vector3 SpawnLocation; //Pass in position via method?
 
+    private void Start()
+    {
+        UnitBarracksPrefab.GetComponent<BarracksScript>().Base = Base;
+        ResourceCollectorPrefab.GetComponent<CollectorScript>().BaseController = Base;
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -148,7 +153,7 @@ public class UtilityBuildingScript : MonoBehaviour
     public bool IsBlocked(Vector3 position)
     {
         //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Ray ray = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().MiniMapCam.ScreenPointToRay(position);
+        Ray ray = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().MiniMapCam.ScreenPointToRay(position);
 
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
@@ -159,7 +164,7 @@ public class UtilityBuildingScript : MonoBehaviour
 
                 if (Physics.SphereCast(hit.point, 10f, Vector3.zero, out sphereHit, 10f))
                 {
-                    if(sphereHit.collider.gameObject.CompareTag("Building"))
+                    if(sphereHit.collider.gameObject.CompareTag("MapInteractable"))
                     return true;
                 }
                 return false;

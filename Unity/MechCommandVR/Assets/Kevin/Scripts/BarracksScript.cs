@@ -8,13 +8,21 @@ public class BarracksScript : MonoBehaviour, ISelectableMinimap
     public BaseController Base;
 
     [Header("Barracks Stats")]
+    public GameObject MinimapIcon;
     public GameObject UnitPrefab;
     public Transform UnitSpawnLocation;
+    public int UnitCost = 50;
     public float CooldownTime = 5; //Changed to Cooldown Timer since it gives universal meaning
     private float Timer = 0f;
-    private bool IsTraining = false;
+    public bool IsTraining = false;
     public bool IsSelected { get; set; }
 
+    private void Start()
+    {
+        var gameObjectRender = MinimapIcon.GetComponent<Renderer>();
+        gameObjectRender.material.SetColor("_Color", Base.Owner.PlayerColor);
+        Base.AddUnitBarracks(this);
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -46,7 +54,7 @@ public class BarracksScript : MonoBehaviour, ISelectableMinimap
 
             if (Timer >= CooldownTime)
             {
-                Base.Owner.DecreaseFunds(50);
+                Base.Owner.DecreaseFunds(UnitCost);
                 TrainUnit();
                 Timer = 0f;
             }
@@ -59,7 +67,7 @@ public class BarracksScript : MonoBehaviour, ISelectableMinimap
     /// <returns></returns>
     public bool CreateUnit() //Method can be called from the UI to activate it
     {
-        if (IsTraining)
+        if (IsTraining || Base.Owner.Resources < UnitCost)
             return false;
         else
         {
@@ -71,7 +79,13 @@ public class BarracksScript : MonoBehaviour, ISelectableMinimap
 
     private void TrainUnit()
     {
-        Instantiate(UnitPrefab, UnitSpawnLocation.position, Quaternion.identity);
+        GameObject unit = Instantiate(UnitPrefab, UnitSpawnLocation.position, Quaternion.identity);
+        UnitDetails details = unit.GetComponent<UnitDetails>();
+
+        details.Commander = Base.Owner;
+        details.UnitId = 1;
+        details.Name = "Jim";
+
         IsTraining = false;
     }
 

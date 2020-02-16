@@ -21,6 +21,8 @@ public class VRRadialMenu : MonoBehaviour
 
     private readonly float degreeIncrement = 90.0f;
 
+
+
     //Monbehaviour Methods
 
     private void Awake()

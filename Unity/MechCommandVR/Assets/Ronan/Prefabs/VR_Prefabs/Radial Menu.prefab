@@ -491,6 +491,7 @@ GameObject:
   - component: {fileID: 1926255636136547348}
   - component: {fileID: 1926255636836199087}
   - component: {fileID: 1926255636836199084}
+  - component: {fileID: 1516296887734342231}
   - component: {fileID: 1926255636836199085}
   m_Layer: 0
   m_Name: Radial Menu
@@ -553,6 +554,19 @@ MonoBehaviour:
     actionPath: /actions/MinimapSelector/in/MenuSelectionPosition
     needsReinit: 0
   radialMenu: {fileID: 1926255636836199085}
+--- !u!114 &1516296887734342231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926255636836199074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 663f418f9d789a844b911ed891d109a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RadialState: 
 --- !u!114 &1926255636836199085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -573,15 +587,15 @@ MonoBehaviour:
     onPress:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1926255636836199087}
-          m_MethodName: TestIcon
-          m_Mode: 3
+        - m_Target: {fileID: 1516296887734342231}
+          m_MethodName: SetRadialState
+          m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 1
             m_FloatArgument: 0
-            m_StringArgument: 
+            m_StringArgument: Move
             m_BoolArgument: 0
           m_CallState: 2
   bottom:
@@ -590,15 +604,15 @@ MonoBehaviour:
     onPress:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1926255636836199087}
-          m_MethodName: TestIcon
-          m_Mode: 3
+        - m_Target: {fileID: 1516296887734342231}
+          m_MethodName: SetRadialState
+          m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 3
             m_FloatArgument: 0
-            m_StringArgument: 
+            m_StringArgument: Cancel
             m_BoolArgument: 0
           m_CallState: 2
   right:

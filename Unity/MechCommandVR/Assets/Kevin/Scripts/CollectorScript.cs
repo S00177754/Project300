@@ -9,11 +9,18 @@ public class CollectorScript : MonoBehaviour, ISelectableMinimap
 
 
     [Header("Collector Stats")]
+    public GameObject MinimapIcon;
     public int ProductionAmount = 1;
     public float CooldownTime = 0f; //Changed to Cooldown Timer since it gives universal meaning
     private float Timer = 0f;
     public bool IsSelected { get; set; } = false;
 
+    private void Start()
+    {
+        var gameObjectRender = MinimapIcon.GetComponent<Renderer>();
+        gameObjectRender.material.SetColor("_Color", BaseController.Owner.PlayerColor);
+        BaseController.AddResourceCollector(this);
+    }
 
     // Update is called once per frame
     void FixedUpdate()

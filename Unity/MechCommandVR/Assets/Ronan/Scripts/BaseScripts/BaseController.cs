@@ -12,7 +12,7 @@ public class BaseController : MonoBehaviour
     public List<CollectorScript> ResourceCollectors;
     public List<BarracksScript> UnitBarracks;
 
-    public List<BuildingInfo> buildings;
+    public UtilityBuildingScript Builder;
     
 
     // Start is called before the first frame update

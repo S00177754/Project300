@@ -12,6 +12,8 @@ public class MinimapController : MonoBehaviour
     public Camera EventCamera;
     public SteamVR_Action_Boolean action;
     public VRPointer pointer;
+    public VRRadialState rs;
+
 
     private void Start()
     {
@@ -80,12 +82,60 @@ public class MinimapController : MonoBehaviour
 
     public void MinimapInteraction(RaycastHit hit)
     {
-        if (hit.collider.CompareTag("Minimap"))
-            MinimapCheck(hit);
-    }
-    
+        if (rs.RadialState == "Move")
+        {
+            if (hit.collider.CompareTag("Minimap"))
+                MoveCheck(hit);
+        }
+        else if(rs.RadialState == "BuildBarrack")
+        {
+            if (hit.collider.CompareTag("Minimap"))
+                PlaceBarrack(hit);
+        }
+        else if (rs.RadialState == "Cancel")
+        {
 
-    public void MinimapCheck(RaycastHit hit)
+        }
+        else if (rs.RadialState == "BuildCollector")
+        {
+            if(hit.collider.CompareTag("Minimap"))
+                PlaceCollecter(hit);
+        }
+    }       
+    
+    public void PlaceBarrack(RaycastHit hit)
+    {
+        Debug.Log("Place Barrack");
+
+        var localPoint = hit.textureCoord;
+
+        Ray portalRay = minimapCam.ScreenPointToRay(new Vector2(localPoint.x * minimapCam.pixelWidth, localPoint.y * minimapCam.pixelHeight));
+        RaycastHit portalHit;
+
+        if (Physics.Raycast(portalRay, out portalHit) &&
+           (portalHit.collider.gameObject.CompareTag("Ground")))
+        {
+            Commander.Base.Builder.BuildUnitBarracks(portalHit.point);
+        }
+    }
+
+    public void PlaceCollecter(RaycastHit hit)
+    {
+        Debug.Log("Place Collecter");
+
+        var localPoint = hit.textureCoord;
+
+        Ray portalRay = minimapCam.ScreenPointToRay(new Vector2(localPoint.x * minimapCam.pixelWidth, localPoint.y * minimapCam.pixelHeight));
+        RaycastHit portalHit;
+
+        if (Physics.Raycast(portalRay, out portalHit) &&
+           (portalHit.collider.gameObject.CompareTag("Ground")))
+        {
+            Commander.Base.Builder.BuildResourceCollector(portalHit.point);
+        }
+    }
+
+    public void MoveCheck(RaycastHit hit)
     {
         Debug.Log("Minimap Collision");
 

@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Base: {fileID: 0}
+  MinimapIcon: {fileID: 1269613057153198335}
   UnitPrefab: {fileID: 0}
   UnitSpawnLocation: {fileID: 8554054878829529568}
   CooldownTime: 5
