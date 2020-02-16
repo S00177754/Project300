@@ -1028,7 +1028,7 @@ GameObject:
   - component: {fileID: 5294919669745380134}
   m_Layer: 0
   m_Name: EnemyCombatMech
-  m_TagString: Unit
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1104,8 +1104,8 @@ MonoBehaviour:
   Name: 
   myType: 0
   Level: 0
-  MaxHealth: 0
-  Health: 0
+  MaxHealth: 1
+  Health: 1
   AttackPower: 0
   AttackModifier: 0
   IsSelected: 0
