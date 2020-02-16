@@ -10,13 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4996791857932534819}
   - component: {fileID: 9172382560649354184}
-  - component: {fileID: 7782211860485405236}
   m_Layer: 0
   m_Name: MapCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4996791857932534819
 Transform:
@@ -41,8 +40,8 @@ Camera:
   m_GameObject: {fileID: 639917253167153423}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0.19444442, b: 0.5, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -53,17 +52,17 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.8
-    height: 0.45
+    width: 1
+    height: 1
   near clip plane: 0.26
-  far clip plane: 1000
+  far clip plane: 328.8
   field of view: 45.335075
   orthographic: 1
-  orthographic size: 269.7
+  orthographic size: 503.8
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 256
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 427b0a3f92f1aee4496ef885bd72a9a8, type: 2}
   m_TargetDisplay: 0
@@ -75,11 +74,3 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7782211860485405236
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 639917253167153423}
-  m_Enabled: 1

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Valve.VR;
+
+public delegate void VRPointerCollisionEventHandler(RaycastHit hit);
 
 public class VRPointer : MonoBehaviour
 {
@@ -14,6 +17,8 @@ public class VRPointer : MonoBehaviour
 
     private LineRenderer LineRenderer = null;
 
+    public event VRPointerCollisionEventHandler CollisionTrigger;
+    public SteamVR_Action_Boolean triggerClick;
     void Awake()
     {
         Camera = GetComponent<Camera>();
@@ -53,6 +58,8 @@ public class VRPointer : MonoBehaviour
         //Set linerender
         LineRenderer.SetPosition(0, transform.position);
         LineRenderer.SetPosition(1, endPosition);
+
+        RaiseCollsionEnter(hit);
     }
 
     private RaycastHit CreateRaycast()
@@ -62,5 +69,12 @@ public class VRPointer : MonoBehaviour
         Physics.Raycast(ray, out hit, DefaultLength);
 
         return hit;
+    }
+
+    private void RaiseCollsionEnter(RaycastHit hit)
+    {
+        if(triggerClick.stateDown)
+        if (CollisionTrigger != null)
+            CollisionTrigger(hit);
     }
 }

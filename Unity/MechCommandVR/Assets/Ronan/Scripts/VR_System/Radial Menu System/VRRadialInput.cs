@@ -16,7 +16,7 @@ public class VRRadialInput : MonoBehaviour
     [Header("Radial Menu")]
     public VRRadialMenu radialMenu = null;
 
-    private bool StateChanged;
+    private bool StateChanged = true;
 
     void Awake()
     {
@@ -25,22 +25,12 @@ public class VRRadialInput : MonoBehaviour
 
     void Start()
     {
-        
+        //actionSet.Activate();
     }
 
     private void Update()
     {
-        if (actionSet.IsActive() && StateChanged)
-        {
-            AddEvents();
-            StateChanged = false;
-        }
-        
-        if(!actionSet.IsActive())
-        {
-            RemoveEvents();
-            StateChanged = true;
-        }
+
     }
 
     private void OnDestroy()

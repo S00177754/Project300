@@ -10,91 +10,81 @@ public class MinimapController : MonoBehaviour
     public Camera minimapCam;
     public CommanderController Commander;
     public Camera EventCamera;
+    public SteamVR_Action_Boolean action;
+    public VRPointer pointer;
+
+    private Ray ray;
+
+    private void Start()
+    {
+        pointer.CollisionTrigger += MinimapInteraction;
+    }
 
     void Update()
     {
         //ClickableCam();
     }
 
-    private void ClickableCam()
-    {
-        if (Input.GetMouseButtonDown(0)) //Need to change to work with VR controllers, temporary solution for debugging
-        {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //Need to change to work with VR controllers, temporary solution for debugging
+    //private void ClickableCam()
+    //{
+    //    if (Input.GetMouseButtonDown(0)) //Need to change to work with VR controllers, temporary solution for debugging
+    //    {
+    //        RaycastHit hit;
+    //        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //Need to change to work with VR controllers, temporary solution for debugging
 
 
-            if (Physics.Raycast(ray, out hit))
-            {
-                if(hit.collider.gameObject.tag == "Minimap") 
-                {
-                    Debug.Log("minimap");
-                    var localPoint = hit.textureCoord;
+    //        if (Physics.Raycast(ray, out hit))
+    //        {
+    //            if(hit.collider.gameObject.tag == "Minimap") 
+    //            {
+    //                Debug.Log("minimap");
+    //                var localPoint = hit.textureCoord;
 
-                    Ray portalRay = minimapCam.ScreenPointToRay(new Vector2(localPoint.x * minimapCam.pixelWidth, localPoint.y * minimapCam.pixelHeight));
-                    RaycastHit portalHit;
+    //                Ray portalRay = minimapCam.ScreenPointToRay(new Vector2(localPoint.x * minimapCam.pixelWidth, localPoint.y * minimapCam.pixelHeight));
+    //                RaycastHit portalHit;
 
-                    if (Physics.Raycast(portalRay, out portalHit) && (portalHit.collider.gameObject.tag == "MapInteractable" || portalHit.collider.gameObject.tag == "Ground"))
-                    {
+    //                if (Physics.Raycast(portalRay, out portalHit) && (portalHit.collider.gameObject.tag == "MapInteractable" || portalHit.collider.gameObject.tag == "Ground"))
+    //                {
                         
-                        if (portalHit.collider.gameObject.tag == "MapInteractable")
-                        {
-                            UnitDetails unitDetails = portalHit.collider.gameObject.GetComponentInParent<UnitDetails>();
-                            if (unitDetails != null)
-                            {
-                                if (unitDetails.IsSelected)
-                                {
-                                unitDetails.IsSelected = false;
-                                }
-                                else if (!unitDetails.IsSelected)
-                                {
-                                unitDetails.IsSelected = true;
-                                }
-                            }
-                        }
-                        else if (portalHit.collider.gameObject.tag == "Ground")
-                        {
-                            List<UnitDetails> selectedUnits = Commander.Units.Where(u => u.IsSelected == true).ToList();
+    //                    if (portalHit.collider.gameObject.tag == "MapInteractable")
+    //                    {
+    //                        UnitDetails unitDetails = portalHit.collider.gameObject.GetComponentInParent<UnitDetails>();
+    //                        if (unitDetails != null)
+    //                        {
+    //                            if (unitDetails.IsSelected)
+    //                            {
+    //                            unitDetails.IsSelected = false;
+    //                            }
+    //                            else if (!unitDetails.IsSelected)
+    //                            {
+    //                            unitDetails.IsSelected = true;
+    //                            }
+    //                        }
+    //                    }
+    //                    else if (portalHit.collider.gameObject.tag == "Ground")
+    //                    {
+    //                        List<UnitDetails> selectedUnits = Commander.Units.Where(u => u.IsSelected == true).ToList();
                             
-                            for (int i = 0; i < selectedUnits.Count; i++)
-                            {
-                                Debug.Log("Moving");
-                                selectedUnits[i].GetComponent<PlayerCharacterMover>().MoveTo(portalHit.point);
-                                selectedUnits[i].GetComponent<UnitDetails>().IsSelected = false;
-                            }
-                        }
+    //                        for (int i = 0; i < selectedUnits.Count; i++)
+    //                        {
+    //                            Debug.Log("Moving");
+    //                            selectedUnits[i].GetComponent<PlayerCharacterMover>().MoveTo(portalHit.point);
+    //                            selectedUnits[i].GetComponent<UnitDetails>().IsSelected = false;
+    //                        }
+    //                    }
 
-                        Debug.Log("Hit Object:" + portalHit.collider.gameObject);
-                    }
-                }
-            }
-        }
-    }
+    //                    Debug.Log("Hit Object:" + portalHit.collider.gameObject);
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
 
-    private void OnCollisionEnter(Collision collision)
+    public void MinimapInteraction(RaycastHit hit)
     {
-        if (collision.gameObject.CompareTag("VRInput"))
-        {
-
-            RaycastHit hit;
-            Ray ray = EventCamera.ScreenPointToRay(collision.gameObject.transform.position);
-
-            if(Physics.Raycast(ray, out hit))
-            {
-                switch (hit.collider.gameObject.tag)
-                {
-                    case "Minimap":
-                        break;
-
-                    default:
-                        break;
-                }
-
-            }
-
-        }
+        if (hit.collider.CompareTag("Minimap"))
+            MinimapCheck(hit);
     }
-
     
 
     public void MinimapCheck(RaycastHit hit)
@@ -104,6 +94,7 @@ public class MinimapController : MonoBehaviour
         var localPoint = hit.textureCoord;
 
         Ray portalRay = minimapCam.ScreenPointToRay(new Vector2(localPoint.x * minimapCam.pixelWidth, localPoint.y * minimapCam.pixelHeight));
+        ray = portalRay;
         RaycastHit portalHit;
 
         if(Physics.Raycast(portalRay, out portalHit) &&
@@ -117,8 +108,10 @@ public class MinimapController : MonoBehaviour
                 CollectorScript collectorScript;
                 BarracksScript barracksScript;
 
-                if (portalHit.collider.TryGetComponent<UnitDetails>(out unitDetails))
+                if (portalHit.collider.gameObject.GetComponent<IconController>().mapInteractable.TryGetComponent<UnitDetails>(out unitDetails))
                 {
+                    print("Unit map");
+
                     if (unitDetails != null)
                     {
                         if (unitDetails.IsSelected)
@@ -127,8 +120,10 @@ public class MinimapController : MonoBehaviour
                         { unitDetails.IsSelected = true; }
                     }
                 }
-                else if (portalHit.collider.TryGetComponent<CollectorScript>(out collectorScript))
+                else if (portalHit.collider.gameObject.GetComponent<IconController>().mapInteractable.TryGetComponent<CollectorScript>(out collectorScript))
                 {
+                    print("Collecter map");
+
                     if (collectorScript != null)
                     {
                         DeselectAll();
@@ -137,8 +132,9 @@ public class MinimapController : MonoBehaviour
                         { collectorScript.IsSelected = true; }
                     }
                 }
-                else if (portalHit.collider.TryGetComponent<BarracksScript>(out barracksScript))
+                else if (portalHit.collider.gameObject.GetComponent<IconController>().mapInteractable.TryGetComponent<BarracksScript>(out barracksScript))
                 {
+                    print("Barracks map");
                     if (barracksScript != null)
                     {
                         DeselectAll();
@@ -162,7 +158,7 @@ public class MinimapController : MonoBehaviour
 
     public void MoveSelectedUnits(Vector3 position)
     {
-        Commander.Units.ForEach(u => u.gameObject.GetComponent<PlayerCharacterMover>().MoveTo(position));
+        Commander.Units.Where(u => u.IsSelected).ToList().ForEach(u => u.gameObject.GetComponent<PlayerCharacterMover>().MoveTo(position));
     }
 
     public void DeselectAllUnits()

@@ -7,6 +7,7 @@ using UnityEngine;
 public class UnitDetails : MonoBehaviour
 {
     public CommanderController Commander;
+    public Camera unitCam;
 
     [Header("Unit Info")]
     public int UnitId;

@@ -573,7 +573,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3574578726304684331}
   - component: {fileID: 3574578726304684333}
-  - component: {fileID: 3574578726304684330}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -620,7 +619,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 26.991467
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -638,14 +637,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3574578726304684330
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3574578726304684328}
-  m_Enabled: 1
 --- !u!1 &3574578726333147710
 GameObject:
   m_ObjectHideFlags: 0
@@ -1696,14 +1687,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Commander: {fileID: 0}
-  UnitId: 0
-  Name: 
+  unitCam: {fileID: 3574578726304684333}
+  UnitId: 1
+  Name: r
   myType: 0
-  Level: 0
+  Level: 1
   MaxHealth: 1
   Health: 1
-  AttackPower: 0
-  AttackModifier: 0
+  AttackPower: 1
+  AttackModifier: 1
   IsSelected: 0
   IsControlled: 0
   MinimapIcon: {fileID: 3574578727749525222}
@@ -1746,12 +1738,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Me: {fileID: 3574578727169657976}
-  AttackThis: {fileID: 3574578727169657976}
-  AttackDelay: 0
+  AttackThis: {fileID: 0}
+  AttackDelay: 5
   AttackThese: []
   CanSeeTarget: 0
   CanAttackTarget: 0
-  AttackDistance: 0
+  AttackDistance: 2
 --- !u!135 &3574578727169657974
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2107,9 +2099,10 @@ GameObject:
   - component: {fileID: 3574578727749525227}
   - component: {fileID: 3574578727749525224}
   - component: {fileID: 3574578727749525225}
+  - component: {fileID: 4367470191811636000}
   m_Layer: 8
   m_Name: Icon Plane
-  m_TagString: Unit
+  m_TagString: MapInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2153,7 +2146,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7447065555358317358, guid: 5d5922b615105e146899f7c060f0f24c, type: 3}
+  - {fileID: 2100000, guid: d09494628a0100244b52231398a5eb36, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2188,6 +2181,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &4367470191811636000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3574578727749525222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 357079bb4c055de469143e20ff3cc4de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapInteractable: {fileID: 3574578727169657972}
 --- !u!1 &3574578727836918742
 GameObject:
   m_ObjectHideFlags: 0

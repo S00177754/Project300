@@ -19,7 +19,7 @@ public class UnitCameraSwitcher : MonoBehaviour
     {
         if (Commander.Units.Count > 0)
         {
-            CameraRender = new RenderTexture(Commander.Units.First().GetComponent<Camera>().targetTexture);
+            CameraRender = new RenderTexture(Commander.Units.First().unitCam.targetTexture);
             CameraRender.Create();
         }
     }

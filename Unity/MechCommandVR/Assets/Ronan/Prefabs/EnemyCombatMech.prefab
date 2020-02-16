@@ -386,7 +386,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8716646629916038595}
   - component: {fileID: 3827154657813928545}
-  - component: {fileID: 5542405506677368451}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -451,14 +450,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &5542405506677368451
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 632595779476688830}
-  m_Enabled: 1
 --- !u!1 &1096797889381746351
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,6 +540,7 @@ GameObject:
   - component: {fileID: 3689650749504696672}
   - component: {fileID: 6330041798212251196}
   - component: {fileID: 8360824375791946312}
+  - component: {fileID: 4358790164746737815}
   m_Layer: 8
   m_Name: Icon Plane
   m_TagString: Unit
@@ -630,6 +622,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &4358790164746737815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114832401377123668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 357079bb4c055de469143e20ff3cc4de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapInteractable: {fileID: 3206560097727646473}
 --- !u!1 &1138938029286318466
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,7 +1037,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3206560097727646472
 Transform:
   m_ObjectHideFlags: 0
@@ -1100,6 +1105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Commander: {fileID: 0}
+  unitCam: {fileID: 3827154657813928545}
   UnitId: 0
   Name: 
   myType: 0
