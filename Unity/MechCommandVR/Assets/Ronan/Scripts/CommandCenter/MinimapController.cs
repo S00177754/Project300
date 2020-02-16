@@ -13,7 +13,7 @@ public class MinimapController : MonoBehaviour
 
     void Update()
     {
-        ClickableCam();
+        //ClickableCam();
     }
 
     private void ClickableCam()
@@ -95,6 +95,8 @@ public class MinimapController : MonoBehaviour
         }
     }
 
+    
+
     public void MinimapCheck(RaycastHit hit)
     {
         Debug.Log("Minimap Collision");
@@ -117,45 +119,62 @@ public class MinimapController : MonoBehaviour
 
                 if (portalHit.collider.TryGetComponent<UnitDetails>(out unitDetails))
                 {
-
+                    if (unitDetails != null)
+                    {
+                        if (unitDetails.IsSelected)
+                        { unitDetails.IsSelected = false; }
+                        else 
+                        { unitDetails.IsSelected = true; }
+                    }
                 }
                 else if (portalHit.collider.TryGetComponent<CollectorScript>(out collectorScript))
                 {
+                    if (collectorScript != null)
+                    {
+                        DeselectAll();
 
+                        if (!collectorScript.IsSelected)
+                        { collectorScript.IsSelected = true; }
+                    }
                 }
                 else if (portalHit.collider.TryGetComponent<BarracksScript>(out barracksScript))
                 {
+                    if (barracksScript != null)
+                    {
+                        DeselectAll();
 
+                        if (!barracksScript.IsSelected)
+                        { barracksScript.IsSelected = true; }
+                    }
                 }
 
-                //UnitDetails unitDetails = portalHit.collider.gameObject.GetComponentInParent<UnitDetails>();
-                //if (unitDetails != null)
-                //{
-                //    if (unitDetails.IsSelected)
-                //    {
-                //        unitDetails.IsSelected = false;
-                //    }
-                //    else if (!unitDetails.IsSelected)
-                //    {
-                //        unitDetails.IsSelected = true;
-                //    }
-                //}
             }
             else if (portalHit.collider.gameObject.tag == "Ground")
             {
-                List<UnitDetails> selectedUnits = Commander.Units.Where(u => u.IsSelected == true).ToList();
-
-                for (int i = 0; i < selectedUnits.Count; i++)
-                {
-                    Debug.Log("Moving");
-                    selectedUnits[i].GetComponent<PlayerCharacterMover>().MoveTo(portalHit.point);
-                    selectedUnits[i].GetComponent<UnitDetails>().IsSelected = false;
-                }
+                MoveSelectedUnits(portalHit.point);
+                DeselectAllUnits();
             }
 
             Debug.Log("Hit Object:" + portalHit.collider.gameObject);
 
         }
+    }
+
+    public void MoveSelectedUnits(Vector3 position)
+    {
+        Commander.Units.ForEach(u => u.gameObject.GetComponent<PlayerCharacterMover>().MoveTo(position));
+    }
+
+    public void DeselectAllUnits()
+    {
+        Commander.Units.ForEach(u => u.IsSelected = false);
+    }
+
+    public void DeselectAll()
+    {
+        Commander.Base.ResourceCollectors.ForEach(rc => rc.IsSelected = false);
+        Commander.Base.UnitBarracks.ForEach(rc => rc.IsSelected = false);
+        DeselectAllUnits();
     }
 
 }
