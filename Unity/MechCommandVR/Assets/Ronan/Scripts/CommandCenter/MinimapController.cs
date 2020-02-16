@@ -13,8 +13,6 @@ public class MinimapController : MonoBehaviour
     public SteamVR_Action_Boolean action;
     public VRPointer pointer;
 
-    private Ray ray;
-
     private void Start()
     {
         pointer.CollisionTrigger += MinimapInteraction;
@@ -94,7 +92,6 @@ public class MinimapController : MonoBehaviour
         var localPoint = hit.textureCoord;
 
         Ray portalRay = minimapCam.ScreenPointToRay(new Vector2(localPoint.x * minimapCam.pixelWidth, localPoint.y * minimapCam.pixelHeight));
-        ray = portalRay;
         RaycastHit portalHit;
 
         if(Physics.Raycast(portalRay, out portalHit) &&
