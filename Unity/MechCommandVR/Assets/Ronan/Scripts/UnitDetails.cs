@@ -34,7 +34,7 @@ public class UnitDetails : MonoBehaviour
     void Awake()
     {
         var gameObjectRender = MinimapIcon.GetComponent<Renderer>();
-        gameObjectRender.material.SetColor("_Color",Commander.PlayerColor);
+        //gameObjectRender.material.SetColor("_Color",Commander.PlayerColor);
 
         IsSelected = false;
         IsControlled = false;

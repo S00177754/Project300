@@ -23,7 +23,7 @@ public class EnemyUnitCreator : MonoBehaviour
     {
         unitsWaiting = new List<UnitComponent>();
         Random = new Random();
-        parentPosition = GetComponentInParent<Transform>();
+        parentPosition = GetComponent<Transform>();
         NewUnitPositon.x = parentPosition.position.x + Random.Range(-2f, 2f);
         NewUnitPositon.z = parentPosition.position.z + Random.Range(-2f, 2f);
     }
@@ -31,8 +31,6 @@ public class EnemyUnitCreator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-            CurrentRescource += 5f;
         CurrentRescource += (Time.deltaTime * RescourceGenerationRate);
         if(CurrentRescource >= RequiredRescource)
         {
@@ -54,9 +52,9 @@ public class EnemyUnitCreator : MonoBehaviour
             //REMOVE BEFORE RELEASE
             //SelectedRoute = staringNodes[0];
             //Set starting node
-            unitsWaiting.ForEach(uw => uw.GetComponentInParent<AIPathFollower>().CurrentNode = SelectedRoute);
+            unitsWaiting.ForEach(uw => uw.GetComponent<AIPathFollower>().CurrentNode = SelectedRoute);
             //Tell units to start moving
-            unitsWaiting.ForEach(uw => uw.GetComponentInParent<AIPathFollower>().Invoke("MoveToPathNode", 1));
+            unitsWaiting.ForEach(uw => uw.GetComponent<AIPathFollower>().Invoke("MoveToPathNode", 1));
             //Clear waiting list
             unitsWaiting.Clear();
         }

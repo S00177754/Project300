@@ -106,7 +106,7 @@ public class UtilityBuildingScript : MonoBehaviour
 
     public bool BuildUnitBarracks(Vector3 position) //Added to let the UI pass the position in
     {
-        if(IsBuilding || !IsEnoughResources(BarracksBuildCost) || IsBlocked(position))
+        if(IsBuilding || !IsEnoughResources(BarracksBuildCost) || IsBlocked(position)) //Add range check in here with an OR
         { return false; }
 
         BuildMode = Building.Barracks;
@@ -119,7 +119,7 @@ public class UtilityBuildingScript : MonoBehaviour
 
     public bool BuildResourceCollector(Vector3 position)
     {
-        if (IsBuilding || !IsEnoughResources(CollectorBuildCost) || IsBlocked(position))
+        if (IsBuilding || !IsEnoughResources(CollectorBuildCost) || IsBlocked(position)) //Add range check in here with an OR
         { return false; }
 
         BuildMode = Building.Resource;
