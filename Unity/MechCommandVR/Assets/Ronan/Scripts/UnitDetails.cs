@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class UnitDetails : MonoBehaviour
 {
+
     public CommanderController Commander;
     public Camera unitCam;
 
@@ -31,7 +32,7 @@ public class UnitDetails : MonoBehaviour
 
     public GameObject MinimapIcon;
 
-    void Awake()
+    void Start()
     {
         var gameObjectRender = MinimapIcon.GetComponent<Renderer>();
         //gameObjectRender.material.SetColor("_Color",Commander.PlayerColor);
@@ -43,6 +44,18 @@ public class UnitDetails : MonoBehaviour
 
         Commander.Units.Add(this);
         Debug.Log("Unit " + Name + " Added");
+    }
+
+    public void SetDetails(CommanderController commander, int unitId, float maxHealth, float attackPwr, float attackMod )
+    {
+        Commander = commander;
+        UnitId = unitId;
+        MaxHealth = maxHealth;
+        AttackPower = attackPwr;
+        AttackModifier = attackMod;
+        Name = "Crackhead" + Random.Range(1,1000);
+        myType = (UnitType)Random.Range(0,5);
+
     }
 
 }

@@ -15,13 +15,14 @@ public class AttackComponent : MonoBehaviour
 {
     NavMeshMover meshMover;
     public UnitComponent Me;
-    public UnitComponent AttackThis;
+    public GameObject AttackThis;
+    UnitComponent AttackThisComp;
     string AttackTag;
     [SerializeField]
     float AttackDelay;
     float timer;
     //multiple targets
-    public List<UnitComponent> AttackThese;
+    public List<GameObject> AttackThese;
     
     public bool CanSeeTarget;
     public bool CanAttackTarget;
@@ -31,14 +32,14 @@ public class AttackComponent : MonoBehaviour
     void Start()
     {
         Me = gameObject.GetComponent<UnitComponent>();
-        AttackThese = new List<UnitComponent>();
+        AttackThese = new List<GameObject>();
         AttackDistance = 2f;
         //Using Player1 and Player2 for future implementation of multiplayer
         if (gameObject.CompareTag("Player1"))
             AttackTag = "Player2";
         if (gameObject.CompareTag("Player2"))
             AttackTag = "Player1";
-
+        
         meshMover = gameObject.GetComponent<NavMeshMover>();
     }
 
@@ -55,36 +56,45 @@ public class AttackComponent : MonoBehaviour
     void Attack()
     {
         AttackThis = AttackThese[0];
+        UnitComponent attackUnit;
+        BasePowerController attackBase;
         if (Me != null && AttackThis != null)
         {
-            Me.details.AttackModifier = SignModifier(AttackThis.details.myType) * LevelModifier(AttackThis);
-            //if (timer <= AttackDelay)
-            //{
-                AttackThis.details.Health -= Me.details.AttackPower * Me.details.AttackModifier;
-                //Reset timer
+            if(AttackThis.TryGetComponent<UnitComponent>(out attackUnit))
+            {
+                Me.details.AttackModifier = SignModifier(attackUnit.details.myType) * LevelModifier(attackUnit);
+
+                attackUnit.details.Health -= Me.details.AttackPower * Me.details.AttackModifier;
                 timer = 0f;
                 Debug.Log(Me.ToString());
                 Debug.Log(AttackThis.ToString());
-            //}
+            }
+            else if(AttackThis.TryGetComponent<BasePowerController>(out attackBase))
+            {
+                attackBase.Health -= Me.details.AttackPower * Me.details.AttackModifier;
+            }
         }
         if (AttackThis == null)
             CanSeeTarget = false;
     }
     #endregion
 
-    IEnumerator AttackCoR()
+    private bool GetHealth(GameObject AttackingThis)
     {
-        yield return new WaitForSeconds(AttackDelay); 
-
-        AttackThis = AttackThese[0];
-        if (Me != null && AttackThis != null)
+        if (AttackingThis != null)
         {
-            Me.details.AttackModifier = SignModifier(AttackThis.details.myType) * LevelModifier(AttackThis);
-            AttackThis.details.Health -= Me.details.AttackPower * Me.details.AttackModifier;
+            UnitComponent attackUnit;
+            BasePowerController attackbase;
+            if (AttackingThis.TryGetComponent<UnitComponent>(out attackUnit))
+            {
+                return attackUnit.details.Health <= 0;
+            }
+            else if (AttackingThis.TryGetComponent<BasePowerController>(out attackbase))
+            {
+                return attackbase.Health <= 0;
+            }
         }
-        if (AttackThis == null)
-            CanSeeTarget = false;
-
+        return false;
     }
 
     void Update()
@@ -96,7 +106,7 @@ public class AttackComponent : MonoBehaviour
             CanAttackTarget = false;
   
         //Removes enemy from list if enemy 'dies'
-        if (AttackThis != null && AttackThis.details.Health <= 0)
+        if (AttackThis != null && GetHealth(AttackThis))
         {
             AttackThese.Remove(AttackThis);
             Destroy(AttackThis.gameObject);
@@ -113,16 +123,6 @@ public class AttackComponent : MonoBehaviour
 
         if(AttackThese.Count > 0)
         {
-            //timer += Time.deltaTime;
-            //if (timer >= AttackDelay)
-            //{
-            //    Attack();
-            //    timer = 0;
-            //}
-            //StartCoroutine("AttackCoR");
-            //if (timer <= 0f)
-                
-
             if (timer > 0f)
                 timer -= Time.deltaTime;
 
@@ -130,17 +130,18 @@ public class AttackComponent : MonoBehaviour
             {
                 Attack();
                 timer = AttackDelay;
-
             }
         }
     }
+
+
 
     #region Trigger Moethods: Enter and Exit
     //Trigger Methods
     private void OnTriggerEnter(Collider collision)
     {
         //Debug.Log("OnTriggerEnter");
-        UnitComponent newUnit = collision.gameObject.GetComponent<UnitComponent>();
+        GameObject newUnit = collision.gameObject;
         if (newUnit != null)
         {
             //Debug.Log("newUnit not null");
@@ -158,7 +159,7 @@ public class AttackComponent : MonoBehaviour
     //This method removes a 'still alive' enemy when it is out of sight range
     private void OnTriggerExit(Collider collision)
     {
-        UnitComponent removeUnit = collision.gameObject.GetComponent<UnitComponent>();
+        GameObject removeUnit = collision.gameObject;
         //Check if player or enemy
         if(collision.gameObject.CompareTag(AttackTag))
         {   //Comparing AttackTag ensures unit details are correct since Srat() will determine which tag to attack

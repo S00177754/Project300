@@ -12,7 +12,9 @@ public class EnemyUnitCreator : MonoBehaviour
     [SerializeField]
     PathNode[] staringNodes = new PathNode[3];
     PathNode SelectedRoute;
+    BaseController Base;
     Random Random;
+    int id;
 
     public float CurrentRescource;
     public float RequiredRescource;
@@ -26,6 +28,8 @@ public class EnemyUnitCreator : MonoBehaviour
         parentPosition = GetComponent<Transform>();
         NewUnitPositon.x = parentPosition.position.x + Random.Range(-2f, 2f);
         NewUnitPositon.z = parentPosition.position.z + Random.Range(-2f, 2f);
+        id = 1;
+        //Base = GetComponent<BaseController>();
     }
 
     // Update is called once per frame
@@ -34,11 +38,15 @@ public class EnemyUnitCreator : MonoBehaviour
         CurrentRescource += (Time.deltaTime * RescourceGenerationRate);
         if(CurrentRescource >= RequiredRescource)
         {
-            NewUnitPositon.x = parentPosition.position.x + Random.Range(-2f, 2f);
-            NewUnitPositon.z = parentPosition.position.z + Random.Range(-2f, 2f);
+            NewUnitPositon.x = parentPosition.position.x + Random.Range(-2f, 2.1f);
+            NewUnitPositon.z = parentPosition.position.z + Random.Range(-2f, 2.1f);
             NewUnitPositon.y = 0;
             //Create new unit
             newUnit = Instantiate(UnitPrefab, NewUnitPositon, Quaternion.identity).GetComponent<UnitComponent>();
+            //Set details of new unit
+            //ID for enemy units only instanciated here, ID is managed internally 
+            newUnit.details.SetDetails(Base.Owner, id, 1f, 0.1f, 1f);
+            id++;
             //Add to list
             unitsWaiting.Add(newUnit);
             //Remove cost of unit
@@ -48,7 +56,7 @@ public class EnemyUnitCreator : MonoBehaviour
         if(unitsWaiting.Count >= 3)
         {
             //Assign random starting node
-            SelectedRoute = staringNodes[Random.Range(0, 2)];
+            SelectedRoute = staringNodes[Random.Range(0, 3)];
             //REMOVE BEFORE RELEASE
             //SelectedRoute = staringNodes[0];
             //Set starting node

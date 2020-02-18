@@ -133,7 +133,8 @@ public class UtilityBuildingScript : MonoBehaviour
     private void BuildUtility(GameObject prefab, int cost, Vector3 position)
     {
         Base.Owner.DecreaseFunds(cost);
-        Instantiate(prefab, position, Quaternion.identity);
+        GameObject go = Instantiate(prefab, position, Quaternion.identity);
+        go.tag = "Player1";
         IsBuilding = false;
     }
 

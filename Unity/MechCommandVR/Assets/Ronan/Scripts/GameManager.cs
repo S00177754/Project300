@@ -24,11 +24,11 @@ public class GameManager : MonoBehaviour
 
     public void CheckForGameEnd()
     {
-        if(Player.Base.PowerBuilding.Power <= 0)
+        if(Player.Base.PowerBuilding.Health <= 0)
         {
             gameState = GameState.GameOver;
         }
-        else if(AI.Base.PowerBuilding.Power <= 0)
+        else if(AI.Base.PowerBuilding.Health <= 0)
         {
             gameState = GameState.GameOver;
         }

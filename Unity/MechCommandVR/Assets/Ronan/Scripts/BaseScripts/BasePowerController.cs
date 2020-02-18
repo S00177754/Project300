@@ -5,30 +5,30 @@ using UnityEngine;
 public class BasePowerController : MonoBehaviour
 {
     [Header("Health")]
-    public int Power;
-    public int MaxPower;
+    public float Health;
+    public int MaxHealth;
 
     [Header("Base")]
     public BaseController Base;
 
     private void Start()
     {
-        Power = MaxPower;
+        Health = MaxHealth;
     }
 
-    public void SetPower(int power, int maxPower)
+    public void SetPower(float power, int maxPower)
     {
-        Power = power;
-        MaxPower = maxPower;
+        Health = power;
+        MaxHealth = maxPower;
     }
 
     public void ChangePower(int changeBy)
     {
-        Power += changeBy;
+        Health += changeBy;
     }
 
     public void FullPower()
     {
-        Power = MaxPower;
+        Health = MaxHealth;
     }
 }

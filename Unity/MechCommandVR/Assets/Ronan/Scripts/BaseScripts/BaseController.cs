@@ -11,7 +11,7 @@ public class BaseController : MonoBehaviour
     public BasePowerController PowerBuilding;
     public List<CollectorScript> ResourceCollectors;
     public List<BarracksScript> UnitBarracks;
-
+    int queuedUnits;
     public UtilityBuildingScript Builder;
     
 
@@ -24,7 +24,24 @@ public class BaseController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(queuedUnits > 0)
+        {
+            foreach (BarracksScript Barrack in UnitBarracks)
+            {
+                if(!Barrack.IsTraining)
+                {
+                    Barrack.CreateUnit();
+                    queuedUnits--;
+                    if (queuedUnits <= 0)
+                        break;
+                }
+            }
+        }
+    }
+
+    public void AddToQueue()
+    {
+        queuedUnits++;
     }
 
     public void AddResourceCollector(CollectorScript collector)

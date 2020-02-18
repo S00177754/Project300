@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 4229809401542805038}
   m_Layer: 8
   m_Name: Icon
-  m_TagString: Untagged
+  m_TagString: MapInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -296,16 +296,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CollectorModel
       objectReference: {fileID: 0}
-    - target: {fileID: -3164220449637510858, guid: eb440d5d6966e77458de9e6f00fb08d7,
-        type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -3164220449637510858, guid: eb440d5d6966e77458de9e6f00fb08d7,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: eb440d5d6966e77458de9e6f00fb08d7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -381,6 +371,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d09494628a0100244b52231398a5eb36, type: 2}
+    - target: {fileID: -3164220449637510858, guid: eb440d5d6966e77458de9e6f00fb08d7,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3164220449637510858, guid: eb440d5d6966e77458de9e6f00fb08d7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2111831059043373818, guid: eb440d5d6966e77458de9e6f00fb08d7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
