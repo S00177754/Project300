@@ -24,7 +24,7 @@ public class UtilityBuildingScript : MonoBehaviour
     private float Timer = 0f;
     private float CooldownTime = 5f;
     private bool IsBuilding = false;
-    
+
     Vector3 SpawnLocation; //Pass in position via method?
 
     private void Start()
@@ -106,7 +106,7 @@ public class UtilityBuildingScript : MonoBehaviour
 
     public bool BuildUnitBarracks(Vector3 position) //Added to let the UI pass the position in
     {
-        if(IsBuilding || !IsEnoughResources(BarracksBuildCost) || IsBlocked(position)) //Add range check in here with an OR
+        if (IsBuilding || !IsEnoughResources(BarracksBuildCost) || IsBlocked(position)) //Add range check in here with an OR
         { return false; }
 
         BuildMode = Building.Barracks;
@@ -119,11 +119,11 @@ public class UtilityBuildingScript : MonoBehaviour
 
     public bool BuildResourceCollector(Vector3 position)
     {
-        if (IsBuilding || !IsEnoughResources(CollectorBuildCost) || IsBlocked(position)) //Add range check in here with an OR
+        if (IsBuilding || !IsEnoughResources(CollectorBuildCost) || IsBlocked(position) || IsInRange(position)) //Add range check in here with an OR
         { return false; }
 
         BuildMode = Building.Resource;
-        CooldownTime = CollectorBuildCooldown;  
+        CooldownTime = CollectorBuildCooldown;
         SpawnLocation = position;
         IsBuilding = true;
 
@@ -165,8 +165,8 @@ public class UtilityBuildingScript : MonoBehaviour
 
                 if (Physics.SphereCast(hit.point, 10f, Vector3.zero, out sphereHit, 10f))
                 {
-                    if(sphereHit.collider.gameObject.CompareTag("MapInteractable"))
-                    return true;
+                    if (sphereHit.collider.gameObject.CompareTag("MapInteractable"))
+                        return true;
                 }
                 return false;
             }
@@ -175,6 +175,22 @@ public class UtilityBuildingScript : MonoBehaviour
         return true;
 
     }
+
+    public bool IsInRange(Vector3 spawn)
+    {
+        float range = 100;
+        Vector3 commandCenter = GameObject.Find("Command Center").transform.position;
+        if (Vector3.Distance(spawn, commandCenter) > range)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+        public float Range;
+}
 
     //IEnumerator BuildBuilding(float seconds, GameObject buliding)
     //{
