@@ -145,6 +145,7 @@ public class AttackComponent : MonoBehaviour
         if (newUnit != null)
         {
             //Debug.Log("newUnit not null");
+            if(collision.gameObject.tag != null)
             if (collision.gameObject.CompareTag(AttackTag))
             {
                 CanSeeTarget = true;

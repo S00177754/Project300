@@ -14,7 +14,6 @@ public class VRPointer : MonoBehaviour
     [SerializeField] private GameObject PointerEnd = null;
     public Camera Camera { get; private set; } = null;
     private VRInput VR_Input = null;
-    public VRRadialMenu radialMenu;
 
     private LineRenderer LineRenderer = null;
 

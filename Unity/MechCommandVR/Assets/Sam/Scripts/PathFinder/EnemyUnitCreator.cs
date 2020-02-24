@@ -7,12 +7,12 @@ public class EnemyUnitCreator : MonoBehaviour
     public GameObject UnitPrefab;
     Transform parentPosition;
     Vector3 NewUnitPositon;
-    UnitComponent newUnit;
+    
     List<UnitComponent> unitsWaiting;
     [SerializeField]
     PathNode[] staringNodes = new PathNode[3];
     PathNode SelectedRoute;
-    BaseController Base;
+    public BaseController Base;
     Random Random;
     int id;
 
@@ -41,14 +41,17 @@ public class EnemyUnitCreator : MonoBehaviour
             NewUnitPositon.x = parentPosition.position.x + Random.Range(-2f, 2.1f);
             NewUnitPositon.z = parentPosition.position.z + Random.Range(-2f, 2.1f);
             NewUnitPositon.y = 0;
+
+            
             //Create new unit
-            newUnit = Instantiate(UnitPrefab, NewUnitPositon, Quaternion.identity).GetComponent<UnitComponent>();
+            GameObject go = Instantiate(UnitPrefab, NewUnitPositon, Quaternion.identity);
+            UnitDetails newUnit = go.GetComponent<UnitDetails>();
             //Set details of new unit
             //ID for enemy units only instanciated here, ID is managed internally 
-            newUnit.details.SetDetails(Base.Owner, id, 1f, 0.1f, 1f);
+            newUnit.SetDetails(Base.Owner, id, 1f, 0.1f, 1f);
             id++;
             //Add to list
-            unitsWaiting.Add(newUnit);
+            unitsWaiting.Add(go.GetComponent<UnitComponent>());
             //Remove cost of unit
             CurrentRescource -= RequiredRescource;
         }

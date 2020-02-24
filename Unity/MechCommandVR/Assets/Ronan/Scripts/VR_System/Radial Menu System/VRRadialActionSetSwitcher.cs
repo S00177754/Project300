@@ -15,9 +15,4 @@ public class VRRadialActionSetSwitcher : MonoBehaviour
         print("Default Active");
     }
 
-    public void SwitchToMinimapActions()
-    {
-        minimapActionSet.Activate();
-        print("Minimap Active");
-    }
 }

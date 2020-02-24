@@ -9,6 +9,7 @@ public class BaseController : MonoBehaviour
 
     [Header("Base Buildings")]
     public BasePowerController PowerBuilding;
+    public CommandCenterController CommandHUB;
     public List<CollectorScript> ResourceCollectors;
     public List<BarracksScript> UnitBarracks;
     int queuedUnits;
@@ -54,5 +55,10 @@ public class BaseController : MonoBehaviour
     {
         barracks.AddBaseReference(this);
         UnitBarracks.Add(barracks);
+    }
+
+    public int GetQueuedUnitsAmount()
+    {
+        return queuedUnits;
     }
 }

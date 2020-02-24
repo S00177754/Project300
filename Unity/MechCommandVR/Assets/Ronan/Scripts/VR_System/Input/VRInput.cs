@@ -48,6 +48,9 @@ public class VRInput : BaseInputModule
     //Acts like update according to documentation
     public override void Process()
     {
+        Data.Reset();
+        Data.position = new Vector2(pointer.Camera.pixelWidth / 2, pointer.Camera.pixelHeight / 2);
+
         eventSystem.RaycastAll(Data, m_RaycastResultCache);
         Data.pointerCurrentRaycast = FindFirstRaycast(m_RaycastResultCache);
 

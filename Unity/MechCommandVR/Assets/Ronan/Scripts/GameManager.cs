@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public Camera MiniMapCam;
+    public GameObject StartPanel;
 
     [Header("Commanders")]
     public CommanderController Player;
@@ -12,14 +13,26 @@ public class GameManager : MonoBehaviour
 
     private GameState gameState;
 
+    private void Awake()
+    {
+        Time.timeScale = 0;
+    }
+
     private void Start()
     {
-        //Player.
+        
     }
 
     private void Update()
     {
         CheckForGameEnd();
+        UpdateCommandCenter();
+    }
+
+    public void UpdateCommandCenter()
+    {
+        Player.Base.CommandHUB.PlayerHealthController.SetHealth(Player.Base.PowerBuilding.Health);
+        Player.Base.CommandHUB.CPUHealthController.SetHealth(AI.Base.PowerBuilding.Health);
     }
 
     public void CheckForGameEnd()
@@ -41,6 +54,8 @@ public class GameManager : MonoBehaviour
 
         Player.Base.PowerBuilding.FullPower();
         AI.Base.PowerBuilding.FullPower();
+
+        StartPanel.SetActive(false);
     }
 
     public void PauseGame()
