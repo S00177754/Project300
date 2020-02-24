@@ -13,6 +13,7 @@ public class BaseController : MonoBehaviour
     public List<CollectorScript> ResourceCollectors;
     public List<BarracksScript> UnitBarracks;
     int queuedUnits;
+    public int CreatedUnits = 0;
     public UtilityBuildingScript Builder;
     
 
@@ -31,10 +32,12 @@ public class BaseController : MonoBehaviour
             {
                 if(!Barrack.IsTraining)
                 {
-                    Barrack.CreateUnit();
-                    queuedUnits--;
-                    if (queuedUnits <= 0)
-                        break;
+                    if(Barrack.CreateUnit())
+                    {
+                        queuedUnits--;
+                        if (queuedUnits <= 0)
+                            break;
+                    }
                 }
             }
         }
