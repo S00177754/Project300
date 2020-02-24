@@ -14,8 +14,9 @@ public class HealthPanelController : MonoBehaviour
         PlayerName.text = name;
     }
 
-    public void SetHealth(float health)
+    public void SetHealth(float health,float maxHealth)
     {
-        HealthSlider.value = health;
+
+        HealthSlider.value = health / maxHealth; //Slider works from 0 -> 1.0
     }
 }

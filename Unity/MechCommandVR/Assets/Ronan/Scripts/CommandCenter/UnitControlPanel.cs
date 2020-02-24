@@ -20,15 +20,16 @@ public class UnitControlPanel : MonoBehaviour
 
     private void Update()
     {
-        //if(unitDetails != null)
-        //UpdateHealth(unitDetails.Health, unitDetails.MaxHealth);
+            UpdateHealth(unitDetails.Health, unitDetails.MaxHealth);
     }
 
     public void Initialize(UnitDetails details, UnitCameraSwitcher switcher)
     {
-        //Name.text = details.Name;
+        Name.text = details.Name;
+        Type.text = details.myType.ToString();
         unitDetails = details;
         camSwitcher = switcher;
+        
     }
 
 
@@ -36,6 +37,7 @@ public class UnitControlPanel : MonoBehaviour
     {
         Health.text = $"HP: {health}/{maxHealth}";
         HealthSlider.value = health / maxHealth;
+        
     }
 
     public void ActivateCamera()
@@ -43,4 +45,18 @@ public class UnitControlPanel : MonoBehaviour
         camSwitcher.SetCameraToUnit(unitDetails);
     }
     
+    public void SelectUnit()
+    {
+        unitDetails.IsSelected = true;
+    }
+
+    public void HoldPosition()
+    {
+        unitDetails.gameObject.GetComponent<NavMeshMover>().MoveTo(unitDetails.gameObject.transform.position);
+    }
+
+    public void ReturnToBase()
+    {
+
+    }
 }

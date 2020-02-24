@@ -205,7 +205,7 @@ public class MinimapController : MonoBehaviour
 
     public void MoveSelectedUnits(Vector3 position)
     {
-        Commander.Units.Where(u => u.IsSelected).ToList().ForEach(u => u.gameObject.GetComponent<PlayerCharacterMover>().MoveTo(position));
+        Commander.Units.Where(u => u != null).Where(u => u.IsSelected).ToList().ForEach(u => u.gameObject.GetComponent<PlayerCharacterMover>().MoveTo(position));
     }
 
     public void DeselectAllUnits()

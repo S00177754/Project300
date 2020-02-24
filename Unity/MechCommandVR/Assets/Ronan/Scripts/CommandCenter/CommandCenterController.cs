@@ -9,9 +9,10 @@ public class CommandCenterController : MonoBehaviour
     public StartGamePanel StartPanel;
     public HealthPanelController PlayerHealthController;
     public HealthPanelController CPUHealthController;
+    public GameStateController GameStateController;
 
     private void Start()
     {
-        StartPanel.Setup();
+       // StartPanel.Setup();
     }
 }

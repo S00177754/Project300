@@ -8,6 +8,7 @@ public class UtilityBuildingScript : MonoBehaviour
 {
     [Header("Base")]
     public BaseController Base;
+    public float BuildingRange = 100f;
 
     [Header("Unit Barracks Stats")]
     public GameObject UnitBarracksPrefab;
@@ -178,9 +179,9 @@ public class UtilityBuildingScript : MonoBehaviour
 
     public bool IsInRange(Vector3 spawn)
     {
-        float range = 100;
-        Vector3 commandCenter = GameObject.Find("Command Center").transform.position;
-        if (Vector3.Distance(spawn, commandCenter) > range)
+        //float range = 100;
+        //Vector3 commandCenter = GameObject.Find("Command Center").transform.position;
+        if (Vector3.Distance(spawn, Base.PowerBuilding.transform.position) > BuildingRange)
         {
             return false;
         }
@@ -224,4 +225,4 @@ public class UtilityBuildingScript : MonoBehaviour
     //        }
     //    yield return null;
     //}
-}
+

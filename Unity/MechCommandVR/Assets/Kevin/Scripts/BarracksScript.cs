@@ -84,10 +84,8 @@ public class BarracksScript : MonoBehaviour, ISelectableMinimap
         GameObject unit = Instantiate(UnitPrefab, UnitSpawnLocation.position, Quaternion.identity);
         UnitDetails details = unit.GetComponent<UnitDetails>();
 
-        details.Commander = Base.Owner;
-        details.Name = "Jim";
-
         details.SetDetails(Base.Owner, Base.CreatedUnits, 1f, 0.1f, 1f);
+        Base.Owner.AddUnitDetails(details);
 
         IsTraining = false;
     }

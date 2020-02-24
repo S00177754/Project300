@@ -11,11 +11,11 @@ public class GameManager : MonoBehaviour
     public CommanderController Player;
     public CommanderController AI;
 
-    private GameState gameState;
+    public static GameState gameState;
 
     private void Awake()
     {
-        Time.timeScale = 0;
+        PauseGame();
     }
 
     private void Start()
@@ -27,12 +27,27 @@ public class GameManager : MonoBehaviour
     {
         CheckForGameEnd();
         UpdateCommandCenter();
+
+        switch (gameState)
+        {
+            case GameState.Battling:
+                Player.Base.CommandHUB.GameStateController.ActivatePanelMessage("Battling");
+                break;
+
+            case GameState.GameOver:
+                Player.Base.CommandHUB.GameStateController.ActivatePanelMessage("Game Over");
+                break;
+
+            case GameState.Paused:
+                Player.Base.CommandHUB.GameStateController.DeactivatePanel();
+                break;
+        }
     }
 
     public void UpdateCommandCenter()
     {
-        Player.Base.CommandHUB.PlayerHealthController.SetHealth(Player.Base.PowerBuilding.Health);
-        Player.Base.CommandHUB.CPUHealthController.SetHealth(AI.Base.PowerBuilding.Health);
+        Player.Base.CommandHUB.PlayerHealthController.SetHealth(Player.Base.PowerBuilding.Health, Player.Base.PowerBuilding.MaxHealth);
+        Player.Base.CommandHUB.CPUHealthController.SetHealth(AI.Base.PowerBuilding.Health, Player.Base.PowerBuilding.MaxHealth);
     }
 
     public void CheckForGameEnd()

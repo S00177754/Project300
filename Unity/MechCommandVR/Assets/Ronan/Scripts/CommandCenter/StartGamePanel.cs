@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StartGamePanel : MonoBehaviour
 {
-    //public CommanderController Commander;
+    public GameObject Button;
 
     public void Setup()
     {
@@ -15,6 +15,6 @@ public class StartGamePanel : MonoBehaviour
     public void StartGame()
     {
         GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().StartBattle();
-        gameObject.SetActive(false);
+
     }
 }

@@ -12,11 +12,13 @@ public class UnitPanel : MonoBehaviour
 
     private void Awake()
     {
-        Commander.UnitsAdded += GenerateList;
+        Commander.UnitsAdded += AddToList;
+        Commander.UnitsRemove += RemoveFromList;
     }
 
     void Start()
     {
+        GenerateList();
     }
 
     void Update()
@@ -38,6 +40,23 @@ public class UnitPanel : MonoBehaviour
                 Debug.Log("Button created");
             }
         }
+    }
+
+    private void AddToList(UnitDetails details)
+    {
+        Commander.Units.Add(details);
+
+        GameObject button = Instantiate(UnitDetailPrefab, lstGridUnits);
+
+        UnitControlPanel gridButton = button.GetComponent<UnitControlPanel>();
+        gridButton.Initialize(details, unitCamSwitch);
+        Debug.Log("Button created");
+    }
+
+    private void RemoveFromList(UnitDetails details)
+    {
+        Destroy(lstGridUnits.GetComponentsInChildren<UnitDetails>().Where(c => c == details).SingleOrDefault().gameObject);
+        print("Removed");
     }
 
 }

@@ -58,4 +58,9 @@ public class UnitDetails : MonoBehaviour
 
     }
 
+    private void OnDestroy()
+    {
+        Commander.RemoveUnitDetails(this);
+    }
+
 }
