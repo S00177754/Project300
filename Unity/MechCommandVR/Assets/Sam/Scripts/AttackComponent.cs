@@ -13,6 +13,24 @@ public enum UnitType
 
 public class AttackComponent : MonoBehaviour
 {
+    public static float[,] SignModifierArray = new float[5, 5]
+    {
+            { 1.0f,     1.25f,  0.85f,  0.85f,  1.25f },
+            { 0.85f,    1.0f,   1.25f,  1.25f,  0.85f },
+            { 1.25f,    0.85f,  1.0f,   0.85f,  1.25f },
+            { 1.25f,    0.85f,  1.25f,  1.0f,   0.85f },
+            { 0.85f,    1.25f,  0.85f,  1.25f,  1.0f  }
+    };
+
+    public static float[,] LevelModifierArray = new float[5, 5]
+    {
+            { 1.0f,     1.15f,  1.3f,   1.5f,   1.6f  },
+            { 0.85f,    1.0f,   1.15f,  1.3f,   1.5f  },
+            { 0.6f,     0.85f,  1.0f,   1.15f,  1.3f  },
+            { 0.5f,     0.6f,   0.85f,  1.0f,   1.15f },
+            { 0.3f,     0.5f,   0.6f,   0.85f,  1.0f  }
+    };
+
     NavMeshMover meshMover;
     public UnitComponent Me;
     public GameObject AttackThis;
@@ -85,11 +103,11 @@ public class AttackComponent : MonoBehaviour
         {
             UnitComponent attackUnit;
             BasePowerController attackbase;
-            if (AttackingThis.TryGetComponent<UnitComponent>(out attackUnit))
+            if (AttackingThis.TryGetComponent(out attackUnit))
             {
                 return attackUnit.details.Health <= 0;
             }
-            else if (AttackingThis.TryGetComponent<BasePowerController>(out attackbase))
+            else if (AttackingThis.TryGetComponent(out attackbase))
             {
                 return attackbase.Health <= 0;
             }
@@ -175,6 +193,8 @@ public class AttackComponent : MonoBehaviour
     #region Modifier Methods
     public float SignModifier(UnitType enemySign)
     {
+        #region Switch Statement
+        /*
         switch (Me.details.myType)
         {
             case UnitType.Rock:
@@ -260,10 +280,17 @@ public class AttackComponent : MonoBehaviour
             default:
                 return 0;
         }
+        */
+        #endregion
+
+        return SignModifierArray[(int)Me.details.myType, (int)enemySign];
+
     }
 
     public float LevelModifier(UnitComponent enemy)
     {
+        #region Switch Statement
+        /*
         switch (Me.details.Level)
         {
             case 1:
@@ -339,9 +366,12 @@ public class AttackComponent : MonoBehaviour
             default:
                 return 1;
         }
+        */
+        #endregion
 
+        return LevelModifierArray[Me.details.Level - 1, enemy.details.Level - 1];
     }
-#endregion
+    #endregion
 
 }
 

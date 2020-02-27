@@ -244,6 +244,37 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!1 &868327338 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3223396841940592239, guid: f3cbcba951ef41f4fa557b2965ab2ba2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1838534476}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &868327339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868327338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3db6a3b450de9dd4ba74f798afbadb39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Commander: {fileID: 0}
+  unitCam: {fileID: 0}
+  UnitId: 0
+  Name: 
+  myType: 0
+  Level: 0
+  MaxHealth: 1
+  Health: 1
+  AttackPower: 0.1
+  AttackModifier: 1
+  IsSelected: 0
+  IsControlled: 0
+  MinimapIcon: {fileID: 0}
 --- !u!1001 &956114740
 PrefabInstance:
   m_ObjectHideFlags: 0

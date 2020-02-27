@@ -7,6 +7,8 @@ public class UnitComponent : MonoBehaviour
 {
     public UnitDetails details;
 
+    #region Modifier, moved to attack
+    /*
     public float SignModifier(UnitType enemySign)
     {
         switch (details.myType)
@@ -175,6 +177,9 @@ public class UnitComponent : MonoBehaviour
         }
     }
 
+    */
+
+    #endregion
 
     void Start()
     {
