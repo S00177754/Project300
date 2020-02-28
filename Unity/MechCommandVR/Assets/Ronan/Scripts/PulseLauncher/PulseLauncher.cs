@@ -37,7 +37,7 @@ public class PulseLauncher : MonoBehaviour
         GameObject projectile = Clip.TakeAmmo();
         if (projectile != null)
         {
-            projectile = Instantiate(projectile, LaunchPoint.position,Quaternion.identity);
+            projectile = Instantiate(projectile, LaunchPoint.position,LaunchPoint.rotation);
             projectile.GetComponent<Projectile>().Launch(this);
         }
     }

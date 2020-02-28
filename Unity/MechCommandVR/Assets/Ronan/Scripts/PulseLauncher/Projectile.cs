@@ -27,7 +27,7 @@ public class Projectile : MonoBehaviour, IDamageOutput
 
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(this);
+        
     }
 
     private void Update()
@@ -36,11 +36,11 @@ public class Projectile : MonoBehaviour, IDamageOutput
         {
             if(despawnTimer >= DespawnTime)
             {
-                Destroy(this);
+                Destroy(this.gameObject);
             }
             else
             {
-                despawnTimer += (Time.deltaTime);
+                despawnTimer += (Time.deltaTime * 1);
             }
         }
     }
@@ -48,7 +48,6 @@ public class Projectile : MonoBehaviour, IDamageOutput
     public void Launch(PulseLauncher blaster)
     {
         transform.position = blaster.LaunchPoint.position;
-        transform.rotation = blaster.transform.rotation;
 
         rigidbody.AddRelativeForce(Vector3.forward * 10, ForceMode.Impulse);
 
