@@ -60,9 +60,10 @@ public class AttackComponent : MonoBehaviour
         BasePowerController attackBase;
         if (Me != null && AttackThis != null)
         {
-            if(AttackThis.TryGetComponent<UnitComponent>(out attackUnit))
+            if (AttackThis.TryGetComponent<UnitComponent>(out attackUnit))
             {
                 Me.details.AttackModifier = SignModifier(attackUnit.details.myType) * LevelModifier(attackUnit);
+
 
                 attackUnit.details.Health -= Me.details.AttackPower * Me.details.AttackModifier;
                 timer = 0f;
@@ -116,7 +117,10 @@ public class AttackComponent : MonoBehaviour
         if (AttackThis == null)//When HP reaches 0, object is destroyed which will leave null
         {
             if(AttackThese.Count <= 0)//Check if units in range
+            {
+
                 return;
+            }
             else //set target to be first element of Enemy list
                 AttackThis = AttackThese[0];
         }

@@ -15,6 +15,14 @@ public class PlayerCharacterMover : NavMeshMover
 
     private void PlayerCharacterMover_Selected(RaycastHit selectionData)
     {
+
         MoveTo(selectionData.point);
+    }
+
+    public override void MoveTo(Vector3 position)
+    {
+        
+
+        base.MoveTo(position);
     }
 }

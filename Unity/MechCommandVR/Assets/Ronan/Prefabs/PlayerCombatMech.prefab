@@ -1600,6 +1600,8 @@ GameObject:
   - component: {fileID: 3574578727169657977}
   - component: {fileID: 3574578727169657974}
   - component: {fileID: 543267840459698776}
+  - component: {fileID: 3445516821433336954}
+  - component: {fileID: 2062750634}
   m_Layer: 0
   m_Name: PlayerCombatMech
   m_TagString: Player1
@@ -1774,6 +1776,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3445516821433336954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3574578727169657972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154ea17cf421cb9459e4ef0b3f2a3c53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &2062750634
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3574578727169657972}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0d6f218ec2e99864996250747d8b67b3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3574578727201996179
 GameObject:
   m_ObjectHideFlags: 0
@@ -2163,7 +2196,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d09494628a0100244b52231398a5eb36, type: 2}
+  - {fileID: 2100000, guid: c2ac7e1e91516e54e9c295f87d7d4bbe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

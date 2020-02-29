@@ -13,8 +13,9 @@ public class NavMeshMover : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
-    public void MoveTo(Vector3 position)
+    public virtual void MoveTo(Vector3 position)
     {
+
         Debug.Log("Moving - NavMeshMover");
         agent.SetDestination(position);
     }
