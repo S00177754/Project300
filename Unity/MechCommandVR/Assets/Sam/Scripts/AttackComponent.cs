@@ -62,8 +62,12 @@ public class AttackComponent : MonoBehaviour
         BasePowerController attackBase;
         if (Me != null && AttackThis != null)
         {
+            if(Vector3.Distance(transform.position, AttackThis.transform.position) <= AttackDistance)
+            {
+                gameObject.transform.LookAt(AttackThis.transform);
+                UnitAnimSet((UnitAnimationTriggers)Random.Range(2, 4));
+            }
 
-            UnitAnimSet((UnitAnimationTriggers)Random.Range(2, 4));
 
             if (AttackThis.TryGetComponent<UnitComponent>(out attackUnit))
             {

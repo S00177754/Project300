@@ -16,7 +16,7 @@ public class NavMeshMover : MonoBehaviour
 
     private void Update()
     {
-        if(agent.remainingDistance > agent.radius )
+        if(agent.remainingDistance > (agent.radius + agent.stoppingDistance))
         {
             UnitAnimWalk(true);
         }
