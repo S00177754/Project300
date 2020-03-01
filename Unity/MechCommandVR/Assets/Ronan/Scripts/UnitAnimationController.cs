@@ -60,4 +60,9 @@ public class UnitAnimationController : MonoBehaviour
         if (IsWalking != animator.GetBool("Walking"))
             animator.SetBool("Walking", IsWalking);
     }
+
+    public void Death()
+    {
+        SetTrigger(UnitAnimationTriggers.Death);
+    }
 }

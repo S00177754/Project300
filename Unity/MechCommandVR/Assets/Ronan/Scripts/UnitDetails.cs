@@ -25,6 +25,9 @@ public class UnitDetails : MonoBehaviour
     public float AttackPower = 0.1f;
     public float AttackModifier = 1;
 
+    public float DespawnTime = 3f;
+    private float despawnTimer = 0f;
+
     [Header("Unit States")]
     public bool IsSelected;
     public bool IsControlled;
@@ -46,6 +49,12 @@ public class UnitDetails : MonoBehaviour
         Debug.Log("Unit " + Name + " Added");
     }
 
+    private void Update()
+    {
+        DeathCheck();
+
+    }
+
     public void SetDetails(CommanderController commander, int unitId, float maxHealth, float attackPwr, float attackMod )
     {
         Commander = commander;
@@ -61,6 +70,32 @@ public class UnitDetails : MonoBehaviour
     private void OnDestroy()
     {
         Commander.RemoveUnitDetails(this);
+    }
+
+    private void DeathCheck()
+    {
+        if (Health <= 0)
+        {
+            despawnTimer += Time.deltaTime;
+            UnitAnimationController anim = GetUnitAnimationController();
+            if (anim != null)
+            {
+                anim.Death();
+            }
+        }
+
+        if (despawnTimer >= DespawnTime)
+            Destroy(gameObject);
+    }
+
+    private UnitAnimationController GetUnitAnimationController()
+    {
+        UnitAnimationController unitAnimController;
+        if (gameObject.TryGetComponent(out unitAnimController))
+        {
+            return unitAnimController;
+        }
+        return null;
     }
 
 }
