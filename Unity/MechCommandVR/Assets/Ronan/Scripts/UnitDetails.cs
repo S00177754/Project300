@@ -62,15 +62,11 @@ public class UnitDetails : MonoBehaviour
         MaxHealth = maxHealth;
         AttackPower = attackPwr;
         AttackModifier = attackMod;
-        Name = "Crackhead" + Random.Range(1,1000);
+        Name = "Phantom_" + Random.Range(1,1000);
         myType = (UnitType)Random.Range(0,5);
 
     }
 
-    private void OnDestroy()
-    {
-        Commander.RemoveUnitDetails(this);
-    }
 
     private void DeathCheck()
     {

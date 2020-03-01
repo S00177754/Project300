@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public delegate void UnitsAddToController(UnitDetails details);
-public delegate void UnitsRemoveFromController(UnitDetails details);
 
 public class CommanderController : MonoBehaviour
 {
@@ -16,7 +15,6 @@ public class CommanderController : MonoBehaviour
     //public List<BuildingInfo> buildings;
 
     public event UnitsAddToController UnitsAdded;
-    public event UnitsRemoveFromController UnitsRemove;
 
     private void Awake()
     {
@@ -45,11 +43,7 @@ public class CommanderController : MonoBehaviour
             UnitsAdded(details);
     }
 
-    public void RemoveUnitDetails(UnitDetails details)
-    {
-        if (UnitsRemove != null)
-            UnitsRemove(details);
-    }
+
 
 
 }

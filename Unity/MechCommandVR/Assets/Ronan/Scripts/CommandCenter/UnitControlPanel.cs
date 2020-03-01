@@ -35,6 +35,9 @@ public class UnitControlPanel : MonoBehaviour
 
     public void UpdateHealth(float health,float maxHealth)
     {
+        if (health <= 0)
+            Destroy(gameObject);
+
         Health.text = $"HP: {health}/{maxHealth}";
         HealthSlider.value = health / maxHealth;
         
