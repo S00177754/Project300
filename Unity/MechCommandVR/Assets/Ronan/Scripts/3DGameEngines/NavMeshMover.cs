@@ -7,14 +7,29 @@ using UnityEngine.AI;
 public class NavMeshMover : MonoBehaviour
 {
     protected NavMeshAgent agent;
+    private Vector3 targetPos;
 
     public virtual void Start()
     {
         agent = GetComponent<NavMeshAgent>();
     }
 
-    public void MoveTo(Vector3 position)
+    private void Update()
     {
+        if(agent.remainingDistance > (agent.radius + agent.stoppingDistance))
+        {
+            UnitAnimWalk(true);
+        }
+        else
+        {
+            UnitAnimWalk(false);
+        }
+    }
+
+    public virtual void MoveTo(Vector3 position)
+    {
+        
+
         Debug.Log("Moving - NavMeshMover");
         agent.SetDestination(position);
     }
@@ -27,6 +42,15 @@ public class NavMeshMover : MonoBehaviour
     public void Stop()
     {
         agent.isStopped = true;
+    }
+
+    private void UnitAnimWalk(bool value)
+    {
+        UnitAnimationController unitAnimController;
+        if (gameObject.TryGetComponent(out unitAnimController))
+        {
+            unitAnimController.IsWalking = value;
+        }
     }
 
     public Color DebugColor;

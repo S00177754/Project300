@@ -29,6 +29,8 @@ public class AttackComponent : MonoBehaviour
     [SerializeField]
     float AttackDistance;
 
+    bool IsAttacking = false;
+
     void Start()
     {
         Me = gameObject.GetComponent<UnitComponent>();
@@ -60,11 +62,20 @@ public class AttackComponent : MonoBehaviour
         BasePowerController attackBase;
         if (Me != null && AttackThis != null)
         {
-            if(AttackThis.TryGetComponent<UnitComponent>(out attackUnit))
+            if(Vector3.Distance(transform.position, AttackThis.transform.position) <= AttackDistance)
+            {
+                gameObject.transform.LookAt(AttackThis.transform);
+                UnitAnimSet((UnitAnimationTriggers)Random.Range(2, 4));
+            }
+
+
+            if (AttackThis.TryGetComponent<UnitComponent>(out attackUnit))
             {
                 Me.details.AttackModifier = SignModifier(attackUnit.details.myType) * LevelModifier(attackUnit);
 
+
                 attackUnit.details.Health -= Me.details.AttackPower * Me.details.AttackModifier;
+                attackUnit.gameObject.GetComponent<AttackComponent>().UnitAnimSet(UnitAnimationTriggers.Damaged);
                 timer = 0f;
                 Debug.Log(Me.ToString());
                 Debug.Log(AttackThis.ToString());
@@ -74,8 +85,12 @@ public class AttackComponent : MonoBehaviour
                 attackBase.Health -= Me.details.AttackPower * Me.details.AttackModifier;
             }
         }
+
         if (AttackThis == null)
+        {
+            IsAttacking = false;
             CanSeeTarget = false;
+        }
     }
     #endregion
 
@@ -109,14 +124,26 @@ public class AttackComponent : MonoBehaviour
         if (AttackThis != null && GetHealth(AttackThis))
         {
             AttackThese.Remove(AttackThis);
-            Destroy(AttackThis.gameObject);
+
+
+            //Need to call a death method instead
+            //Destroy(AttackThis.gameObject);
+            //Handled in unit details
+            
+            
+            
+            
+            
             if (AttackThese.Count <= 0)
                 CanSeeTarget = false;
         }
         if (AttackThis == null)//When HP reaches 0, object is destroyed which will leave null
         {
             if(AttackThese.Count <= 0)//Check if units in range
+            {
+
                 return;
+            }
             else //set target to be first element of Enemy list
                 AttackThis = AttackThese[0];
         }
@@ -341,7 +368,19 @@ public class AttackComponent : MonoBehaviour
         }
 
     }
-#endregion
+    #endregion
+
+    public void UnitAnimSet(UnitAnimationTriggers state)
+    {
+        UnitAnimationController unitAnimController;
+        if (gameObject.TryGetComponent(out unitAnimController))
+        {
+            unitAnimController.IsWalking = false;
+            unitAnimController.SetTrigger(state);
+        }
+    }
+
+    
 
 }
 
