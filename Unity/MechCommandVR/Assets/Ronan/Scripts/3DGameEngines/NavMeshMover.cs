@@ -16,7 +16,11 @@ public class NavMeshMover : MonoBehaviour
 
     private void Update()
     {
-        if(agent.remainingDistance <= 0)
+        if(agent.remainingDistance > agent.radius )
+        {
+            UnitAnimWalk(true);
+        }
+        else
         {
             UnitAnimWalk(false);
         }
@@ -24,13 +28,10 @@ public class NavMeshMover : MonoBehaviour
 
     public virtual void MoveTo(Vector3 position)
     {
-        UnitAnimWalk(true);
+        
 
         Debug.Log("Moving - NavMeshMover");
-        if (agent.SetDestination(position))
-        {
-            targetPos = position;
-        }
+        agent.SetDestination(position);
     }
 
     public void MoveTo(GameObject gameObject)

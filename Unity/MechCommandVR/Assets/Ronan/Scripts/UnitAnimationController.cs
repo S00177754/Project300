@@ -17,9 +17,8 @@ public class UnitAnimationController : MonoBehaviour
 
     private void Update()
     {
-        TriggerCheck();
-
         WalkCheck();
+        TriggerCheck();
     }
 
     public void TriggerCheck()

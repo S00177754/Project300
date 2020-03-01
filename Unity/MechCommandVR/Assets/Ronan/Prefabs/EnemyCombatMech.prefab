@@ -1032,6 +1032,7 @@ GameObject:
   - component: {fileID: 159191844599778606}
   - component: {fileID: 5294919669745380134}
   - component: {fileID: 722638304296147645}
+  - component: {fileID: 9143159447961127492}
   m_Layer: 0
   m_Name: EnemyCombatMech
   m_TagString: Player2
@@ -1115,6 +1116,7 @@ MonoBehaviour:
   Health: 1
   AttackPower: 0
   AttackModifier: 0
+  DespawnTime: 3
   IsSelected: 0
   IsControlled: 0
   MinimapIcon: {fileID: 1114832401377123668}
@@ -1218,6 +1220,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &9143159447961127492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3206560097727646473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154ea17cf421cb9459e4ef0b3f2a3c53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 544735874432750429}
+  IsWalking: 0
 --- !u!1 &3232218949191088402
 GameObject:
   m_ObjectHideFlags: 0
@@ -2026,7 +2042,7 @@ Animator:
   m_GameObject: {fileID: 6871948210512563252}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 892b71102a56d9e4dad008695eac5f95, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0d6f218ec2e99864996250747d8b67b3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
