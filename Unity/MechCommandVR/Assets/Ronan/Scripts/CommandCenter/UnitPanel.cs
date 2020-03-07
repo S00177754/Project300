@@ -13,7 +13,6 @@ public class UnitPanel : MonoBehaviour
     private void Awake()
     {
         Commander.UnitsAdded += AddToList;
-        Commander.UnitsRemove += RemoveFromList;
     }
 
     void Start()

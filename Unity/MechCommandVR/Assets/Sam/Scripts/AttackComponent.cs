@@ -163,7 +163,7 @@ public class AttackComponent : MonoBehaviour
 
 
 
-    #region Trigger Moethods: Enter and Exit
+    #region Trigger Methods: Enter and Exit
     //Trigger Methods
     private void OnTriggerEnter(Collider collision)
     {
@@ -197,7 +197,18 @@ public class AttackComponent : MonoBehaviour
         }
         //check reverse trigger is with unittype
     }
-#endregion
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Projectile projectileComp;
+        if(collision.gameObject.TryGetComponent<Projectile>(out projectileComp))
+        {
+            Me.details.Health -= projectileComp.Damage;
+            Destroy(projectileComp.gameObject);
+        }
+    }
+
+    #endregion
 
     #region Modifier Methods
     public float SignModifier(UnitType enemySign)

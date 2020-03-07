@@ -49,7 +49,7 @@ public class Projectile : MonoBehaviour, IDamageOutput
     {
         transform.position = blaster.LaunchPoint.position;
 
-        rigidbody.AddRelativeForce(Vector3.forward * 10, ForceMode.Impulse);
+        rigidbody.AddRelativeForce(Vector3.forward * LaunchForce, ForceMode.Impulse);
 
         isLaunched = true;
     }

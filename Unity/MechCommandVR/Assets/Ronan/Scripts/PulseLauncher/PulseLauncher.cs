@@ -14,6 +14,8 @@ public class PulseLauncher : MonoBehaviour
     [Header("Ammo Clip")]
     public List<GameObject> AmmoList;
     public PulseClip Clip;
+    public bool InfiniteAmmo = false;
+    public GameObject InfiniteDefaultAmmo;
 
     private SteamVR_Behaviour_Pose handPose = null;
 
@@ -34,7 +36,13 @@ public class PulseLauncher : MonoBehaviour
 
     public void ShootProjectile()
     {
-        GameObject projectile = Clip.TakeAmmo();
+        GameObject projectile;
+
+        if (!InfiniteAmmo)
+            projectile = Clip.TakeAmmo();
+        else
+            projectile = InfiniteDefaultAmmo;
+
         if (projectile != null)
         {
             projectile = Instantiate(projectile, LaunchPoint.position,LaunchPoint.rotation);
