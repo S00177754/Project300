@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public Camera MiniMapCam;
-    public GameObject StartPanel;
+   // public GameObject StartPanel;
 
     [Header("Commanders")]
     public CommanderController Player;
@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
         Player.Base.PowerBuilding.FullPower();
         AI.Base.PowerBuilding.FullPower();
 
-        StartPanel.SetActive(false);
+        //StartPanel.SetActive(false);
     }
 
     public void PauseGame()
