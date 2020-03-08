@@ -17,7 +17,7 @@ public class AttackComponent : MonoBehaviour
     public UnitComponent Me;
     public GameObject AttackThis;
     UnitComponent AttackThisComp;
-    string AttackTag;
+    string AttackTag = "test";
     [SerializeField]
     float AttackDelay;
     float timer;
@@ -58,8 +58,10 @@ public class AttackComponent : MonoBehaviour
     void Attack()
     {
         AttackThis = AttackThese[0];
+
         UnitComponent attackUnit;
         BasePowerController attackBase;
+        
         if (Me != null && AttackThis != null)
         {
             if(Vector3.Distance(transform.position, AttackThis.transform.position) <= AttackDistance)
@@ -148,6 +150,7 @@ public class AttackComponent : MonoBehaviour
                 AttackThis = AttackThese[0];
         }
 
+        //Timer
         if(AttackThese.Count > 0)
         {
             if (timer > 0f)
@@ -159,6 +162,8 @@ public class AttackComponent : MonoBehaviour
                 timer = AttackDelay;
             }
         }
+
+
     }
 
 

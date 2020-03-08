@@ -60,6 +60,11 @@ public class UnitControlPanel : MonoBehaviour
 
     public void ReturnToBase()
     {
+        unitDetails.gameObject.GetComponent<NavMeshMover>().MoveTo(unitDetails.Commander.Base.PowerBuilding.transform.position);
+    }
 
+    public void GoToEnemyBase()
+    {
+        unitDetails.gameObject.GetComponent<NavMeshMover>().MoveTo(GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().AI.Base.PowerBuilding.transform.position);
     }
 }

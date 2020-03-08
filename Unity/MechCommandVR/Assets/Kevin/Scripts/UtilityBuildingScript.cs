@@ -12,6 +12,7 @@ public class UtilityBuildingScript : MonoBehaviour
 
     [Header("Unit Barracks Stats")]
     public GameObject UnitBarracksPrefab;
+    public Transform UnitSpawnPoint;
     public float BarracksBuildCooldown = 5f;
     public int BarracksBuildCost = 550;
 
@@ -31,6 +32,7 @@ public class UtilityBuildingScript : MonoBehaviour
     private void Start()
     {
         UnitBarracksPrefab.GetComponent<BarracksScript>().Base = Base;
+        UnitBarracksPrefab.GetComponent<BarracksScript>().UnitSpawnLocation = UnitSpawnPoint;
         ResourceCollectorPrefab.GetComponent<CollectorScript>().BaseController = Base;
     }
 

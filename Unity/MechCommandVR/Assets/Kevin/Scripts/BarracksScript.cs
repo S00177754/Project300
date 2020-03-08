@@ -52,7 +52,7 @@ public class BarracksScript : MonoBehaviour, ISelectableMinimap
         {
             Timer += Time.deltaTime;
 
-            if (Timer >= CooldownTime)
+            if (Timer >= CooldownTime && Base.Owner.Resources >= UnitCost)
             {
                 Base.Owner.DecreaseFunds(UnitCost);
                 TrainUnit();

@@ -12,7 +12,7 @@ public class UnitPanel : MonoBehaviour
 
     private void Awake()
     {
-        Commander.UnitsAdded += AddToList;
+       Commander.UnitsAdded += AddToList;
     }
 
     void Start()
@@ -43,7 +43,7 @@ public class UnitPanel : MonoBehaviour
 
     private void AddToList(UnitDetails details)
     {
-        Commander.Units.Add(details);
+        //Commander.Units.Add(details);
 
         GameObject button = Instantiate(UnitDetailPrefab, lstGridUnits);
 

@@ -32,8 +32,9 @@ public class UnitDetails : MonoBehaviour
     public bool IsSelected;
     public bool IsControlled;
 
-
+    [Header("Icons")]
     public GameObject MinimapIcon;
+    public GameObject HighlightedIcon;
 
     void Start()
     {
@@ -52,6 +53,8 @@ public class UnitDetails : MonoBehaviour
     private void Update()
     {
         DeathCheck();
+
+        HighlightedIcon.SetActive(IsSelected);
 
     }
 
