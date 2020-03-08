@@ -31,11 +31,14 @@ public class GameManager : MonoBehaviour
         switch (gameState)
         {
             case GameState.Battling:
-                Player.Base.CommandHUB.GameStateController.ActivatePanelMessage("Battling");
+                Player.Base.CommandHUB.GameStateController.ActivatePanelMessage("Enemies Incoming");
                 break;
 
             case GameState.GameOver:
-                Player.Base.CommandHUB.GameStateController.ActivatePanelMessage("Game Over");
+                if(Player.Base.PowerBuilding.Health <= 0)
+                    Player.Base.CommandHUB.GameStateController.ActivatePanelMessage("Game Over");
+                else if(AI.Base.PowerBuilding.Health <= 0)
+                    Player.Base.CommandHUB.GameStateController.ActivatePanelMessage("You Win!");
                 break;
 
             case GameState.Paused:
