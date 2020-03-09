@@ -17,7 +17,7 @@ public class AttackComponent : MonoBehaviour
     public UnitComponent Me;
     public GameObject AttackThis;
     UnitComponent AttackThisComp;
-    string AttackTag = "test";
+    string AttackTag = "Unit";
     [SerializeField]
     float AttackDelay;
     float timer;

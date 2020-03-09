@@ -46,7 +46,13 @@ public class VRPointer : MonoBehaviour
         RaycastHit hit = CreateRaycast();
 
         float CollisionDistance = hit.distance == 0 ? DefaultLength : hit.distance;
-        float CanvasDistance = data.pointerCurrentRaycast.distance == 0 ? DefaultLength : data.pointerCurrentRaycast.distance;
+        //float CanvasDistance = data.pointerCurrentRaycast.distance == 0 ? DefaultLength : data.pointerCurrentRaycast.distance;
+        float CanvasDistance = DefaultLength; 
+        if(data != null)
+        {
+            if (data.pointerCurrentRaycast.distance != 0)
+                CanvasDistance = data.pointerCurrentRaycast.distance;
+        }
 
         float targetLength = Mathf.Min(CollisionDistance, CanvasDistance);
 

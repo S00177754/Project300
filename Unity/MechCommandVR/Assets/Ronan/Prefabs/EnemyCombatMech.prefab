@@ -1029,10 +1029,10 @@ GameObject:
   - component: {fileID: 1490039128484893024}
   - component: {fileID: 1490039128484893025}
   - component: {fileID: 1490039128484893038}
-  - component: {fileID: 159191844599778606}
   - component: {fileID: 5294919669745380134}
   - component: {fileID: 722638304296147645}
   - component: {fileID: 9143159447961127492}
+  - component: {fileID: 6186159875189827755}
   m_Layer: 0
   m_Name: EnemyCombatMech
   m_TagString: Player2
@@ -1180,19 +1180,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 15.714367
   m_Center: {x: 0, y: 15.5, z: 0}
---- !u!114 &159191844599778606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3206560097727646473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 827ccb63d981eae4bbd721315e4a0ecf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DebugColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &5294919669745380134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1206,6 +1193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentNode: {fileID: 0}
+  attackComponent: {fileID: 1490039128484893025}
 --- !u!54 &722638304296147645
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1236,6 +1224,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 544735874432750429}
   IsWalking: 0
+--- !u!114 &6186159875189827755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3206560097727646473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 827ccb63d981eae4bbd721315e4a0ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebugColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &3232218949191088402
 GameObject:
   m_ObjectHideFlags: 0

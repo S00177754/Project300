@@ -65,9 +65,16 @@ public class EnemyUnitCreator : MonoBehaviour
                 //REMOVE BEFORE RELEASE
                 //SelectedRoute = staringNodes[0];
                 //Set starting node
-                unitsWaiting.ForEach(uw => uw.GetComponent<AIPathFollower>().CurrentNode = SelectedRoute);
+                //unitsWaiting.ForEach(uw => uw.GetComponent<AIPathFollower>().CurrentNode = SelectedRoute);
+                foreach (var uw in unitsWaiting)
+                {
+                    if(uw != null)
+                    uw.GetComponent<AIPathFollower>().CurrentNode = SelectedRoute;
+                    uw.GetComponent<AIPathFollower>().Invoke("MoveToPathNode", 1);
+                }
+                
                 //Tell units to start moving
-                unitsWaiting.ForEach(uw => uw.GetComponent<AIPathFollower>().Invoke("MoveToPathNode", 1));
+                //unitsWaiting.ForEach(uw => uw.GetComponent<AIPathFollower>().Invoke("MoveToPathNode", 1));
                 //Clear waiting list
                 unitsWaiting.Clear();
             }
