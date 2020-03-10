@@ -6,48 +6,27 @@ using TMPro;
 
 public class UnitCameraSwitcher : MonoBehaviour
 {
-    public RenderTexture CameraRender;
-    public CommanderController Commander;
-    public TextMeshProUGUI TMPtext;
+    public NotificationController notificationController;
 
-    void Awake()
-    {
-        
-    }
+    public RenderTexture CameraRenderTex;
+    public List<Camera> DroneCameras;
+    public TextMeshProUGUI TMPtext;
 
     void Start()
     {
-        if (Commander.Units.Count > 0)
-        {
-            CameraRender = new RenderTexture(Commander.Units.First().unitCam.targetTexture);
-            CameraRender.Create();
-        }
+        SetCameraToDrone(0);
     }
 
-    void Update()
+    public void SetCameraToDrone(int number)
     {
-        
+        DroneCameras.ForEach(dc => dc.enabled = false);
+
+        DroneCameras[number].enabled = true;
+        CameraRenderTex = DroneCameras[number].targetTexture;
+        CameraRenderTex.Create();
+
+        TMPtext.text = "Drone " + (number + 1);
     }
 
-    public void SetCameraToUnit(UnitDetails unitDetails)
-    {
-        DisableCameras();
-        Camera cam = GameObject.FindGameObjectsWithTag("Unit").Where(ud => ud.GetComponent<UnitDetails>().UnitId == unitDetails.UnitId).Single().GetComponent<Camera>();
-        cam.enabled = true;
-
-        TMPtext.text = GameObject.FindGameObjectsWithTag("Unit").Where(ud => ud.GetComponent<UnitDetails>().UnitId == unitDetails.UnitId).Single().GetComponent<UnitDetails>().Name;
-
-        CameraRender = new RenderTexture(cam.targetTexture);
-        CameraRender.Create();
-    }
-
-    private void DisableCameras()
-    {
-        List<GameObject> units = GameObject.FindGameObjectsWithTag("Unit").Where(ud => ud.GetComponent<UnitDetails>().Commander.Username == Commander.Username).ToList();
-
-        for (int i = 0; i < units.Count; i++)
-        {
-            units[i].GetComponent<Camera>().enabled = false;
-        }
-    }
+    
 }

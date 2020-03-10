@@ -9,19 +9,15 @@ public class NotificationController : MonoBehaviour
     public GameObject NotificationPrefab;
     public Sprite WarningIcon;
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
-    public void TestNotification()
+    public void UnitDestroyed(string unitName)
     {
         GameObject notification = Instantiate(NotificationPrefab, Content);
-        notification.GetComponent<NotificationElement>().SetNotification("CRITICAL DAMAGE",WarningIcon,Color.red);
+        notification.GetComponent<NotificationElement>().SetNotification(unitName+" Destroyed",WarningIcon,Color.red);
+    }
+
+    public void SendNotification(string message, Sprite sprite, Color color)
+    {
+        GameObject notification = Instantiate(NotificationPrefab, Content);
+        notification.GetComponent<NotificationElement>().SetNotification(message, sprite, color);
     }
 }
