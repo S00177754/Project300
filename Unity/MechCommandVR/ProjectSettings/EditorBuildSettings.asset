@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Ronan/Scenes/BattleMapOne.unity
+    guid: e4e4f7f07fc99af4383712d0e15cae85
   m_configObjects: {}
