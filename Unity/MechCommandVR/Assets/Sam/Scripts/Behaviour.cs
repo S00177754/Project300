@@ -45,11 +45,11 @@ public class Behaviour : MonoBehaviour
         {
             case (UnitState.IDLE):
                 //logic to determine time to attack - select or InRange of enemy
-                if (attackComponent.CanAttackTarget)
-                    unitState = UnitState.ATTACKING;
-
                 if (attackComponent.CanSeeTarget)
                     unitState = UnitState.FOLLOWING;
+                
+                if (attackComponent.CanAttackTarget)
+                    unitState = UnitState.ATTACKING;
                 break;
 
             case (UnitState.SCOUTING):
@@ -60,6 +60,7 @@ public class Behaviour : MonoBehaviour
                 attackComponent.Move();
                 if (attackComponent.CanAttackTarget)
                     unitState = UnitState.ATTACKING;
+
                 if (!attackComponent.CanSeeTarget)
                     unitState = UnitState.IDLE;
                 break;
@@ -67,12 +68,12 @@ public class Behaviour : MonoBehaviour
             case (UnitState.ATTACKING):
                 if (attackComponent != null)
                 {
-                    attackComponent.enabled = true;//Enable attack component
+                    //attackComponent.enabled = true;//Enable attack component
                     attackComponent.Move();
                 }
                 if (!attackComponent.CanAttackTarget)
                 {
-                    attackComponent.enabled = false;
+                    //attackComponent.enabled = false;
                     unitState = UnitState.FOLLOWING;
                 }
                 break;
