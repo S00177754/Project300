@@ -12,10 +12,94 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
-  EditorBanks: []
-  EditorEvents: []
+  EditorBanks:
+  - {fileID: 3087656630467863841}
+  - {fileID: 4809354678422162141}
+  EditorEvents:
+  - {fileID: 8030007576746754638}
   EditorParameters: []
-  MasterBanks: []
-  StringsBanks: []
-  stringsBankWriteTime: 0
+  MasterBanks:
+  - {fileID: 4809354678422162141}
+  StringsBanks:
+  - {fileID: 3087656630467863841}
+  stringsBankWriteTime: 637195364249494458
   cacheVersion: 3
+--- !u!114 &2471612733099752693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Sam/Sounds/BGM_MechCommand/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637184117419242335
+  LoadResult: 0
+  FileSizes: []
+  Exists: 0
+--- !u!114 &3087656630467863841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Sam/Sounds/BGM_MechCommand/Build/Desktop/Master.strings.bank
+  SubDir: 
+  lastModified: 637195364249494458
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 740
+  Exists: 1
+--- !u!114 &4809354678422162141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Sam/Sounds/BGM_MechCommand/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637195364249394567
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &8030007576746754638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BGM/StartonPlay
+  m_EditorClassIdentifier: 
+  Path: event:/BGM/StartonPlay
+  guid: 813b59282fdd8445ab7693b18c5bc3c8
+  Banks:
+  - {fileID: 4809354678422162141}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 141244

@@ -1035,6 +1035,7 @@ GameObject:
   - component: {fileID: 3574578727169657974}
   - component: {fileID: 543267840459698776}
   - component: {fileID: 3445516821433336954}
+  - component: {fileID: 5687161281688207016}
   m_Layer: 0
   m_Name: PlayerCombatMech
   m_TagString: Player1
@@ -1225,6 +1226,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1006150222376893713}
   IsWalking: 0
+--- !u!114 &5687161281688207016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3574578727169657972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cf30e63d99277c4ab2da6f16471a94a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackSource: {fileID: 8967004871932449182, guid: a2dbb1a3736878d459698371fda3f9ac,
+    type: 3}
+  DestreoySource: {fileID: 1892438946656446089, guid: b6571c04f842f6344b70c93b7a1b6e1c,
+    type: 3}
 --- !u!1 &3574578727749525222
 GameObject:
   m_ObjectHideFlags: 0

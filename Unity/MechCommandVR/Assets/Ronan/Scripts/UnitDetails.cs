@@ -9,6 +9,10 @@ public class UnitDetails : MonoBehaviour
 
     public CommanderController Commander;
 
+    AudioManager SoundManager;
+    AudioSource destroySource;
+    AudioClip destroyClip;
+
     [Header("Unit Info")]
     public int UnitId;
     public string Name;
@@ -39,7 +43,7 @@ public class UnitDetails : MonoBehaviour
     {
         var gameObjectRender = MinimapIcon.GetComponent<Renderer>();
         gameObjectRender.material.SetColor("_" +
-            "Color",Commander.PlayerColor);
+            "Color", Commander.PlayerColor);
 
         IsSelected = false;
         IsControlled = false;
@@ -48,6 +52,10 @@ public class UnitDetails : MonoBehaviour
 
         Commander.Units.Add(this);
         Debug.Log("Unit " + Name + " Added");
+
+        SoundManager = GetComponentInParent<AudioManager>();
+        destroySource = SoundManager.DestreoySource;
+        destroyClip = destroySource.clip;
     }
 
     private void Update()
@@ -58,19 +66,19 @@ public class UnitDetails : MonoBehaviour
 
     }
 
-    public void SetDetails(CommanderController commander, int unitId, float maxHealth, float attackPwr, float attackMod )
+    public void SetDetails(CommanderController commander, int unitId, float maxHealth, float attackPwr, float attackMod)
     {
         Commander = commander;
         UnitId = unitId;
         MaxHealth = maxHealth;
         AttackPower = attackPwr;
         AttackModifier = attackMod;
-        Name = "Phantom_" + Random.Range(1,1000);
-        myType = (UnitType)Random.Range(0,5);
+        Name = "Phantom_" + Random.Range(1, 1000);
+        myType = (UnitType)Random.Range(0, 5);
 
         if (Commander.Base.CommandHUB != null)
         {
-            Commander.Base.CommandHUB.UniCamSwitch.notificationController.SendNotification(Name + " has been created!",NotificationSprites.Build,Color.cyan);
+            Commander.Base.CommandHUB.UniCamSwitch.notificationController.SendNotification(Name + " has been created!", NotificationSprites.Build, Color.cyan);
         }
 
     }
@@ -80,6 +88,8 @@ public class UnitDetails : MonoBehaviour
     {
         if (Health <= 0)
         {
+            //Play deatch clip
+
             despawnTimer += Time.deltaTime;
             UnitAnimationController anim = GetUnitAnimationController();
             if (anim != null)
@@ -92,7 +102,8 @@ public class UnitDetails : MonoBehaviour
         if (despawnTimer >= DespawnTime)
         {
             Destroy(gameObject);
-            if(Commander.Base.CommandHUB != null)
+
+            if (Commander.Base.CommandHUB != null)
             {
                 Commander.Base.CommandHUB.UniCamSwitch.notificationController.UnitDestroyed(Name);
             }

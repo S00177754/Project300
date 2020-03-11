@@ -13,6 +13,25 @@ public enum UnitType
 
 public class AttackComponent : MonoBehaviour
 {
+
+    public static float[,] SignModifierArray = new float[5, 5]
+    {
+            { 1.0f,     1.25f,  0.85f,  0.85f,  1.25f },
+            { 0.85f,    1.0f,   1.25f,  1.25f,  0.85f },
+            { 1.25f,    0.85f,  1.0f,   0.85f,  1.25f },
+            { 1.25f,    0.85f,  1.25f,  1.0f,   0.85f },
+            { 0.85f,    1.25f,  0.85f,  1.25f,  1.0f  }
+    };
+
+    public static float[,] LevelModifierArray = new float[5, 5]
+    {
+            { 1.0f,     1.15f,  1.3f,   1.5f,   1.6f  },
+            { 0.85f,    1.0f,   1.15f,  1.3f,   1.5f  },
+            { 0.6f,     0.85f,  1.0f,   1.15f,  1.3f  },
+            { 0.5f,     0.6f,   0.85f,  1.0f,   1.15f },
+            { 0.3f,     0.5f,   0.6f,   0.85f,  1.0f  }
+    };
+
     NavMeshMover meshMover;
     public UnitComponent Me;
     public GameObject AttackThis;
@@ -23,7 +42,11 @@ public class AttackComponent : MonoBehaviour
     float timer;
     //multiple targets
     public List<GameObject> AttackThese;
-    
+
+    AudioManager SoundsManager;
+    public AudioClip AttackClip;
+    public AudioSource AttackSource;
+
     public bool CanSeeTarget;
     public bool CanAttackTarget;
     [SerializeField]
@@ -33,21 +56,23 @@ public class AttackComponent : MonoBehaviour
 
     void Start()
     {
+        SoundsManager = GetComponentInParent<AudioManager>();
+        AttackSource = SoundsManager.AttackSource;
         Me = gameObject.GetComponent<UnitComponent>();
         AttackThese = new List<GameObject>();
-        //AttackDistance = 2f;
+        AttackDistance = 2f;
         //Using Player1 and Player2 for future implementation of multiplayer
         if (gameObject.CompareTag("Player1"))
             AttackTag = "Player2";
         if (gameObject.CompareTag("Player2"))
             AttackTag = "Player1";
-        
+
         meshMover = gameObject.GetComponent<NavMeshMover>();
     }
 
     public void Move()
     {
-        if(AttackThis != null)
+        if (AttackThis != null)
         {
             if (meshMover != null && Vector3.Distance(transform.position, AttackThis.transform.position) <= AttackDistance)
                 meshMover.MoveTo(AttackThis.transform.position);
@@ -57,14 +82,24 @@ public class AttackComponent : MonoBehaviour
     #region Attack
     void Attack()
     {
+
         Debug.Log("Attack called");
 
-        AttackThis = AttackThese[0];
-        
+        AttackSource.pitch = Random.Range(0.75f, 1.251f);
+        AttackClip = AttackSource.clip;
+        if (AttackSource.TryGetComponent(out AttackClip))
+            AttackSource.PlayOneShot(AttackClip);
+
+        if (AttackThese.Count > 0)
+            AttackThis = AttackThese[0];
+        else
+            AttackThis = null;
+
+        UnitComponent attackUnit;
+        BasePowerController attackBase;
+
         if (Me != null && AttackThis != null)
         {
-            UnitComponent attackUnit;
-            BasePowerController attackBase;
             gameObject.transform.LookAt(AttackThis.transform);
             UnitAnimSet((UnitAnimationTriggers)Random.Range(2, 4));
 
@@ -79,7 +114,7 @@ public class AttackComponent : MonoBehaviour
                 Debug.Log(Me.ToString());
                 Debug.Log(AttackThis.ToString());
             }
-            else if(AttackThis.TryGetComponent<BasePowerController>(out attackBase))
+            else if (AttackThis.TryGetComponent<BasePowerController>(out attackBase))
             {
                 attackBase.Health -= Me.details.AttackPower * Me.details.AttackModifier;
             }
@@ -114,30 +149,31 @@ public class AttackComponent : MonoBehaviour
     void Update()
     {
         //Check if in range of attack
-        if (AttackThis != null)
-        {
-            float value = Vector3.Distance(transform.position, AttackThis.transform.position);
-            if (AttackThis != null && value <= AttackDistance)
-                CanAttackTarget = true;
-            else
-                CanAttackTarget = false;
-        }
-        //Removes enemy from list if enemy 'dies'
-        if (AttackThis != null)
-        {
-            if (GetHealth(AttackThis))
-            {
+        if (AttackThis != null && Vector3.Distance(transform.position, AttackThis.transform.position) <= AttackDistance)
+            CanAttackTarget = true;
+        else
+            CanAttackTarget = false;
 
+        //Removes enemy from list if enemy 'dies'
+        if (AttackThis != null && GetHealth(AttackThis))
+        {
             AttackThese.Remove(AttackThis);
+
+
+            //Need to call a death method instead
+            //Destroy(AttackThis.gameObject);
+            //Handled in unit details
+
+
+
+
 
             if (AttackThese.Count <= 0)
                 CanSeeTarget = false;
-            }
         }
-
         if (AttackThis == null)//When HP reaches 0, object is destroyed which will leave null
         {
-            if(AttackThese.Count <= 0)//Check if units in range
+            if (AttackThese.Count <= 0)//Check if units in range
             {
 
                 return;
@@ -147,9 +183,9 @@ public class AttackComponent : MonoBehaviour
         }
 
         //Timer
-        if(CanAttackTarget)
+        if (CanAttackTarget)
         {
-            if(AttackThese.Count > 0)
+            if (AttackThese.Count > 0)
             {
                 if (timer > 0f)
                     timer -= Time.deltaTime;
@@ -172,12 +208,12 @@ public class AttackComponent : MonoBehaviour
         if (newUnit != null)
         {
             //Debug.Log("newUnit not null");
-            if(collision.gameObject.tag != null)
-            if (collision.gameObject.CompareTag(AttackTag))
-            {
-                CanSeeTarget = true;
-                AttackThese.Add(newUnit);
-            }
+            if (collision.gameObject.tag != null)
+                if (collision.gameObject.CompareTag(AttackTag))
+                {
+                    CanSeeTarget = true;
+                    AttackThese.Add(newUnit);
+                }
 
         }
         else
@@ -189,7 +225,7 @@ public class AttackComponent : MonoBehaviour
     {
         GameObject removeUnit = collision.gameObject;
         //Check if player or enemy
-        if(collision.gameObject.CompareTag(AttackTag))
+        if (collision.gameObject.CompareTag(AttackTag))
         {   //Comparing AttackTag ensures unit details are correct since Srat() will determine which tag to attack
             AttackThese.Remove(removeUnit);
             if (AttackThese.Count == 0)//Check if enemies still in range
@@ -201,7 +237,7 @@ public class AttackComponent : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Projectile projectileComp;
-        if(collision.gameObject.TryGetComponent<Projectile>(out projectileComp))
+        if (collision.gameObject.TryGetComponent<Projectile>(out projectileComp))
         {
             Me.details.Health -= projectileComp.Damage;
             Destroy(projectileComp.gameObject);
@@ -213,6 +249,10 @@ public class AttackComponent : MonoBehaviour
     #region Modifier Methods
     public float SignModifier(UnitType enemySign)
     {
+        return SignModifierArray[(int)Me.details.myType, (int)enemySign];
+
+        #region Old Modifier code
+        /*
         switch (Me.details.myType)
         {
             case UnitType.Rock:
@@ -297,11 +337,17 @@ public class AttackComponent : MonoBehaviour
                 }
             default:
                 return 0;
-        }
+                }
+                */
+        #endregion
     }
 
     public float LevelModifier(UnitComponent enemy)
     {
+        return LevelModifierArray[Me.details.Level - 1, enemy.details.Level - 1];
+
+        #region Old Code
+        /*
         switch (Me.details.Level)
         {
             case 1:
@@ -377,7 +423,8 @@ public class AttackComponent : MonoBehaviour
             default:
                 return 1;
         }
-
+        */
+        #endregion
     }
     #endregion
 
@@ -391,7 +438,7 @@ public class AttackComponent : MonoBehaviour
         }
     }
 
-    
+
 
 }
 
