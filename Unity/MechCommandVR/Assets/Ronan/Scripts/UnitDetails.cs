@@ -70,7 +70,7 @@ public class UnitDetails : MonoBehaviour
 
         if (Commander.Base.CommandHUB != null)
         {
-            Commander.Base.CommandHUB.UniCamSwitch.notificationController.SendNotification(Name + " has been created!",,Color.cyan);
+            Commander.Base.CommandHUB.UniCamSwitch.notificationController.SendNotification(Name + " has been created!",NotificationSprites.Build,Color.cyan);
         }
 
     }

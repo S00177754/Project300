@@ -35,7 +35,7 @@ public class AttackComponent : MonoBehaviour
     {
         Me = gameObject.GetComponent<UnitComponent>();
         AttackThese = new List<GameObject>();
-        AttackDistance = 2f;
+        //AttackDistance = 2f;
         //Using Player1 and Player2 for future implementation of multiplayer
         if (gameObject.CompareTag("Player1"))
             AttackTag = "Player2";
@@ -60,11 +60,11 @@ public class AttackComponent : MonoBehaviour
         Debug.Log("Attack called");
 
         AttackThis = AttackThese[0];
-        UnitComponent attackUnit;
-        BasePowerController attackBase;
         
         if (Me != null && AttackThis != null)
         {
+            UnitComponent attackUnit;
+            BasePowerController attackBase;
             gameObject.transform.LookAt(AttackThis.transform);
             UnitAnimSet((UnitAnimationTriggers)Random.Range(2, 4));
 
@@ -97,8 +97,8 @@ public class AttackComponent : MonoBehaviour
     {
         if (AttackingThis != null)
         {
-            UnitComponent attackUnit = new UnitComponent();
-            BasePowerController attackbase = new BasePowerController();
+            UnitComponent attackUnit;
+            BasePowerController attackbase;
             if (AttackingThis.TryGetComponent<UnitComponent>(out attackUnit))
             {
                 return attackUnit.details.Health <= 0;
@@ -114,28 +114,27 @@ public class AttackComponent : MonoBehaviour
     void Update()
     {
         //Check if in range of attack
-        if (AttackThis != null && Vector3.Distance(transform.position, AttackThis.transform.position) <= AttackDistance)
-            CanAttackTarget = true;
-        else
-            CanAttackTarget = false;
-  
-        //Removes enemy from list if enemy 'dies'
-        if (AttackThis != null && GetHealth(AttackThis))
+        if (AttackThis != null)
         {
+            float value = Vector3.Distance(transform.position, AttackThis.transform.position);
+            if (AttackThis != null && value <= AttackDistance)
+                CanAttackTarget = true;
+            else
+                CanAttackTarget = false;
+        }
+        //Removes enemy from list if enemy 'dies'
+        if (AttackThis != null)
+        {
+            if (GetHealth(AttackThis))
+            {
+
             AttackThese.Remove(AttackThis);
 
-
-            //Need to call a death method instead
-            //Destroy(AttackThis.gameObject);
-            //Handled in unit details
-            
-            
-            
-            
-            
             if (AttackThese.Count <= 0)
                 CanSeeTarget = false;
+            }
         }
+
         if (AttackThis == null)//When HP reaches 0, object is destroyed which will leave null
         {
             if(AttackThese.Count <= 0)//Check if units in range

@@ -1124,7 +1124,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Commander: {fileID: 0}
-  unitCam: {fileID: 3574578726304684333}
   UnitId: 1
   Name: r
   myType: 0
@@ -1182,7 +1181,7 @@ MonoBehaviour:
   AttackThese: []
   CanSeeTarget: 0
   CanAttackTarget: 0
-  AttackDistance: 2
+  AttackDistance: 20
 --- !u!135 &3574578727169657974
 SphereCollider:
   m_ObjectHideFlags: 0
