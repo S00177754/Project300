@@ -68,6 +68,11 @@ public class UnitDetails : MonoBehaviour
         Name = "Phantom_" + Random.Range(1,1000);
         myType = (UnitType)Random.Range(0,5);
 
+        if (Commander.Base.CommandHUB != null)
+        {
+            Commander.Base.CommandHUB.UniCamSwitch.notificationController.SendNotification(Name + " has been created!",,Color.cyan);
+        }
+
     }
 
 
