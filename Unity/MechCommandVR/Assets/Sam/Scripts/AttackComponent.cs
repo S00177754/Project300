@@ -57,8 +57,9 @@ public class AttackComponent : MonoBehaviour
     #region Attack
     void Attack()
     {
-        AttackThis = AttackThese[0];
+        Debug.Log("Attack called");
 
+        AttackThis = AttackThese[0];
         UnitComponent attackUnit;
         BasePowerController attackBase;
         
@@ -96,8 +97,8 @@ public class AttackComponent : MonoBehaviour
     {
         if (AttackingThis != null)
         {
-            UnitComponent attackUnit;
-            BasePowerController attackbase;
+            UnitComponent attackUnit = new UnitComponent();
+            BasePowerController attackbase = new BasePowerController();
             if (AttackingThis.TryGetComponent<UnitComponent>(out attackUnit))
             {
                 return attackUnit.details.Health <= 0;
@@ -147,22 +148,21 @@ public class AttackComponent : MonoBehaviour
         }
 
         //Timer
-        if(AttackThese.Count > 0)
+        if(CanAttackTarget)
         {
-            if (timer > 0f)
-                timer -= Time.deltaTime;
-
-            if (timer <= 0f) //&& CanAttackTarget)
+            if(AttackThese.Count > 0)
             {
-                Attack();
-                timer = AttackDelay;
+                if (timer > 0f)
+                    timer -= Time.deltaTime;
+
+                if (timer <= 0f) //&& CanAttackTarget)
+                {
+                    Attack();
+                    timer = AttackDelay;
+                }
             }
         }
-
-
     }
-
-
 
     #region Trigger Methods: Enter and Exit
     //Trigger Methods
