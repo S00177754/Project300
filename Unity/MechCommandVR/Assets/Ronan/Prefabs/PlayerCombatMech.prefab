@@ -1150,7 +1150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f5df5da19b3726488beb6fa0d951e86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitState: 0
+  unitState: 1
 --- !u!114 &3574578727169657976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1178,8 +1178,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Me: {fileID: 3574578727169657976}
   AttackThis: {fileID: 0}
-  AttackDelay: 5
+  AttackDelay: 2.5
   AttackThese: []
+  AttackClip: {fileID: 0}
+  AttackSource: {fileID: 8967004871932449182, guid: a2dbb1a3736878d459698371fda3f9ac,
+    type: 3}
   CanSeeTarget: 0
   CanAttackTarget: 0
   AttackDistance: 20

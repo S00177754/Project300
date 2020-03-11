@@ -1033,6 +1033,7 @@ GameObject:
   - component: {fileID: 722638304296147645}
   - component: {fileID: 9143159447961127492}
   - component: {fileID: 6186159875189827755}
+  - component: {fileID: 986079394822036616}
   m_Layer: 0
   m_Name: EnemyCombatMech
   m_TagString: Player2
@@ -1111,7 +1112,7 @@ MonoBehaviour:
   UnitId: 0
   Name: 
   myType: 0
-  Level: 0
+  Level: 1
   MaxHealth: 1
   Health: 1
   AttackPower: 0
@@ -1133,7 +1134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f5df5da19b3726488beb6fa0d951e86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitState: 0
+  unitState: 1
 --- !u!114 &1490039128484893024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1161,11 +1162,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Me: {fileID: 1490039128484893024}
   AttackThis: {fileID: 0}
-  AttackDelay: 4.5
+  AttackDelay: 2.5
   AttackThese: []
+  AttackClip: {fileID: 0}
+  AttackSource: {fileID: 8967004871932449182, guid: a2dbb1a3736878d459698371fda3f9ac,
+    type: 3}
   CanSeeTarget: 0
   CanAttackTarget: 0
-  AttackDistance: 15
+  AttackDistance: 20
 --- !u!135 &1490039128484893038
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1236,6 +1240,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &986079394822036616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3206560097727646473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cf30e63d99277c4ab2da6f16471a94a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackSource: {fileID: 8967004871932449182, guid: a2dbb1a3736878d459698371fda3f9ac,
+    type: 3}
+  DestreoySource: {fileID: 1892438946656446089, guid: b6571c04f842f6344b70c93b7a1b6e1c,
+    type: 3}
 --- !u!1 &3232218949191088402
 GameObject:
   m_ObjectHideFlags: 0

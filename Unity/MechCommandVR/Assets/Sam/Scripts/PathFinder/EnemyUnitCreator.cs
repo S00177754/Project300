@@ -50,7 +50,7 @@ public class EnemyUnitCreator : MonoBehaviour
                 UnitDetails newUnit = go.GetComponent<UnitDetails>();
                 //Set details of new unit
                 //ID for enemy units only instanciated here, ID is managed internally 
-                newUnit.SetDetails(Base.Owner, id, 1f, 0.01f, 1f);
+                newUnit.SetDetails(Base.Owner, id, 1f, 0.2f, 1f);
                 id++;
                 //Add to list
                 unitsWaiting.Add(go.GetComponent<UnitComponent>());

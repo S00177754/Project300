@@ -18,7 +18,7 @@ public class Behaviour : MonoBehaviour
 
     void Start()
     {
-        unitState = UnitState.IDLE;
+        unitState = UnitState.ATTACKING;
         attackComponent = gameObject.GetComponent<AttackComponent>();
     }
 
@@ -41,43 +41,43 @@ public class Behaviour : MonoBehaviour
 
     void Update()
     {
-        switch(unitState)
-        {
-            case (UnitState.IDLE):
-                //logic to determine time to attack - select or InRange of enemy
-                if (attackComponent.CanSeeTarget)
-                    unitState = UnitState.FOLLOWING;
+        //switch(unitState)
+        //{
+        //    case (UnitState.IDLE):
+        //        //logic to determine time to attack - select or InRange of enemy
+        //        //if (attackComponent.CanSeeTarget)
+        //        //    unitState = UnitState.FOLLOWING;
                 
-                if (attackComponent.CanAttackTarget)
-                    unitState = UnitState.ATTACKING;
-                break;
+        //        if (attackComponent.CanAttackTarget)
+        //            unitState = UnitState.ATTACKING;
+        //        break;
 
-            case (UnitState.SCOUTING):
-                //logic for scouting to be added if necessary
-                break;
+        //    case (UnitState.SCOUTING):
+        //        //logic for scouting to be added if necessary
+        //        break;
 
-            case (UnitState.FOLLOWING):
-                attackComponent.Move();
-                if (attackComponent.CanAttackTarget)
-                    unitState = UnitState.ATTACKING;
+        //    case (UnitState.FOLLOWING):
+        //        //attackComponent.Move();
+        //        if (attackComponent.CanAttackTarget)
+        //            unitState = UnitState.ATTACKING;
 
-                if (!attackComponent.CanSeeTarget)
-                    unitState = UnitState.IDLE;
-                break;
+        //        if (!attackComponent.CanSeeTarget)
+        //            unitState = UnitState.IDLE;
+        //        break;
 
-            case (UnitState.ATTACKING):
-                if (attackComponent != null)
-                {
-                    //attackComponent.enabled = true;//Enable attack component
-                    attackComponent.Move();
-                }
-                if (!attackComponent.CanAttackTarget)
-                {
-                    //attackComponent.enabled = false;
-                    unitState = UnitState.FOLLOWING;
-                }
-                break;
-        }
+        //    case (UnitState.ATTACKING):
+        //        if (attackComponent != null)
+        //        {
+        //            //attackComponent.enabled = true;//Enable attack component
+        //            attackComponent.Move();
+        //        }
+        //        if (!attackComponent.CanAttackTarget)
+        //        {
+        //            //attackComponent.enabled = false;
+        //            unitState = UnitState.FOLLOWING;
+        //        }
+        //        break;
+        //}
 
         
         //Chase state: 'sees' enemy and follows 

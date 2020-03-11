@@ -37,7 +37,7 @@ public class UnitControlPanel : MonoBehaviour
         if (health <= 0)
             Destroy(gameObject);
 
-        Health.text = $"HP: {health}/{maxHealth}";
+        Health.text = $"HP: {System.Math.Round(health,2)}/{maxHealth}";
         HealthSlider.value = health / maxHealth;
         
     }

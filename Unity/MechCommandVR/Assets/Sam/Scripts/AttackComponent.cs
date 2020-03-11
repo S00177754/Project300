@@ -60,7 +60,7 @@ public class AttackComponent : MonoBehaviour
         AttackSource = SoundsManager.AttackSource;
         Me = gameObject.GetComponent<UnitComponent>();
         AttackThese = new List<GameObject>();
-        AttackDistance = 2f;
+        //AttackDistance = 2f;
         //Using Player1 and Player2 for future implementation of multiplayer
         if (gameObject.CompareTag("Player1"))
             AttackTag = "Player2";
@@ -223,13 +223,19 @@ public class AttackComponent : MonoBehaviour
     //This method removes a 'still alive' enemy when it is out of sight range
     private void OnTriggerExit(Collider collision)
     {
-        GameObject removeUnit = collision.gameObject;
         //Check if player or enemy
         if (collision.gameObject.CompareTag(AttackTag))
         {   //Comparing AttackTag ensures unit details are correct since Srat() will determine which tag to attack
+            GameObject removeUnit = collision.gameObject;
             AttackThese.Remove(removeUnit);
+
             if (AttackThese.Count == 0)//Check if enemies still in range
+            {
                 CanSeeTarget = false;
+                AttackThis = null;
+            }
+            else if (AttackThese.Count > 0)
+                AttackThis = AttackThese[0];
         }
         //check reverse trigger is with unittype
     }
