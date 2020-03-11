@@ -16,7 +16,7 @@ public class UnitControlPanel : MonoBehaviour
     public Slider HealthSlider;
 
     private UnitDetails unitDetails;
-    private UnitCameraSwitcher camSwitcher;
+
 
     private void Update()
     {
@@ -28,7 +28,6 @@ public class UnitControlPanel : MonoBehaviour
         Name.text = details.Name;
         Type.text = details.myType.ToString();
         unitDetails = details;
-        camSwitcher = switcher;
         
     }
 
@@ -43,10 +42,7 @@ public class UnitControlPanel : MonoBehaviour
         
     }
 
-    public void ActivateCamera()
-    {
-        camSwitcher.SetCameraToUnit(unitDetails);
-    }
+
     
     public void SelectUnit()
     {

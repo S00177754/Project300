@@ -30,11 +30,6 @@ public class UnitDetailButton : MonoBehaviour
         tmpTxtHealth.text = $"{details.Health} /{details.MaxHealth}";
     }
 
-    public void ActivateCam()
-    {
-        unitCamSwitch.SetCameraToUnit(details);
-    }
-
     public void DebugMe()
     {
         Debug.Log("I am an unit detail button and have been clicked!");

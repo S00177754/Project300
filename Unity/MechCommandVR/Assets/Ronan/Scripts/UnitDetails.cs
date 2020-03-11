@@ -8,7 +8,6 @@ public class UnitDetails : MonoBehaviour
 {
 
     public CommanderController Commander;
-    public Camera unitCam;
 
     [Header("Unit Info")]
     public int UnitId;
@@ -82,10 +81,19 @@ public class UnitDetails : MonoBehaviour
             {
                 anim.Death();
             }
+
         }
 
         if (despawnTimer >= DespawnTime)
+        {
             Destroy(gameObject);
+            if(Commander.Base.CommandHUB != null)
+            {
+                Commander.Base.CommandHUB.UniCamSwitch.notificationController.UnitDestroyed(Name);
+            }
+
+        }
+
     }
 
     private UnitAnimationController GetUnitAnimationController()
